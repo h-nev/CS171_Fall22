@@ -10,14 +10,15 @@ h2{
 
 }
 
-#module-1{
+.module{
     /* Davy's Grey */
     background-color: #555555;
 
 }
 
-#module-2{
-    /* Davy's Grey */
-    background-color: #555555;
+.gutter{
+    /* Allows us to make custom row-breaks so svgs are not directly touching */
+    background-color: black;
+    padding-bottom: 2%;
 
 }

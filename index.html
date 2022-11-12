@@ -11,21 +11,22 @@
 </head>
 <body>
 
+	<!-- Added custom title class with navbar-brand if we want all titles to be the same style later -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
-		  <a class="navbar-brand" href="#">Dolly Parton: America's Darling</a>
-		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		  <a class="navbar-brand title" href="#">Dolly Parton: America's Darling</a>
+		  <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
-		  </button>
+		  </button> -->
 		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
-			  <a class="nav-link" href="#">Connections</a>
-			  <a class="nav-link" href="#">Success</a>
-			  <a class="nav-link" href="#">Philanthropy</a>
+			  <a class="nav-link" href="#module-1">Connections</a>
+			  <a class="nav-link" href="#module-2">Success</a>
+			  <a class="nav-link" href="#module-3">Philanthropy</a>
 			</div>
 		  </div>
 		</div>
-	  </nav>
+	</nav>
 
 	<!-- Full-Spanning Page Header(s) -->
 	<!-- <div class = "container-fluid border-bottom" id = "page-header">
@@ -36,6 +37,10 @@
 		</div>
 	</div> -->
 
+
+	<!-- We could encapsulate everything below in a container an add another tiny container running down the side  -->
+	<!-- Could be entirely an svg and become a custom vertical progress bar / mapping of the website layout if there's time -->
+
 	<div class = 'gutter'>
 		<!-- Nothing will go here, but we have to make vertical gutters by hand due to BootStrap's setup vs this one -->
 	</div>
@@ -45,12 +50,26 @@
 		<!-- Anything relating to the country bubble visualization would go in this row -->
 		<div class = "row">
 			<!-- Vis title and possible external legend -->
+			<h3 class = 'vis-title title'>Vis Title 1</h3>
 		</div>
 
 
 		<div class = 'row'>
 			<!-- Row with the visualization and any captions / images we want to add using another column -->
-			<div class = 'col' id = 'vis-1'></div>
+			<div class = 'col' id = 'vis-1'>
+				<!-- Bubble SVG should go right where this is, but it might get messed up because of the p's of psuedo code written here -->
+				<p>Exit Billboard dataset, enter Wiki dataset which should have the same artist names in the same format</p>
+				<p>Assuming circles are drawn already (billboard talks to wiki data well), we exit the circles that do not have a connection to Dolly Parton</p>
+				<p>Transition (duration = 800) y position of general bubbles to bottom of the svg (y = vis.height - radius - padding) and Dolly Parton's to the top (y + padding or vis.margin.top) </p>
+				<p>Get cx of each regular bubble and cy - radius (top bubble edge location for end point of each curved line path N-to-1)</p>
+				<p>Get cx, cy + radius of the big Dolly Parton bubble (bottom bubble edge location for the start point of each path: 1-to-N)</p>
+				<p>Set path curves with the data above, using curveMonotoneX</p>
+				<p>Set general transition (duration = 800) to draw each path simultaneously</p>
+				<p>Time Permissive: include a mouseover listener to grey out all other bubbles (excluding Dolly and the one hovered on) and paths</p>
+				<p>Then have a bootstrap card pop up somewhere not disruptive to list the songs they collaborated on (if data is as granular as this)</p>
+				<p>On mouseout, reset everything to how it was before</p>
+				<p>On scroll transition to a new part of the DOM (visualization 2)</p>
+			</div>
 
 		</div>
 
@@ -62,14 +81,13 @@
 
 
     <div class = 'container-xl module' id = 'module-2'>
-        <!-- Vis title and possible external legend -->
         <div class = 'row'>
-
-
+			<!-- Vis title and possible external legend -->
+			<h3 class = 'vis-title title'>Vis Title 2</h3>
         </div>
 
-        <!-- Row with the visualization -->
 		<div class = 'row' id = 'vis-2'>
+			<!-- Row with the visualization -->
 
 		</div>
 
@@ -80,14 +98,13 @@
 	</div>
 
 	<div class = 'container-xl module' id = 'module-3'>
-        <!-- Vis title and possible external legend -->
         <div class = 'row'>
-
-
+			<!-- Vis title and possible external legend -->
+			<h3 class = 'vis-title title'>Vis Title 3</h3>
         </div>
 
-        <!-- Row with the visualization -->
 		<div class = 'row' id = 'vis-3'>
+			<!-- Row with the visualization -->
 
 		</div>
 

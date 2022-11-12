@@ -4,9 +4,9 @@ body{
 
 }
 
-h2{
+.title{
     /* Stands out on dark backgrounds */
-    color:antiquewhite;
+    color:#d3d3d3;
 
 }
 

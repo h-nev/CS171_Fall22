@@ -11,18 +11,33 @@
 </head>
 <body>
 
-	<div class = "container-fluid border-bottom" id = "page-header">
-		<!-- Full-Spanning Page Header(s) -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+		  <a class="navbar-brand" href="#">Dolly Parton: America's Darling</a>
+		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav">
+			  <a class="nav-link" href="#">Connections</a>
+			  <a class="nav-link" href="#">Success</a>
+			  <a class="nav-link" href="#">Philanthropy</a>
+			</div>
+		  </div>
+		</div>
+	  </nav>
+
+	<!-- Full-Spanning Page Header(s) -->
+	<!-- <div class = "container-fluid border-bottom" id = "page-header">
 		<div class = "row justify-content-center" id = "page-titles">
 
 			<h2 class = "title">Dolly Parton: America's Darling Musician and Philanthropist</h2>
 
 		</div>
+	</div> -->
 
-	</div>
 
-
-	<div class = "container" id = 'module-1'>
+	<div class = "container-xl" id = 'module-1'>
 		<!-- Anything relating to the country bubble visualization would go in this row -->
 		<div class = "row">
 			<!-- Vis title and possible external legend -->
@@ -38,7 +53,7 @@
 	</div>
 
 
-    <div class = 'container' id = 'module-2'>
+    <div class = 'container-xl' id = 'module-2'>
         <!-- Vis title and possible external legend -->
         <div class = 'row'>
 
@@ -61,8 +76,8 @@
 	<script src = "https://d3js.org/d3.v6.min.js"></script>
 
 	<!-- JS -->
-	<script src = "js/main.js"></script>
 	<script src = "js/BeeSwarm.js"></script>
+	<script src = "js/main.js"></script>
 
 </body>
 </html>

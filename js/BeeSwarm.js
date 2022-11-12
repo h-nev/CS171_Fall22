@@ -2,7 +2,7 @@
 // Created only up to the svg instantiation
 // None of the values or methodologies have to stay, just did it to get the svg appended to DOM
 
-class BeeSwarm {
+class BeeSwarm{
 
     constructor(parentElement, baseData){
         this.parentElement = parentElement

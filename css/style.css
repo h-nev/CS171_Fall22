@@ -1,9 +1,23 @@
 body{
+    /* Overall backing to the page and heading */
     background-color: black;
 
 }
 
 h2{
+    /* Stands out on dark backgrounds */
     color:antiquewhite;
+
+}
+
+#module-1{
+    /* Davy's Grey */
+    background-color: #555555;
+
+}
+
+#module-2{
+    /* Davy's Grey */
+    background-color: #555555;
 
 }

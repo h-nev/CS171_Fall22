@@ -1,7 +1,8 @@
-// Read in the data 
-placeHolder = [1, 2, 3];
+// Read in the data
+// let mainData = d3.csv()
+let placeHolder = [1,2,3];
 
-// Create the visualization instances
+// Instantiate the visualizations
 let countryBubbles = new BeeSwarm('vis-1', placeHolder);
 
-// Helper functions (parsers, common agnostic data cleaning tasks, ect)
+// Helper functions (parsers, agnostic data cleaning tools)

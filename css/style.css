@@ -22,3 +22,10 @@ h2{
     padding-bottom: 2%;
 
 }
+
+#footer{
+    /* Light grey with generous fluid space at the bottom of the page to cite / include our contacts */
+    background-color: #d3d3d3;
+    height: 200px;
+
+}

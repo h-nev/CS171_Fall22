@@ -29,3 +29,20 @@ body{
     height: 200px;
 
 }
+
+.bubble-vis .artist-circle {
+    fill: lightcyan;
+    stroke-width: 1px;
+    stroke: black;
+}
+.bubble-vis .artist-dolly {
+    fill: yellowgreen;
+}
+.bubble-vis .artist-dolly-linked {
+    stroke-width: 3px;
+    fill: lightseagreen;
+}
+.bubble-vis .artist-circle-text {
+    text-anchor: middle;
+    alignment-baseline: middle;
+}

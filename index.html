@@ -56,19 +56,33 @@
 
 		<div class = 'row'>
 			<!-- Row with the visualization and any captions / images we want to add using another column -->
-			<div class = 'col' id = 'vis-1'>
+			<div class = 'col bubble-vis' id = 'vis-1a' style="height: 80vh; width: 100%;" >
 				<!-- Bubble SVG should go right where this is, but it might get messed up because of the p's of psuedo code written here -->
-				<p>Exit Billboard dataset, enter Wiki dataset which should have the same artist names in the same format</p>
-				<p>Assuming circles are drawn already (billboard talks to wiki data well), we exit the circles that do not have a connection to Dolly Parton</p>
-				<p>Transition (duration = 800) y position of general bubbles to bottom of the svg (y = vis.height - radius - padding) and Dolly Parton's to the top (y + padding or vis.margin.top) </p>
-				<p>Get cx of each regular bubble and cy - radius (top bubble edge location for end point of each curved line path N-to-1)</p>
-				<p>Get cx, cy + radius of the big Dolly Parton bubble (bottom bubble edge location for the start point of each path: 1-to-N)</p>
-				<p>Set path curves with the data above, using curveMonotoneX</p>
-				<p>Set general transition (duration = 800) to draw each path simultaneously</p>
-				<p>Time Permissive: include a mouseover listener to grey out all other bubbles (excluding Dolly and the one hovered on) and paths</p>
-				<p>Then have a bootstrap card pop up somewhere not disruptive to list the songs they collaborated on (if data is as granular as this)</p>
-				<p>On mouseout, reset everything to how it was before</p>
-				<p>On scroll transition to a new part of the DOM (visualization 2)</p>
+				
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class = 'gutter'>
+		<!-- Nothing will go here, but we have to make vertical gutters by hand due to BootStrap's setup vs this one -->
+	</div>
+
+
+	<div class = "container-xl module" id = 'module-1'>
+		<!-- Anything relating to the country bubble visualization would go in this row -->
+		<div class = "row">
+			<!-- Vis title and possible external legend -->
+			<h3 class = 'vis-title title'>Vis Title 1</h3>
+		</div>
+
+
+		<div class = 'row'>
+			<!-- Row with the visualization and any captions / images we want to add using another column -->
+			<div class = 'col bubble-vis' id = 'vis-1b' style="height: 80vh; width: 100%;" >
+				<!-- Bubble SVG should go right where this is, but it might get messed up because of the p's of psuedo code written here -->
+				
 			</div>
 
 		</div>
@@ -85,9 +99,21 @@
 			<!-- Vis title and possible external legend -->
 			<h3 class = 'vis-title title'>Vis Title 2</h3>
         </div>
+		
 
 		<div class = 'row' id = 'vis-2'>
 			<!-- Row with the visualization -->
+			<p>Exit Billboard dataset, enter Wiki dataset which should have the same artist names in the same format</p>
+			<p>Assuming circles are drawn already (billboard talks to wiki data well), we exit the circles that do not have a connection to Dolly Parton</p>
+			<p>Transition (duration = 800) y position of general bubbles to bottom of the svg (y = vis.height - radius - padding) and Dolly Parton's to the top (y + padding or vis.margin.top) </p>
+			<p>Get cx of each regular bubble and cy - radius (top bubble edge location for end point of each curved line path N-to-1)</p>
+			<p>Get cx, cy + radius of the big Dolly Parton bubble (bottom bubble edge location for the start point of each path: 1-to-N)</p>
+			<p>Set path curves with the data above, using curveMonotoneX</p>
+			<p>Set general transition (duration = 800) to draw each path simultaneously</p>
+			<p>Time Permissive: include a mouseover listener to grey out all other bubbles (excluding Dolly and the one hovered on) and paths</p>
+			<p>Then have a bootstrap card pop up somewhere not disruptive to list the songs they collaborated on (if data is as granular as this)</p>
+			<p>On mouseout, reset everything to how it was before</p>
+			<p>On scroll transition to a new part of the DOM (visualization 2)</p>
 
 		</div>
 
@@ -131,6 +157,7 @@
 
 	<!-- JS -->
 	<script src = "js/BeeSwarm.js"></script>
+	<script src = "js/BubbleVis.js"></script>
 	<script src = 'js/TimeSeries.js'></script>
 	<script src = 'js/Charity.js'></script>
 	<script src = "js/main.js"></script>

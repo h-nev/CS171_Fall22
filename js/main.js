@@ -19,10 +19,21 @@ Promise.all(promises)
     });
 
 function initMainPage(dataArray) {
+    let chartsData = dataArray[2];
+    chartsData = chartsData.map(function (d) {
+        return {
+            song: d.song,
+            artist: d.artist,
+            rank: +d.rank_w_mean,
+            year: +d.year,
+            n_weeks: +d.n_weeks,
+            date_short: dateParser(d.date_short)
+        };
+    });
     // Instantiate the visualizations
     countryBubbles_a = new BubbleVis('vis-1a', dataArray[0], []);
     countryBubbles_b = new BubbleVis('vis-1b', dataArray[0], dataArray[1]);
-    fancyTimeSeries = new TimeSeries('vis-2', dataArray[2]);
+    fancyTimeSeries = new TimeSeries('vis-2', chartsData);
     charityBubbles = new Charity('vis-3', placeHolder);
 }
 

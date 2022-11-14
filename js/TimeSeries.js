@@ -116,7 +116,7 @@ class TimeSeries {
         ];
 
         // append tooltip
-        vis.tooltip = d3.select("body").append('div')
+        vis.tooltip = d3.select("#vis-2").append('div')
             .attr('class', "tooltip")
             .attr('id', 'customTooltip')
 
@@ -168,6 +168,7 @@ class TimeSeries {
 
         // TODO
         let artists = Array.from(new Set(vis.displayData.map(function(d) { return d['artist'];})));
+        console.log(artists)
         let i; // Loop aggregating for each artist
         for (i = 0; i < artists.length; i++) {
             let artist_filt = artists[i];
@@ -181,15 +182,15 @@ class TimeSeries {
                 let data_filt = _.filter(data_filt_artist.filter(d=>d["song"]===song_filt),function(element) {
                         return element.song && [element.song].indexOf(song_filt) !== -1;
                 })
-                // console.log(data_filt)
-                // vis.svg.append('path')
-                //     .datum(data_filt)
-                //     .attr('class', function(d) {return 'curve line_highlight_' + i;})
-                //     .attr('d', vis.line)
-                //     .style('fill', 'none')
-                //     .style('stroke','#005B96')
-                //     .style('stroke-width', 1)
-                //     .style('opacity', function(d) {return 1})
+                console.log(data_filt)
+                vis.svg.append('path')
+                    .datum(data_filt)
+                    .attr('class', function(d) {return 'curve line_highlight_' + i;})
+                    .attr('d', vis.line)
+                    .style('fill', 'none')
+                    .style('stroke','#005B96')
+                    .style('stroke-width', 1)
+                    .style('opacity', function(d) {return 1})
 
                 vis.svg.selectAll('.bubble_highlight_' + i)
                     .data(data_filt)

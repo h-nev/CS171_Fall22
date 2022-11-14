@@ -14,7 +14,7 @@ class Awards{
         this.baseData = baseData;
         this.displayData = baseData;
 
-        vis.initVis();
+        this.initVis();
 
     }
 
@@ -22,17 +22,17 @@ class Awards{
         // Initialize all static elements : scales, svg dimensions, margin conventions, ect.
         let vis = this
 
-        vis.margin = {top: 40, right: 60, bottom: 40, left: 60};
+        // Expecting to outsource the legend, only need space for axes
+        vis.margin = {top: 10, bottom: 20, left: 20, right: 10};
+        // (height) - 75 helps avoid the task bar on a computer; (width) - 100 keeps things a bit more square
+        vis.height = window.innerHeight - vis.margin.top - vis.margin.bottom - 75;
+        vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right - 100;
 
-        vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
-        vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
-
-        // SVG drawing area
-        vis.svg = d3.select("#" + vis.parentElement).append("svg")
-            .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
-            .append("g")
-            .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
+        vis.svg = d3.select('#' + vis.parentElement)
+            .append('svg')
+            .attr('width', vis.width)
+            .attr('height', vis.height)
+            .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
     }
 

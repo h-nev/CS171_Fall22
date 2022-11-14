@@ -46,3 +46,30 @@ body{
     text-anchor: middle;
     alignment-baseline: middle;
 }
+
+
+/*---------- Time Series customization ----------*/
+.axis text {
+    fill: #8FA2AC;
+    /*font: 12px sans-serif;*/
+    /*font-family: SansSerif;*/
+}
+.axis-title {
+    fill: #8FA2AC;
+    text-anchor: middle;
+    /*font-family:  SansSerif;*/
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: none;
+    shape-rendering: crispEdges;
+}
+
+.date-label-top, .date-label-bottom{
+    fill: #8FA2AC;
+    text-anchor: middle;
+}
+
+.date-marker {
+    stroke-width: 1px;

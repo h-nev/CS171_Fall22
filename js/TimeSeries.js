@@ -268,6 +268,7 @@ class TimeSeries {
 
         // Update the visualization
         vis.wrangleData();
+
     }
 
 }

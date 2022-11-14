@@ -1,53 +1,54 @@
+body{
+    /* Overall backing to the page and heading */
+    background-color: black;
+
+}
+
+.title{
+    /* Stands out on dark backgrounds */
+    color:#d3d3d3;
+
+}
+
+.module{
+    /* Davy's Grey */
+    background-color: #555555;
+
+}
+
+.gutter{
+    /* Allows us to make custom row-breaks so svgs are not directly touching */
+    background-color: black;
+    padding-bottom: 2%;
+
+}
+
+#footer{
+    /* Light grey with generous fluid space at the bottom of the page to cite / include our contacts */
+    background-color: #d3d3d3;
+    height: 200px;
+
+}
+
+.bubble-vis .artist-circle {
+    fill: lightcyan;
+    stroke-width: 1px;
+    stroke: black;
+}
+.bubble-vis .artist-dolly {
+    fill: yellowgreen;
+}
+.bubble-vis .artist-dolly-linked {
+    stroke-width: 3px;
+    fill: lightseagreen;
+}
+.bubble-vis .artist-circle-text {
+    text-anchor: middle;
+    alignment-baseline: middle;
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Time Series customization */
+/*---------- Time Series customization ----------*/
 .axis text {
     fill: #8FA2AC;
     /*font: 12px sans-serif;*/
@@ -72,4 +73,3 @@
 
 .date-marker {
     stroke-width: 1px;
-}

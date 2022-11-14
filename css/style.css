@@ -1,3 +1,8 @@
+html{
+    scroll-behavior: smooth;
+
+}
+
 body{
     /* Overall backing to the page and heading */
     background-color: black;

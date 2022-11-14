@@ -1,12 +1,17 @@
+html{
+    scroll-behavior: smooth;
+
+}
+
 body{
     /* Overall backing to the page and heading */
     background-color: black;
 
 }
 
-h2{
+.title{
     /* Stands out on dark backgrounds */
-    color:antiquewhite;
+    color:#d3d3d3;
 
 }
 
@@ -21,4 +26,56 @@ h2{
     background-color: black;
     padding-bottom: 2%;
 
+}
+
+#footer{
+    /* Light grey with generous fluid space at the bottom of the page to cite / include our contacts */
+    background-color: #d3d3d3;
+    height: 200px;
+
+}
+
+.bubble-vis .artist-circle {
+    fill: lightcyan;
+    stroke-width: 1px;
+    stroke: black;
+}
+.bubble-vis .artist-dolly {
+    fill: yellowgreen;
+}
+.bubble-vis .artist-dolly-linked {
+    stroke-width: 3px;
+    fill: lightseagreen;
+}
+.bubble-vis .artist-circle-text {
+    text-anchor: middle;
+    alignment-baseline: middle;
+}
+
+
+/*---------- Time Series customization ----------*/
+.axis text {
+    fill: #8FA2AC;
+    /*font: 12px sans-serif;*/
+    /*font-family: SansSerif;*/
+}
+.axis-title {
+    fill: #8FA2AC;
+    text-anchor: middle;
+    /*font-family:  SansSerif;*/
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: none;
+    shape-rendering: crispEdges;
+}
+
+.date-label-top, .date-label-bottom{
+    fill: #8FA2AC;
+    text-anchor: middle;
+}
+
+.date-marker {
+    stroke-width: 1px;
 }

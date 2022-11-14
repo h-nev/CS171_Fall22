@@ -172,24 +172,24 @@ class TimeSeries {
         for (i = 0; i < artists.length; i++) {
             let artist_filt = artists[i];
             let data_filt_artist = _.filter(vis.displayData.filter(d=>d["artist"]===artist_filt),function(element){
-                    return element.artist && [element.artist].indexOf(artist_filt) != -1;
+                    return element.artist && [element.artist].indexOf(artist_filt) !== -1;
                 })
             let songs = Array.from(new Set(data_filt_artist.map(function(d) { return d['song'];})));
             let j;// Loop drawing path for each artist's song
             for (j = 0; j < songs.length ; j++) {
                 let song_filt = songs[j];
                 let data_filt = _.filter(data_filt_artist.filter(d=>d["song"]===song_filt),function(element) {
-                        return element.song && [element.song].indexOf(song_filt) != -1;
+                        return element.song && [element.song].indexOf(song_filt) !== -1;
                 })
-                console.log(data_filt)
-                vis.svg.append('path')
-                    .datum(data_filt)
-                    .attr('class', function(d) {return 'curve line_highlight_' + i;})
-                    .attr('d', vis.line)
-                    .style('fill', 'none')
-                    .style('stroke','#005B96')
-                    .style('stroke-width', 1)
-                    .style('opacity', function(d) {return 1})
+                // console.log(data_filt)
+                // vis.svg.append('path')
+                //     .datum(data_filt)
+                //     .attr('class', function(d) {return 'curve line_highlight_' + i;})
+                //     .attr('d', vis.line)
+                //     .style('fill', 'none')
+                //     .style('stroke','#005B96')
+                //     .style('stroke-width', 1)
+                //     .style('opacity', function(d) {return 1})
 
                 vis.svg.selectAll('.bubble_highlight_' + i)
                     .data(data_filt)

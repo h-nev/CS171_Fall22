@@ -15,94 +15,85 @@
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
 		  <a class="navbar-brand title" href="#">Dolly Parton: America's Darling</a>
-		  <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		  </button> -->
 		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav">
 			  <a class="nav-link" href="#module-1">Connections</a>
 			  <a class="nav-link" href="#module-2">Success</a>
-			  <a class="nav-link" href="#module-3">Philanthropy</a>
+			  <a class="nav-link" href="#module-4">Philanthropy</a>
+			  <a class="nav-link" href="#footer">About</a>
 			</div>
 		  </div>
 		</div>
 	</nav>
 
-	<!-- Full-Spanning Page Header(s) -->
-	<!-- <div class = "container-fluid border-bottom" id = "page-header">
-		<div class = "row justify-content-center" id = "page-titles">
 
-			<h2 class = "title">Dolly Parton: America's Darling Musician and Philanthropist</h2>
-
-		</div>
-	</div> -->
+	<div class = 'gutter'></div>
 
 
-	<!-- We could encapsulate everything below in a container an add another tiny container running down the side  -->
-	<!-- Could be entirely an svg and become a custom vertical progress bar / mapping of the website layout if there's time -->
-
-	<div class = 'gutter'>
-		<!-- Nothing will go here, but we have to make vertical gutters by hand due to BootStrap's setup vs this one -->
-	</div>
-
-
+	<!-- CONTAINS ALL STATIC VERSIONS OF WHAT SHOULD BE TRANSITIONAL VISUALIZATIONS -->
 	<div class = "container-xl module" id = 'module-1'>
-		<!-- Anything relating to the country bubble visualization would go in this row -->
-		<div class = "row">
-			<!-- Vis title and possible external legend -->
-			<h3 class = 'vis-title title'>Billboard Country Artists (Mod 1)</h3>
-		</div>
 
+
+		<!-- Anything relating to the (1ST STATIC VIEW) country bubble visualization would go in this row -->
+		<!-- Title for the country bubble visualization will be to the left of an external legend -->
+		<div class = "row">
+			<div class = 'col' id = 'vis-1a-title'>
+				<h3 class = 'vis-title title'>Billboard Country Artists (Mod 1)</h3>
+			</div>
+
+			<div class = 'col' id = 'vis-1a-legend'>
+				<!-- Outsource bubble legend here -->
+			</div>
+		</div>
 
 		<div class = 'row'>
 			<!-- Row with the visualization and any captions / images we want to add using another column -->
 			<div class = 'col bubble-vis' id = 'vis-1a' style="height: 80vh; width: 100%;" >
 				<!-- Bubble SVG should go right where this is -->
-				
+			</div>
+		</div>
+
+
+		<div class = 'gutter'></div>
+
+		
+		<!-- Anything relating to the (2ND STATIC VIEW) country bubble visualization would go in this row -->
+		<!-- Title for the country bubble visualization will be to the left of an external legend -->
+		<div class = "row">
+			<div class = 'col' id = 'vis-1b-title'>
+				<h3 class = 'vis-title title'>Country Artists Connected to Dolly Parton (Mod 1)</h3>
 			</div>
 
+			<div class = 'col' id = 'vis-1b-legend'>
+				<!-- Outsource bubble legend here -->
+			</div>
 		</div>
-
-	</div>
-
-	<div class = 'gutter'>
-		<!-- Nothing will go here, but we have to make vertical gutters by hand due to BootStrap's setup vs this one -->
-	</div>
-
-
-	<div class = "container-xl module" id = 'module-1'>
-		<!-- Anything relating to the country bubble visualization would go in this row -->
-		<div class = "row">
-			<!-- Vis title and possible external legend -->
-			<h3 class = 'vis-title title'>Country Artists Connected to Dolly Parton (Mod 1)</h3>
-		</div>
-
 
 		<div class = 'row'>
 			<!-- Row with the visualization and any captions / images we want to add using another column -->
 			<div class = 'col bubble-vis' id = 'vis-1b' style="height: 80vh; width: 100%;" >
 				<!-- Bubble SVG should go right where this is -->
-				
+			</div>
+		</div>
+
+
+		<div class = 'gutter'></div>
+
+
+		<!-- Anything relating to the (3RD STATIC BUBBLE) country bubble visualization would go in this row -->
+		<!-- Title for the country bubble visualization will be to the left of an external legend -->
+		<div class = "row">
+			<div class = 'col' id = 'vis-1c-title'>
+				<h3 class = 'vis-title title'>Country Artists Connected to Dolly Parton Tree Version (Mod 1)</h3>
 			</div>
 
+			<div class = 'col' id = 'vis-1c-legend'>
+				<!-- Outsource bubble legend here -->
+			</div>			
 		</div>
-
-	</div>
-
-	<div class = 'gutter'>
-		<!-- Nothing will go here, but we have to make vertical gutters by hand due to BootStrap's setup vs this one -->
-	</div>
-
-	<div class = "container-xl module" id = 'module-1'>
-		<!-- Anything relating to the country bubble visualization would go in this row -->
-		<div class = "row">
-			<!-- Vis title and possible external legend -->
-			<h3 class = 'vis-title title'>Country Artists Connected to Dolly Parton Tree Version (Mod 1)</h3>
-		</div>
-
 
 		<div class = 'row'>
-			<!-- Row with the visualization and any captions / images we want to add using another column -->
+			<!-- Spider plot -->
 			<div class = 'col bubble-vis' id = 'vis-1c' style="height: 80vh; width: 100%;" >
 				<ol type="1">
 					<li>Listen to the current bubbles above for scroll action</li>
@@ -115,58 +106,99 @@
 					<li>Mouseout resets bubble colors, path line colors, and removes pop out</li>
 					<li>Listen to other scroll events to transition to a new part of the DOM (vis 2 -- fancy time-series)</li>
 				</ol> 
-				
+			</div>
+		</div>
+
+
+	</div>
+
+
+	<div class = 'gutter'></div>
+
+
+	<!-- Title and external legend side by side, plot underneath that, slider underneath the timeline -->
+    <div class = 'container-xl module' id = 'module-2'>
+
+
+        <div class = 'row'>
+			<div class = 'col' id = 'vis-2-title'>
+				<h3 class = 'vis-title title'>Dolly's Musical History (Mod 2)</h3>
+			</div>
+
+			<div class = 'col' id = 'vis-2-legend'>
+				<!-- Outsource timeline legend here -->
+			</div>
+			
+        </div>
+		
+		<div class = 'row' id = 'vis-2' style="height: 70vh; width:100%;">
+			<!-- Row with the timeline vis -->
+		</div>
+
+		<div class = 'row' id = 'vis-2-slider'>
+			<!-- Row with custom slider for the timeline can go here -->
+		</div>
+
+
+    </div>
+
+
+	<div class = 'gutter'></div>
+
+
+	<div class = 'container-xl module' id = 'module-3'>
+
+
+		<div class = 'row'>
+			<div class = 'col' id = 'vis-3-title'>
+				<h3 class = 'vis-title title'>Dolly's Awards (Mod 3 ish)</h3>
+			</div>
+
+			<div class = 'col' id = 'vis-3-legend'>
+				<!-- Outsource award legend -->
 			</div>
 
 		</div>
 
-	</div>
-
-	<div class = 'gutter'>
-		<!-- Nothing will go here, but we have to make vertical gutters by hand due to BootStrap's setup vs this one -->
-	</div>
-
-
-    <div class = 'container-xl module' id = 'module-2'>
-        <div class = 'row'>
-			<!-- Vis title and possible external legend -->
-			<h3 class = 'vis-title title'>Dolly's Musical History (Mod 2)</h3>
-        </div>
-		
-
-		<div class = 'row' id = 'vis-2' style="height: 70vh; width:100%;">
-			<!-- Row with the timeline vis -->
-
-		</div>
-
-    </div>
-
-	<div class = 'gutter'>
-		<!-- Nothing will go here, but we have to make vertical gutters by hand due to BootStrap's setup vs this one -->
-	</div>
-
-	<div class = 'container-xl module' id = 'module-3'>
-        <div class = 'row'>
-			<!-- Vis title and possible external legend -->
-			<h3 class = 'vis-title title'>Charity Work (Mod 3)</h3>
-        </div>
-
 		<div class = 'row' id = 'vis-3'>
-			<!-- Map / Bubbles of her charitable impact -->
-
+			<!-- Awards matrix vis -->
 		</div>
+
+
+	</div>
+
+
+	<div class = 'gutter'></div>
+
+
+	<div class = 'container-xl module' id = 'module-4'>
+
+
+        <div class = 'row'>
+			<div class = 'col' id = 'vis-4-title'>
+				<h3 class = 'vis-title title'>Charity Work (Mod 3)</h3>
+			</div>
+
+			<div class = 'col' id = 'vis-4-legend'>
+				<!-- Outsource charitable legend here -->
+			</div>
+        </div>
+
+		<div class = 'row' id = 'vis-4'>
+			<!-- Map / Bubbles / whatever visualization we pick of her charitable impact -->
+		</div>
+
 
     </div>
 
-	<div class = 'gutter'>
-		<!-- Nothing will go here, but we have to make vertical gutters by hand due to BootStrap's setup vs this one -->
-	</div>
+
+	<div class = 'gutter'></div>
+
 
 	<div class = 'container-fluid' id = 'footer'>
 		<div class = 'row'>
 			<!-- About the authors section / acknowledgements -->
 		</div>
-
 	</div>
 
 	<!-- embedding JS libraries -->
@@ -184,7 +216,9 @@
 	<script src = "js/BeeSwarm.js"></script>
 	<script src = "js/BubbleVis.js"></script>
 	<script src = 'js/TimeSeries.js'></script>
+	<script src = 'js/Awards.js'></script>
 	<script src = 'js/Charity.js'></script>
+	<script src = 'js/Legend.js'></script>
 	<script src = "js/main.js"></script>
 
 </body>

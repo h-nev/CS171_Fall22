@@ -29,167 +29,189 @@
 
 	<div class = 'gutter'></div>
 
+	<!-- Acts as a container for the full page, have to nest columns inside the row to make them side-by-side -->
+	<div class = 'row'>
+		<div class = 'col-2'>
+			<!-- This is all the way to the left because there is not container wrapped around it  -->
+			<p>Text / other content</p>
 
-	<!-- CONTAINS ALL STATIC VERSIONS OF WHAT SHOULD BE TRANSITIONAL VISUALIZATIONS -->
-	<div class = "container-xl module" id = 'module-1'>
-
-
-		<!-- Anything relating to the (1ST STATIC VIEW) country bubble visualization would go in this row -->
-		<!-- Title for the country bubble visualization will be to the left of an external legend -->
-		<div class = "row">
-			<div class = 'col' id = 'vis-1a-title'>
-				<h3 class = 'vis-title title'>Billboard Country Artists (Mod 1)</h3>
-			</div>
-
-			<div class = 'col' id = 'vis-1a-legend'>
-				<!-- Outsource bubble legend here -->
-			</div>
-		</div>
-
-		<div class = 'row'>
-			<!-- Row with the visualization and any captions / images we want to add using another column -->
-			<div class = 'col bubble-vis' id = 'vis-1a' style="height: 80vh; width: 100%;" >
-				<!-- Bubble SVG should go right where this is -->
-			</div>
 		</div>
 
 
-		<div class = 'gutter'></div>
 
-		
-		<!-- Anything relating to the (2ND STATIC VIEW) country bubble visualization would go in this row -->
-		<!-- Title for the country bubble visualization will be to the left of an external legend -->
-		<div class = "row">
-			<div class = 'col' id = 'vis-1b-title'>
-				<h3 class = 'vis-title title'>Country Artists Connected to Dolly Parton (Mod 1)</h3>
+		<div class = 'col-10'>
+				<!-- CONTAINS ALL STATIC VERSIONS OF WHAT SHOULD BE TRANSITIONAL VISUALIZATIONS -->
+			<div class = "container-xl module" id = 'module-1'>
+
+
+				<!-- Anything relating to the (1ST STATIC VIEW) country bubble visualization would go in this row -->
+				<!-- Title for the country bubble visualization will be to the left of an external legend -->
+				<div class = "row">
+					<div class = 'col' id = 'vis-1a-title'>
+						<h3 class = 'vis-title title'>Billboard Country Artists (Mod 1)</h3>
+					</div>
+
+					<div class = 'col' id = 'vis-1a-legend'>
+						<!-- Outsource bubble legend here -->
+					</div>
+				</div>
+
+				<div class = 'row'>
+					<!-- Row with the visualization and any captions / images we want to add using another column -->
+					<div class = 'col bubble-vis' id = 'vis-1a' style="height: 80vh; width: 100%;" >
+						<!-- Bubble SVG should go right where this is -->
+					</div>
+				</div>
+
+
+				<div class = 'gutter'></div>
+
+				
+				<!-- Anything relating to the (2ND STATIC VIEW) country bubble visualization would go in this row -->
+				<!-- Title for the country bubble visualization will be to the left of an external legend -->
+				<div class = "row">
+					<div class = 'col' id = 'vis-1b-title'>
+						<h3 class = 'vis-title title'>Country Artists Connected to Dolly Parton (Mod 1)</h3>
+					</div>
+
+					<div class = 'col' id = 'vis-1b-legend'>
+						<!-- Outsource bubble legend here -->
+					</div>
+				</div>
+
+				<div class = 'row'>
+					<!-- Row with the visualization and any captions / images we want to add using another column -->
+					<div class = 'col bubble-vis' id = 'vis-1b' style="height: 80vh; width: 100%;" >
+						<!-- Bubble SVG should go right where this is -->
+					</div>
+				</div>
+
+
+				<div class = 'gutter'></div>
+
+
+				<!-- Anything relating to the (3RD STATIC BUBBLE) country bubble visualization would go in this row -->
+				<!-- Title for the country bubble visualization will be to the left of an external legend -->
+				<div class = "row">
+					<div class = 'col' id = 'vis-1c-title'>
+						<h3 class = 'vis-title title'>Country Artists Connected to Dolly Parton Tree Version (Mod 1)</h3>
+					</div>
+
+					<div class = 'col' id = 'vis-1c-legend'>
+						<!-- Outsource bubble legend here -->
+					</div>			
+				</div>
+
+				<div class = 'row'>
+					<!-- Spider plot -->
+					<div class = 'col bubble-vis' id = 'vis-1c' style="height: 80vh; width: 100%;" >
+						<ol type="1">
+							<li>Listen to the current bubbles above for scroll action</li>
+							<li>Filter out all those not associated with Dolly that we previously had, exiting with transition so only the green and blue bubbles are left</li>
+							<li>Transition (duration = 800) collab bubbles position such that cy = vis.height - radius - marginal_padding, cx = i * (vis.width / data.length)</li>
+							<li>Transition (duration = 800) Dolly's bubble position to the top simultaneously with cy = 0 + marginal_padding, cx = vis.width / data.length</li>
+							<li>Draw curveMonotoneX paths from Dolly's bubble x = cx, y = cy + radius to all others such that x = cx, y = cy  - radius with simultaneous transition of longer duration</li>
+							<li>Transition the line thickness to scale proportional to number of collaborated songs (if available) or another related metric</li>
+							<li>Mouseover listener greys out all other bubbles (excluding Dolly and the one hovered on) and paths and displays Bootstrap card in a non-invasive area with relevant information</li>
+							<li>Mouseout resets bubble colors, path line colors, and removes pop out</li>
+							<li>Listen to other scroll events to transition to a new part of the DOM (vis 2 -- fancy time-series)</li>
+						</ol> 
+					</div>
+				</div>
+
+
 			</div>
 
-			<div class = 'col' id = 'vis-1b-legend'>
-				<!-- Outsource bubble legend here -->
+
+			<div class = 'gutter'></div>
+
+
+			<!-- Title and external legend side by side, plot underneath that, slider underneath the timeline -->
+			<div class = 'container-xl module' id = 'module-2'>
+
+
+				<div class = 'row'>
+					<div class = 'col' id = 'vis-2-title'>
+						<h3 class = 'vis-title title'>Dolly's Musical History (Mod 2)</h3>
+					</div>
+
+					<div class = 'col' id = 'vis-2-legend'>
+						<!-- Outsource timeline legend here -->
+					</div>
+					
+				</div>
+				
+				<div class = 'row' id = 'vis-2' style="height: 70vh; width:100%;">
+					<!-- Row with the timeline vis -->
+				</div>
+
+				<div class = 'row' id = 'vis-2-slider'>
+					<!-- Row with custom slider for the timeline can go here -->
+				</div>
+
+
 			</div>
-		</div>
 
-		<div class = 'row'>
-			<!-- Row with the visualization and any captions / images we want to add using another column -->
-			<div class = 'col bubble-vis' id = 'vis-1b' style="height: 80vh; width: 100%;" >
-				<!-- Bubble SVG should go right where this is -->
+
+			<div class = 'gutter'></div>
+
+
+			<div class = 'container-xl module' id = 'module-3'>
+
+
+				<div class = 'row'>
+					<div class = 'col' id = 'vis-3-title'>
+						<h3 class = 'vis-title title'>Dolly's Awards (Mod 3 ish)</h3>
+					</div>
+
+					<div class = 'col' id = 'vis-3-legend'>
+						<!-- Outsource award legend -->
+					</div>
+
+				</div>
+
+				<div class = 'row' id = 'vis-3'>
+					<!-- Awards matrix vis -->
+				</div>
+
+
 			</div>
-		</div>
 
 
-		<div class = 'gutter'></div>
+			<div class = 'gutter'></div>
 
 
-		<!-- Anything relating to the (3RD STATIC BUBBLE) country bubble visualization would go in this row -->
-		<!-- Title for the country bubble visualization will be to the left of an external legend -->
-		<div class = "row">
-			<div class = 'col' id = 'vis-1c-title'>
-				<h3 class = 'vis-title title'>Country Artists Connected to Dolly Parton Tree Version (Mod 1)</h3>
+			<div class = 'container-xl module' id = 'module-4'>
+
+
+				<div class = 'row'>
+					<div class = 'col' id = 'vis-4-title'>
+						<h3 class = 'vis-title title'>Charity Work (Mod 3)</h3>
+					</div>
+
+					<div class = 'col' id = 'vis-4-legend'>
+						<!-- Outsource charitable legend here -->
+					</div>
+				</div>
+
+				<div class = 'row' id = 'vis-4'>
+					<!-- Map / Bubbles / whatever visualization we pick of her charitable impact -->
+				</div>
+
+				<div class = 'row' id = 'vis-4-slider'>
+					<!-- Row with custom time slider for charitable work can go here -->
+				</div>
+
+
 			</div>
 
-			<div class = 'col' id = 'vis-1c-legend'>
-				<!-- Outsource bubble legend here -->
-			</div>			
-		</div>
 
-		<div class = 'row'>
-			<!-- Spider plot -->
-			<div class = 'col bubble-vis' id = 'vis-1c' style="height: 80vh; width: 100%;" >
-				<ol type="1">
-					<li>Listen to the current bubbles above for scroll action</li>
-					<li>Filter out all those not associated with Dolly that we previously had, exiting with transition so only the green and blue bubbles are left</li>
-					<li>Transition (duration = 800) collab bubbles position such that cy = vis.height - radius - marginal_padding, cx = i * (vis.width / data.length)</li>
-					<li>Transition (duration = 800) Dolly's bubble position to the top simultaneously with cy = 0 + marginal_padding, cx = vis.width / data.length</li>
-					<li>Draw curveMonotoneX paths from Dolly's bubble x = cx, y = cy + radius to all others such that x = cx, y = cy  - radius with simultaneous transition of longer duration</li>
-					<li>Transition the line thickness to scale proportional to number of collaborated songs (if available) or another related metric</li>
-					<li>Mouseover listener greys out all other bubbles (excluding Dolly and the one hovered on) and paths and displays Bootstrap card in a non-invasive area with relevant information</li>
-					<li>Mouseout resets bubble colors, path line colors, and removes pop out</li>
-					<li>Listen to other scroll events to transition to a new part of the DOM (vis 2 -- fancy time-series)</li>
-				</ol> 
-			</div>
+
 		</div>
 
 
 	</div>
 
-
-	<div class = 'gutter'></div>
-
-
-	<!-- Title and external legend side by side, plot underneath that, slider underneath the timeline -->
-    <div class = 'container-xl module' id = 'module-2'>
-
-
-        <div class = 'row'>
-			<div class = 'col' id = 'vis-2-title'>
-				<h3 class = 'vis-title title'>Dolly's Musical History (Mod 2)</h3>
-			</div>
-
-			<div class = 'col' id = 'vis-2-legend'>
-				<!-- Outsource timeline legend here -->
-			</div>
-			
-        </div>
-		
-		<div class = 'row' id = 'vis-2' style="height: 70vh; width:100%;">
-			<!-- Row with the timeline vis -->
-		</div>
-
-		<div class = 'row' id = 'vis-2-slider'>
-			<!-- Row with custom slider for the timeline can go here -->
-		</div>
-
-
-    </div>
-
-
-	<div class = 'gutter'></div>
-
-
-	<div class = 'container-xl module' id = 'module-3'>
-
-
-		<div class = 'row'>
-			<div class = 'col' id = 'vis-3-title'>
-				<h3 class = 'vis-title title'>Dolly's Awards (Mod 3 ish)</h3>
-			</div>
-
-			<div class = 'col' id = 'vis-3-legend'>
-				<!-- Outsource award legend -->
-			</div>
-
-		</div>
-
-		<div class = 'row' id = 'vis-3'>
-			<!-- Awards matrix vis -->
-		</div>
-
-
-	</div>
-
-
-	<div class = 'gutter'></div>
-
-
-	<div class = 'container-xl module' id = 'module-4'>
-
-
-        <div class = 'row'>
-			<div class = 'col' id = 'vis-4-title'>
-				<h3 class = 'vis-title title'>Charity Work (Mod 3)</h3>
-			</div>
-
-			<div class = 'col' id = 'vis-4-legend'>
-				<!-- Outsource charitable legend here -->
-			</div>
-        </div>
-
-		<div class = 'row' id = 'vis-4'>
-			<!-- Map / Bubbles / whatever visualization we pick of her charitable impact -->
-		</div>
-
-
-    </div>
 
 
 	<div class = 'gutter'></div>

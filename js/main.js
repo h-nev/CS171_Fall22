@@ -26,7 +26,9 @@ function initMainPage(dataArray) {
             artist: d.artist,
             rank: +d.rank_w_mean,
             year: +d.year,
+            month: +d.month,
             n_weeks: +d.n_weeks,
+            dolly_parton: +d.dolly_parton,
             date_short: dateParser(d.date_short)
         };
     });

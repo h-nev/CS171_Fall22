@@ -42,7 +42,7 @@ class TimeSeries {
             .domain([1,100]);
 
         vis.bubbleScale = d3.scaleLinear()
-            .range([10,1000])
+            .range([100,500])
             .domain(d3.extent(vis.data.map(d=>d["n_weeks"])));
 
         // Axis
@@ -121,27 +121,8 @@ class TimeSeries {
             .attr('id', 'customTooltip')
 
         vis.artist_filter = "Dolly Parton";
-        vis.song_filter = "";
         vis.min_year = 1975;
         vis.max_year = 1990;
-
-        vis.bubbles = vis.svg.selectAll('.bubble')
-            .data(vis.data)
-            .enter().append('circle')
-            .attr('class', "bubble")
-            .attr('cx', function (d) {
-                return vis.xScale(d['date_short']);
-            })
-            .attr('cy', function (d) {
-                return vis.yScale(d['rank']);
-            })
-            .attr('r', function (d) {
-                return Math.sqrt((vis.bubbleScale(d['n_weeks'])) / Math.PI);
-            })
-            .style('fill','#B3CDE0')
-            .style('stroke-opacity', 0)
-            .style('stroke', 'gray')
-            .style('opacity',  0.08)
 
 
         // (Filter, aggregate, modify data)
@@ -168,7 +149,7 @@ class TimeSeries {
 
         // TODO
         let artists = Array.from(new Set(vis.displayData.map(function(d) { return d['artist'];})));
-        console.log(artists)
+
         let i; // Loop aggregating for each artist
         for (i = 0; i < artists.length; i++) {
             let artist_filt = artists[i];
@@ -182,7 +163,7 @@ class TimeSeries {
                 let data_filt = _.filter(data_filt_artist.filter(d=>d["song"]===song_filt),function(element) {
                         return element.song && [element.song].indexOf(song_filt) !== -1;
                 })
-                console.log(data_filt)
+
                 vis.svg.append('path')
                     .datum(data_filt)
                     .attr('class', function(d) {return 'curve line_highlight_' + i;})
@@ -192,42 +173,72 @@ class TimeSeries {
                     .style('stroke-width', 1)
                     .style('opacity', function(d) {return 1})
 
-                vis.svg.selectAll('.bubble_highlight_' + i)
-                    .data(data_filt)
-                    .enter().append('circle')
-                    .attr('class', function(d) {return 'dot bubble_highlight' + i;})
-                    .attr('cx', function (d) {
-                        return vis.xScale(d['date_short']);
-                    })
-                    .attr('cy', function (d) {
-                        return vis.yScale(d['rank']);
-                    })
-                    .attr('r', function (d) {
-                        return Math.sqrt((vis.bubbleScale(d['n_weeks'])) / Math.PI);
-                    })
-                    .style('fill','#005B96')
-                    .style('stroke-opacity', 0)
-                    .style('stroke', 'gray')
-                    .style('opacity',  0.7)
+                // vis.svg.selectAll('.bubble_highlight_')
+                //     .data(data_filt)
+                //     .enter().append('circle')
+                //     .attr('class', function(d) {return 'dot bubble_highlight' + i;})
+                //     .attr('cx', function (d) {
+                //         return vis.xScale(d['date_short']);
+                //     })
+                //     .attr('cy', function (d) {
+                //         return vis.yScale(d['rank']);
+                //     })
+                //     .attr('r', function (d) {
+                //         return Math.sqrt((vis.bubbleScale(d['n_weeks'])) / Math.PI);
+                //     })
+                //     .style('fill','#005B96')
+                //     .style('stroke-opacity', 0)
+                //     .style('stroke', 'gray')
+                //     .style('opacity',  0.9)
 
             }
         };
 
+        vis.bubbles = vis.svg.selectAll('.bubble')
+            .data(vis.data)
+            .enter().append('circle')
+            .attr('class', "bubble")
+            .attr('cx', function (d) {
+                return vis.xScale(d['date_short']);
+            })
+            .attr('cy', function (d) {
+                return vis.yScale(d['rank']);
+            })
+            .attr('r', function (d) {
+                return Math.sqrt((vis.bubbleScale(d['n_weeks'])) / Math.PI);
+            })
+            .style('fill', function(d){
+                if (d.artist === vis.artist_filter) {
+                    return '#005B96'
+                }else{
+                    return '#B3CDE0'
+                }
+            })
+            .style('stroke-opacity', 0)
+            .style('stroke', 'gray')
+            .style('opacity', function(d){
+                if (d.artist === vis.artist_filter){
+                    return 0.9
+                }else{
+                    return 0.1
+                }
 
-        vis.bubbles
+            })
             .on('mouseover', function (event, d) {
+                    console.log(d)
                     d3.selectAll('.dot')
                         .style('fill', '#B3CDE0')
-                        .style("opacity", 0.08)
+                        .style("opacity", 0.1)
 
                     d3.selectAll('.curve').remove()
 
                     vis.artist_filter = d.artist
                     vis.wrangleData()
                     vis.tooltip
-                        .style("opacity", 0.7)
+                        .style("opacity", 1)
                         .style("left", event.pageX + 20 + "px")
                         .style("top", event.pageY + "px")
+                        .attr("transform", "translate(" + (vis.xScale(d.date_short)   + 5  ) + ",0)")
                         .html(`
                          <div style="border: thin solid grey; border-radius: 5px; color: whitesmoke ; background: black; padding: 20px";>
                              <h3>${d.song}<h3>
@@ -235,23 +246,25 @@ class TimeSeries {
                              <h4> Average Rank: ${d.rank}</h4>
                              <h4> Number of Weeks: ${d.n_weeks}</h4>
                              <h4> Year: ${d.year}</h4>
+                             <h4> Month: ${d.month}</h4>
                          </div>`)
             })
             .on('mouseout', function (event, d) {
-                // d3.selectAll('.dot')
-                //     .style('fill', '#B3CDE0')
-                //     .style("opacity", 0.1)
-                // d3.selectAll('.curve').remove()
-                //
-                // // Go back to original Dolly Parton view
-                // vis.artist_filter = "Dolly Parton"
-                // vis.wrangleData()
+                d3.selectAll('.dot')
+                    .style('fill', '#B3CDE0')
+                    .style("opacity", 0.1)
+                d3.selectAll('.curve').remove()
+
+                // Go back to original Dolly Parton view
+                vis.artist_filter = "Dolly Parton"
+                vis.wrangleData()
                 vis.tooltip
                     .style("opacity", 0)
                     .style("left", 0)
                     .style("top", 0)
                     .html(``);
             });
+
 
     }
 

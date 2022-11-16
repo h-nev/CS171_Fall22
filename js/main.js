@@ -42,5 +42,3 @@ function initMainPage(dataArray) {
 
 
 
-
-// Helper functions (parsers, agnostic data cleaning tools)

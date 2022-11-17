@@ -31,79 +31,150 @@
 
 	<div class = 'gutter'></div>
 
-	<!-- Acts as a container for the full page, have to nest columns inside the row to make them side-by-side -->
-	<div class = 'row'>
-		<div class = 'col-2'>
-			<!-- This is all the way to the left because there is not container wrapped around it  -->
-			<p>Text / other content</p>
 
+	<!-- An Intro Screen -->
+	<div class = 'container-fluid module' id = 'introduction'>
+		<div class = 'row'>
+			<div class = 'col-4'>
+				<!-- ADD BOOTSTRAP CAROUSEL WITH CAPTIONS -->
+				<div id="carouselDolly" class="carousel slide" data-bs-ride="false">
+					<div class="carousel-indicators">
+					  <button type="button" data-bs-target="#carouselDolly" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+					  <button type="button" data-bs-target="#carouselDolly" data-bs-slide-to="1" aria-label="Slide 2"></button>
+					  <button type="button" data-bs-target="#carouselDolly" data-bs-slide-to="2" aria-label="Slide 3"></button>
+					</div>
+					<div class="carousel-inner">
+					  <div class="carousel-item active">
+						<img src="...." class="d-block w-100" alt="...">
+						<!-- <div class="carousel-caption d-none d-md-block">
+						  <h5>First slide label</h5>
+						  <p>Some representative placeholder content for the first slide.</p>
+						</div> -->
+					  </div>
+					  <div class="carousel-item">
+						<img src="..." class="d-block w-100" alt="...">
+						<!-- <div class="carousel-caption d-none d-md-block">
+						  <h5>Second slide label</h5>
+						  <p>Some representative placeholder content for the second slide.</p>
+						</div> -->
+					  </div>
+					  <div class="carousel-item">
+						<img src="..." class="d-block w-100" alt="...">
+						<!-- <div class="carousel-caption d-none d-md-block">
+						  <h5>Third slide label</h5>
+						  <p>Some representative placeholder content for the third slide.</p>
+						</div> -->
+					  </div>
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselDolly" data-bs-slide="prev">
+					  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					  <span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselDolly" data-bs-slide="next">
+					  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					  <span class="visually-hidden">Next</span>
+					</button>
+				  </div>
+			</div>
+
+			<div class = 'col-8'>
+				<h3 class = 'title'>Dolly Parton was born in the impoverished Appalachian region of Tennessee in 1946, growing up with 12 siblings. 
+					Her rise to fame is undeniably impressive, landing her in many halls of fame, associated with hundreds of songs, receiving over one hundred awards,
+					and donating a vast majority of her wealth to support her community.
+				</h3>
+			</div>
 		</div>
+	</div>
 
 
-
-		<div class = 'col-10'>
-				<!-- CONTAINS ALL STATIC VERSIONS OF WHAT SHOULD BE TRANSITIONAL VISUALIZATIONS -->
-			<div class = "container-fluid module" id = 'module-1'>
+	<div class = 'gutter'></div>
 
 
-				<!-- Anything relating to the (1ST STATIC VIEW) country bubble visualization would go in this row -->
-				<!-- Title for the country bubble visualization will be to the left of an external legend -->
+	<!-- CONTAINS ALL STATIC VERSIONS OF WHAT SHOULD BE TRANSITIONAL VISUALIZATIONS -->
+	<div class = "container-fluid module" id = 'module-1'>
+		<!-- Anything relating to the (1ST STATIC VIEW) country bubble visualization would go in this row -->
+		<!-- Title for the country bubble visualization will be to the left of an external legend -->
+		<div class = 'row'>
+			<div class = 'col-4'>
+				<p class = 'title'>Anything we want to comment on?</p>
+			</div>
+
+			<div class = 'col-8'>
+				<!-- Ensures title and legend are next to each other -->
 				<div class = "row">
 					<div class = 'col' id = 'vis-1a-title'>
 						<h3 class = 'vis-title title'>Billboard Country Artists (Mod 1)</h3>
 					</div>
-
+		
 					<div class = 'col' id = 'vis-1a-legend'>
 						<!-- Outsource bubble legend here -->
 					</div>
 				</div>
-
+		
 				<div class = 'row'>
-					<!-- Row with the visualization and any captions / images we want to add using another column -->
 					<div class = 'col bubble-vis' id = 'vis-1a' style="height: 80vh; width: 100%;" >
 						<!-- Bubble SVG should go right where this is -->
 					</div>
 				</div>
+			</div>
+		</div>
+		
+
+		<div class = 'gutter'></div>
+
+		
+		<!-- Anything relating to the (2ND STATIC VIEW) country bubble visualization would go in this row -->
+		<!-- Title for the country bubble visualization will be to the left of an external legend -->
+		<div class = 'row'>
+			<!-- Information to the left of all the visual elements, titles, ect. -->
+			<div class = 'col-4'>
+				<p class = 'title'>Anything we want to comment on?</p>
+			</div>
 
 
-				<div class = 'gutter'></div>
-
-				
-				<!-- Anything relating to the (2ND STATIC VIEW) country bubble visualization would go in this row -->
-				<!-- Title for the country bubble visualization will be to the left of an external legend -->
+			<div class = 'col-8'>
 				<div class = "row">
 					<div class = 'col' id = 'vis-1b-title'>
 						<h3 class = 'vis-title title'>Country Artists Connected to Dolly Parton (Mod 1)</h3>
 					</div>
-
+		
 					<div class = 'col' id = 'vis-1b-legend'>
 						<!-- Outsource bubble legend here -->
 					</div>
 				</div>
-
+		
 				<div class = 'row'>
 					<!-- Row with the visualization and any captions / images we want to add using another column -->
 					<div class = 'col bubble-vis' id = 'vis-1b' style="height: 80vh; width: 100%;" >
 						<!-- Bubble SVG should go right where this is -->
 					</div>
 				</div>
+			</div>
+		</div>
 
 
-				<div class = 'gutter'></div>
+		<div class = 'gutter'></div>
 
 
-				<!-- Anything relating to the (3RD STATIC BUBBLE) country bubble visualization would go in this row -->
-				<!-- Title for the country bubble visualization will be to the left of an external legend -->
+
+		<!-- Anything relating to the (3RD STATIC BUBBLE) country bubble visualization would go in this row -->
+		<!-- Title for the country bubble visualization will be to the left of an external legend -->
+		<div class = 'row'>
+			<div class = 'col-4'>
+				<p class = 'title'>Anything we want to comment on?</p>
+			</div>
+
+			<div class = 'col-8'>
 				<div class = "row">
 					<div class = 'col' id = 'vis-1c-title'>
 						<h3 class = 'vis-title title'>Country Artists Connected to Dolly Parton Tree Version (Mod 1)</h3>
 					</div>
-
+		
 					<div class = 'col' id = 'vis-1c-legend'>
 						<!-- Outsource bubble legend here -->
 					</div>			
 				</div>
-
+		
 				<div class = 'row'>
 					<!-- Spider plot -->
 					<div class = 'col bubble-vis' id = 'vis-1c' style="height: 80vh; width: 100%;" >
@@ -120,9 +191,9 @@
 						</ol> 
 					</div>
 				</div>
-
-
 			</div>
+		</div>
+	</div>
 
 
 			<div class = 'gutter'></div>
@@ -130,11 +201,11 @@
 
 			<!-- Title and external legend side by side, plot underneath that, slider underneath the timeline -->
 			<div class = 'container-fluid module' id = 'module-2'>
-
-
+        
 				<div class = 'row'>
+          
 					<div class = 'col' id = 'vis-2-title'>
-						<h3 class = 'vis-title title'>Dolly's Musical History (Mod 2)</h3>
+						<h3 class = 'vis-title title'>A Brief Musical History </h3>
 					</div>
 
 					<div class="col-8">
@@ -163,22 +234,19 @@
 					<!-- Row with custom slider for the timeline can go here -->
 				</div>
 
-
-			</div>
-
-
-			<div class = 'gutter'></div>
+	<div class = 'gutter'></div>
 
 
-			<div class = 'container-fluid module' id = 'module-3'>
-
-
+	<div class = 'container-fluid module' id = 'module-3'>
+		<div class = 'row'>
+			<!-- Awards vis -->
+			<div class = 'col-8'>
 				<div class = 'row'>
-					<div class = 'col' id = 'vis-3-title'>
-						<h3 class = 'vis-title title'>Dolly's Awards (Mod 3 ish)</h3>
+					<div class = 'col-8' id = 'vis-3-title'>
+						<h3 class = 'vis-title title'>Recognition of Impact: Music, Acting, Composition, Achievements, and Service</h3>
 					</div>
 
-					<div class = 'col' id = 'vis-3-legend'>
+					<div class = 'col-4' id = 'vis-3-legend'>
 						<!-- Outsource award legend -->
 					</div>
 
@@ -187,45 +255,49 @@
 				<div class = 'row' id = 'vis-3'>
 					<!-- Awards matrix vis -->
 				</div>
-
-
 			</div>
 
+			<!-- Left of the vis -->
+			<div class = 'col-4'>
+				<h4 class = 'title'>Dolly has rejected the Presidential Medal of Freedom twice. Another former president was shocked upon hearing
+					the news, assuming she had received one already.
+				</h4>						
+			</div>
+		</div>
+	</div>
 
-			<div class = 'gutter'></div>
+
+	<div class = 'gutter'></div>
 
 
-			<div class = 'container-fluid module' id = 'module-4'>
+	<div class = 'container-fluid module' id = 'module-4'>
+		<!-- Keeps everything together -->
+		<div class = 'row'>
+			<div class = 'col-4'>
+				<p class = 'title'>Anything we want to comment on?</p>
+			</div>
 
-
+			<div class = 'col-8'>
 				<div class = 'row'>
 					<div class = 'col' id = 'vis-4-title'>
 						<h3 class = 'vis-title title'>Charity Work (Mod 3)</h3>
 					</div>
-
+		
 					<div class = 'col' id = 'vis-4-legend'>
 						<!-- Outsource charitable legend here -->
 					</div>
 				</div>
-
+		
 				<div class = 'row' id = 'vis-4'>
 					<!-- Map / Bubbles / whatever visualization we pick of her charitable impact -->
 				</div>
-
+		
 				<div class = 'row' id = 'vis-4-slider'>
 					<!-- Row with custom time slider for charitable work can go here -->
 				</div>
-
-
 			</div>
-
-
-
-		</div> 
-
-
+		</div>
 	</div>
-
 
 
 	<div class = 'gutter'></div>
@@ -233,7 +305,15 @@
 
 	<div class = 'container-fluid' id = 'footer'>
 		<div class = 'row'>
-			<!-- About the authors section / acknowledgements -->
+			<!-- Sources -->
+			<div class = 'col-4'>
+				<p>Wikipedia, Billboards, Kaggle, ect.</p>
+			</div>
+
+			<!-- About us section -->
+			<div class = 'col-8'>
+				<p>About Us</p>
+			</div>
 		</div>
 	</div>
 

@@ -40,5 +40,11 @@ function initMainPage(dataArray) {
     charityBubbles = new Charity('vis-4', placeHolder);
 }
 
+let selectedCategory =  document.getElementById('vis-2-selector').value;
 
+function categoryChange() {
+    selectedCategory =  document.getElementById('vis-2-selector').value;
+    fancyTimeSeries.selectorChange();
+
+}
 

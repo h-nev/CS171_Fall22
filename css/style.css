@@ -1,3 +1,4 @@
+/*---------- General customization ----------*/
 html{
     scroll-behavior: smooth;
 
@@ -28,6 +29,8 @@ body{
     height: 200px;
 
 }
+
+/*---------- Country Bubble customization ----------*/
 
 .bubble-vis .artist-circle {
     fill: lightcyan;
@@ -72,4 +75,10 @@ body{
 
 .date-marker {
     stroke-width: 1px;
+}
+
+/*---------- Awards customization ----------*/
+.numeric{
+    font-family: 'Courier New', Courier, monospace;
+
 }

@@ -19,8 +19,14 @@ body{
 .gutter{
     /* Allows us to make custom row-breaks so svgs are not directly touching */
     background-color: black;
-    padding-bottom: 2%;
+    padding-bottom: 4%;
 
+}
+
+.big-gutter{
+    /* Allows us to make custom row-breaks that are larger than the small visual separation between visualizations */
+    background-color: black;
+    padding-bottom: 12%;
 }
 
 #footer{

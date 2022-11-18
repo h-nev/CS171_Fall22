@@ -4,6 +4,9 @@ let placeHolder = [1,2,3];
 let dateFormatter = d3.timeFormat("%Y-%m-%d");
 let dateParser = d3.timeParse("%Y-%m-%d");
 
+//Initialize current select box values
+let awardSelection = document.getElementById('vis-3-select').value;
+
 let promises = [
     d3.csv("data/billboard-top100-filtered.csv"),
     d3.csv("data/dolly-parton-released-songs.csv"),
@@ -43,4 +46,8 @@ function initMainPage(dataArray) {
 }
 
 
+function awardsFilter(){
+    awardSelection = document.getElementById('vis-3-select').value;
+    awardsWon.wrangleData();
 
+}

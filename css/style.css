@@ -1,3 +1,4 @@
+/*---------- General customization ----------*/
 html{
     scroll-behavior: smooth;
 
@@ -18,8 +19,14 @@ body{
 .gutter{
     /* Allows us to make custom row-breaks so svgs are not directly touching */
     background-color: black;
-    padding-bottom: 2%;
+    padding-bottom: 4%;
 
+}
+
+.big-gutter{
+    /* Allows us to make custom row-breaks that are larger than the small visual separation between visualizations */
+    background-color: black;
+    padding-bottom: 12%;
 }
 
 #footer{
@@ -28,6 +35,8 @@ body{
     height: 200px;
 
 }
+
+/*---------- Country Bubble customization ----------*/
 
 .bubble-vis .artist-circle {
     fill: lightcyan;
@@ -72,4 +81,10 @@ body{
 
 .date-marker {
     stroke-width: 1px;
+}
+
+/*---------- Awards customization ----------*/
+.numeric{
+    font-family: 'Courier New', Courier, monospace;
+
 }

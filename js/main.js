@@ -4,10 +4,14 @@ let placeHolder = [1,2,3];
 let dateFormatter = d3.timeFormat("%Y-%m-%d");
 let dateParser = d3.timeParse("%Y-%m-%d");
 
+//Initialize current select box values
+let awardSelection = document.getElementById('vis-3-select').value;
+
 let promises = [
     d3.csv("data/billboard-top100-filtered.csv"),
     d3.csv("data/dolly-parton-released-songs.csv"),
     d3.csv("data/charts_wrangled.csv"),
+    d3.csv("data/dolly-wiki-awards.csv")
 ];
 
 Promise.all(promises)
@@ -32,11 +36,12 @@ function initMainPage(dataArray) {
             date_short: dateParser(d.date_short)
         };
     });
+
     // Instantiate the visualizations
     countryBubbles_a = new BubbleVis('vis-1a', dataArray[0], []);
     countryBubbles_b = new BubbleVis('vis-1b', dataArray[0], dataArray[1]);
     fancyTimeSeries = new TimeSeries('vis-2', chartsData);
-    awardsWon = new Awards('vis-3', placeHolder);
+    awardsWon = new Awards('vis-3', dataArray[3]);
     charityBubbles = new Charity('vis-4', placeHolder);
 }
 
@@ -48,3 +53,8 @@ function categoryChange() {
 
 }
 
+function awardsFilter(){
+    awardSelection = document.getElementById('vis-3-select').value;
+    awardsWon.wrangleData();
+
+}

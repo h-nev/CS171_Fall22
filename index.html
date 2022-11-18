@@ -7,6 +7,8 @@
 	<title>Dolly Parton</title>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<!--nouislider-->
+	<link rel="stylesheet" href="css/nouislider.css" >
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -194,31 +196,43 @@
 	</div>
 
 
-	<div class = 'gutter'></div>
+			<div class = 'gutter'></div>
 
 
-	<!-- Title and external legend side by side, plot underneath that, slider underneath the timeline -->
-	<div class = 'container-fluid module' id = 'module-2'>
-		<div class = 'row'>
-			<div class = 'col' id = 'vis-2-title'>
-				<h3 class = 'vis-title title'>A Brief Musical History</h3>
-			</div>
+			<!-- Title and external legend side by side, plot underneath that, slider underneath the timeline -->
+			<div class = 'container-fluid module' id = 'module-2'>
+        
+				<div class = 'row'>
+          
+					<div class = 'col' id = 'vis-2-title'>
+						<h3 class = 'vis-title title'>A Brief Musical History </h3>
+					</div>
 
-			<div class = 'col' id = 'vis-2-legend'>
-				<!-- Outsource timeline legend here -->
-			</div>
-			
-		</div>
-		
-		<div class = 'row' id = 'vis-2' style="height: 70vh; width:100%;">
-			<!-- Row with the timeline vis -->
-		</div>
+					<div class="col-8">
+						<div class="row justify-content-center" style="height: 100%">
+							<select id='vis-2-selector' class="custom-select align-self-center" style="width: 50%" onchange="categoryChange()">
+								<option value="Dolly Parton" selected>Dolly Parton</option>
+								<option value="Elvis Presley">Elvis Presley</option>
+								<option value="Aretha Franklin">Aretha Franklin</option>
+								<option value="Madonna">Madonna</option>
+								<option value="Taylor Swift">Taylor Swift</option>
+							</select>
+						</div>
+					</div>
 
-		<div class = 'row' id = 'vis-2-slider'>
-			<!-- Row with custom slider for the timeline can go here -->
-		</div>
-	</div>
+					<div class = 'col' id = 'vis-2-legend'>
+						<!-- Outsource timeline legend here -->
+					</div>
+					
+				</div>
+				
+				<div class = 'row' id = 'vis-2' style="height: 70vh; width:100%;">
+					<!-- Row with the timeline vis -->
+				</div>
 
+				<div class = 'row' id = 'vis-2-slider'>
+					<!-- Row with custom slider for the timeline can go here -->
+				</div>
 
 	<div class = 'gutter'></div>
 
@@ -313,7 +327,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- d3 -->
 	<script src = "https://d3js.org/d3.v6.min.js"></script>
-
+	<!-- nouislider-->
+	<script src="js/nouislider.js"></script>
 	<!-- JS -->
 	<script src = "js/BeeSwarm.js"></script>
 	<script src = "js/BubbleVis.js"></script>

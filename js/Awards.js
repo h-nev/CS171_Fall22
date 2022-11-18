@@ -36,7 +36,7 @@ class Awards{
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
         vis.isotype = vis.svg.selectAll('.isotype')
-            .data(vis.displayData)
+            .data(vis.baseData)
             .enter()
             .append('path')
             .attr('class', 'isotype')
@@ -44,20 +44,76 @@ class Awards{
             .attr('fill', 'grey')
             .attr('transform', (data, i) =>  `translate(${(i % vis.perRow) * (vis.margin.spacing + vis.margin.padding)}, ${Math.floor(i / vis.perRow) * (vis.margin.spacing + vis.margin.padding*3)}) scale(${vis.scaling}, ${vis.scaling})`);
 
-        // COLOR SCALES EVENTUALLY FOR CATEGORIES IF I CAN FIGURE OUT HOW TO FILL THE PATH IN
-        vis.colorScale = d3.scaleOrdinal()
-            .domain(['Solo Performance', 'Collaborative Performance', 
-                'Song', 'Album', 'Composition',
-                'Philanthropy', 'Achievement',
-                'Acting', 'Directing', 'Videography'])
-            .range(['#57C19B', '#32AB80',
-                    '#FFFD73', '#FEFC4A', '#F3F01C',
-                    '#ffffff', '#c9c0bb',
-                    '#FFA073', '#FE854A', '#F3621C']);
+        // Binning like types together for scale domain assignment and filtering later
+        vis.all = ['Won', 'Nominated'];
+        vis.won = ['Won'];
+        vis.nominated = ['Nominated'];
+        vis.musicPerformance = ['Solo Performance', 'Collaborative Performance'];
+        vis.music = ['Song', 'Album', 'Composition'];
+        vis.service = ['Philanthropy', 'Achievement'];
+        vis.mediaPerformance = ['Acting', 'Directing', 'Videography'];
+
+        // Matches values from the select box
+        vis.typeContainer = {
+            'All' : vis.all,
+            'Won' : vis.won,
+            'Nominated' : vis.nominated,
+            'Music Performance' : vis.musicPerformance,
+            'Music' : vis.music,
+            'Philanthropy' : vis.service,
+            'Media Performance' : vis.mediaPerformance
+        };
+
+        // Color Scales for the "binned" award types which updates with user selection
+        // "All" is purposefully redundant with "Won" and "Nominated" selection color scales
+        vis.allScale = d3.scaleOrdinal()
+        .domain(vis.all)
+        .range(['gold', 'white']);
+
+        vis.wonScale = d3.scaleOrdinal()
+            .domain(vis.won)
+            .range(['gold'])
+            .unknown(['black']);
+
+        vis.nominatedScale = d3.scaleOrdinal()
+            .domain(vis.nominated)
+            .range(['white'])
+            .unknown(['black']);
+
+        vis.musicPerformanceScale = d3.scaleOrdinal()
+            .domain(vis.musicPerformance)
+            .range(['#57C19B', '#32AB80'])
+            .unknown('black');
+
+        vis.musicScale = d3.scaleOrdinal()
+                .domain(vis.music)
+                .range(['#FFFD73', '#FEFC4A', '#F3F01C'])
+                .unknown('black');
+
+        vis.serviceScale = d3.scaleOrdinal()
+                .domain(vis.service)
+                .range(['#ffffff', '#c9c0bb'])
+                .unknown('black');
+        
+        vis.mediaPerformanceScale = d3.scaleOrdinal()
+                .domain(vis.mediaPerformance)
+                .range(['#FFA073', '#FE854A', '#F3621C'])
+                .unknown('black');
 
         // NO AXES REQUIRED FOR THIS ONE
 
-            vis.wrangleData();
+        // Create empty legend svg we overwrite depending on the selection
+        vis.legendHeight = 50;
+
+        vis.legend = d3.select('#vis-3-legend')
+            .append('svg')
+            .attr('width', document.getElementById('vis-3-legend').getBoundingClientRect().width)
+            .attr('height', vis.legendHeight);
+
+        vis.categoryPlacement = d3.scaleBand()
+            .range([0, document.getElementById('vis-3-legend').getBoundingClientRect().width])
+
+        vis.wrangleData();
 
     }
 
@@ -110,8 +166,39 @@ class Awards{
     wrangleData(){
         // Process the data by dynamic attributes only
         let vis = this;
+        vis.filterCounts = [0, 0];
 
-        console.log(vis.displayData)
+        if (awardSelection == 'Music Performance' || awardSelection == 'Music' || awardSelection == 'Philanthropy' || awardSelection == 'Media Performance'){
+            // Get the specific types we want to aggregate the won and nominated for
+            let curList = vis.typeContainer[awardSelection];
+            
+            // Aggregate the number of won and nominated for the filtered selection so we can update the text container above the select box
+            vis.baseData.forEach(award => {
+                if(curList.includes(award.type) && award.status == "Won"){
+                    // Increment the won count
+                    vis.filterCounts[0] = vis.filterCounts[0] + 1
+                }
+                else if(curList.includes(award.type) && award.status == "Nominated"){
+                    // Increase the nominated count
+                    vis.filterCounts[1] = vis.filterCounts[1] + 1 
+                }
+
+            });
+
+        }
+
+        else if (awardSelection == 'Won' || awardSelection == 'Nominated' || awardSelection == 'All'){
+            // We could hardcode this, but it's better to make it more precise 
+            vis.baseData.forEach(award => {
+                if (award.status == 'Won'){
+                    vis.filterCounts[0] = vis.filterCounts[0] + 1
+                }
+                else{
+                    vis.filterCounts[1] = vis.filterCounts[1] + 1
+                }
+            })
+
+        }
 
         vis.updateVis();
 
@@ -121,50 +208,115 @@ class Awards{
         // Change visuals based on dynamic attributes handled in wrangleData
         let vis = this;
         
+        // Update the domain with the number of categories we have for all
+        vis.categoryPlacement.domain(vis.typeContainer[awardSelection]);
+        
         // I know this is sort of unorthodox, but this is the behavior I was imagining
+        // Cannot be achieved with the same effect as Enter/Update/Exit, which was attempted
         if (awardSelection == 'All'){
             vis.isotype.transition()
-                .duration(vis.duration)
-                .attr('fill', 'white');
+            .duration(vis.duration)
+            .attr('fill', d => vis.allScale(d.status));
         }
-
         else if(awardSelection == 'Won'){
             vis.isotype.transition()
             .duration(vis.duration)
-            .attr('fill', d=> {
-                if (d.status == 'Won'){
-                    return "gold"
-                }
-                else{
-                    return 'black'
-                }
-
-            });
-
+            .attr('fill', d => vis.wonScale(d.status));
         }
-
         else if(awardSelection == 'Nominated'){
             vis.isotype.transition()
             .duration(vis.duration)
-            .attr('fill', d=> {
-                if (d.status == 'Nominated'){
-                    return "white"
-                }
-                else{
-                    return 'black'
-                }
-
-            });
-
+            .attr('fill', d => vis.nominatedScale(d.status));
         }
-
-        else if(awardSelection == 'Type'){
+        else if(awardSelection == 'Music Performance'){
             vis.isotype.transition()
-                .duration(vis.duration)
-                .attr('fill', d => vis.colorScale(d.type));
-
+            .duration(vis.duration)
+            .attr('fill', d => vis.musicPerformanceScale(d.type))
         }
+        else if(awardSelection == 'Music'){
+            vis.isotype.transition()
+            .duration(vis.duration)
+            .attr('fill', d => vis.musicScale(d.type))
+        }
+        else if(awardSelection == 'Philanthropy'){
+            vis.isotype.transition()
+            .duration(vis.duration)
+            .attr('fill', d => vis.serviceScale(d.type))
+        }
+        else if(awardSelection == 'Media Performance'){
+            vis.isotype.transition()
+            .duration(vis.duration)
+            .attr('fill', d => vis.mediaPerformanceScale(d.type))
+        }
+
+        //Write into the h3s that hold the counts
+        d3.select('#won-numeric')
+            .text(vis.filterCounts[0]);
+
+        d3.select("#nominated-numeric")
+            .text(vis.filterCounts[1]);
+
+        // Call the new legend
+        vis.buildLegend();
 
     }
+
+    buildLegend(){        
+        let vis = this
+
+        vis.bars = vis.legend.selectAll(".swatches")
+            .data(vis.typeContainer[awardSelection]);
+
+        vis.bars.enter()
+            .append('rect')
+            .attr('class', 'swatches')
+            .merge(vis.bars)
+            .attr('x', (d, i) => i * vis.categoryPlacement.bandwidth())
+            .attr('y', (vis.legendHeight / 2) - 10)
+            .attr('width', 20)
+            .attr('height', 20)
+            .attr('fill', d =>{
+                if (awardSelection == 'All'){
+                    return vis.allScale(d);
+                }
+                else if (awardSelection == 'Won'){
+                    return vis.wonScale(d);
+                }
+                else if (awardSelection == 'Nominated'){
+                    return vis.nominatedScale(d);
+                }
+                else if(awardSelection == 'Music Performance'){
+                   return vis.musicPerformanceScale(d);
+                }
+                else if(awardSelection == 'Music'){
+                    return vis.musicScale(d);
+                }
+                else if(awardSelection == 'Philanthropy'){
+                    return vis.serviceScale(d);
+                }
+                else if(awardSelection == 'Media Performance'){
+                    return vis.mediaPerformanceScale(d);
+                }
+            }).attr('transform', `translate (${vis.margin.left + 10}, 0)`);
+
+        vis.bars.exit().remove();
+
+        vis.labels = vis.legend.selectAll('.labels')
+            .data(vis.typeContainer[awardSelection]);
+
+        vis.labels.enter()
+            .append('text')
+            .attr('class', 'labels')
+            .merge(vis.labels)
+            .text(d => d)
+            .attr('x', (d, i) => i * vis.categoryPlacement.bandwidth() + 30)
+            .attr('y', (vis.legendHeight / 2) + 5)
+            .attr('fill', 'white')
+            .attr('transform', `translate (${vis.margin.left + 10}, 0)`);
+
+        vis.labels.exit().remove();
+
+    }
+
 
 }

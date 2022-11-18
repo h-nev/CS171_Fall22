@@ -45,6 +45,9 @@ class Awards{
             .attr('transform', (data, i) =>  `translate(${(i % vis.perRow) * (vis.margin.spacing + vis.margin.padding)}, ${Math.floor(i / vis.perRow) * (vis.margin.spacing + vis.margin.padding*3)}) scale(${vis.scaling}, ${vis.scaling})`);
 
         // Binning like types together for scale domain assignment and filtering later
+        vis.all = ['Won', 'Nominated'];
+        vis.won = ['Won'];
+        vis.nominated = ['Nominated'];
         vis.musicPerformance = ['Solo Performance', 'Collaborative Performance'];
         vis.music = ['Song', 'Album', 'Composition'];
         vis.service = ['Philanthropy', 'Achievement'];
@@ -52,6 +55,9 @@ class Awards{
 
         // Matches values from the select box
         vis.typeContainer = {
+            'All' : vis.all,
+            'Won' : vis.won,
+            'Nominated' : vis.nominated,
             'Music Performance' : vis.musicPerformance,
             'Music' : vis.music,
             'Philanthropy' : vis.service,
@@ -61,16 +67,18 @@ class Awards{
         // Color Scales for the "binned" award types which updates with user selection
         // "All" is purposefully redundant with "Won" and "Nominated" selection color scales
         vis.allScale = d3.scaleOrdinal()
-        .domain(['Won', 'Nominated'])
+        .domain(vis.all)
         .range(['gold', 'white']);
 
         vis.wonScale = d3.scaleOrdinal()
-            .domain(['Won', 'Nominated'])
-            .range(['gold', 'black']);
+            .domain(vis.won)
+            .range(['gold'])
+            .unknown(['black']);
 
         vis.nominatedScale = d3.scaleOrdinal()
-            .domain(['Nominated', 'Won'])
-            .range(['white', 'black']);
+            .domain(vis.nominated)
+            .range(['white'])
+            .unknown(['black']);
 
         vis.musicPerformanceScale = d3.scaleOrdinal()
             .domain(vis.musicPerformance)
@@ -94,7 +102,18 @@ class Awards{
 
         // NO AXES REQUIRED FOR THIS ONE
 
-            vis.wrangleData();
+        // Create empty legend svg we overwrite depending on the selection
+        vis.legendHeight = 50;
+
+        vis.legend = d3.select('#vis-3-legend')
+            .append('svg')
+            .attr('width', document.getElementById('vis-3-legend').getBoundingClientRect().width)
+            .attr('height', vis.legendHeight);
+
+        vis.categoryPlacement = d3.scaleBand()
+            .range([0, document.getElementById('vis-3-legend').getBoundingClientRect().width])
+
+        vis.wrangleData();
 
     }
 
@@ -188,9 +207,9 @@ class Awards{
     updateVis(){
         // Change visuals based on dynamic attributes handled in wrangleData
         let vis = this;
-
-        vis.isotype.transition()
-            .duration(vis.duration)
+        
+        // Update the domain with the number of categories we have for all
+        vis.categoryPlacement.domain(vis.typeContainer[awardSelection]);
         
         // I know this is sort of unorthodox, but this is the behavior I was imagining
         // Cannot be achieved with the same effect as Enter/Update/Exit, which was attempted
@@ -237,6 +256,67 @@ class Awards{
         d3.select("#nominated-numeric")
             .text(vis.filterCounts[1]);
 
+        // Call the new legend
+        vis.buildLegend();
+
     }
+
+    buildLegend(){        
+        let vis = this
+
+        vis.bars = vis.legend.selectAll(".swatches")
+            .data(vis.typeContainer[awardSelection]);
+
+        vis.bars.enter()
+            .append('rect')
+            .attr('class', 'swatches')
+            .merge(vis.bars)
+            .attr('x', (d, i) => i * vis.categoryPlacement.bandwidth())
+            .attr('y', (vis.legendHeight / 2) - 10)
+            .attr('width', 20)
+            .attr('height', 20)
+            .attr('fill', d =>{
+                if (awardSelection == 'All'){
+                    return vis.allScale(d);
+                }
+                else if (awardSelection == 'Won'){
+                    return vis.wonScale(d);
+                }
+                else if (awardSelection == 'Nominated'){
+                    return vis.nominatedScale(d);
+                }
+                else if(awardSelection == 'Music Performance'){
+                   return vis.musicPerformanceScale(d);
+                }
+                else if(awardSelection == 'Music'){
+                    return vis.musicScale(d);
+                }
+                else if(awardSelection == 'Philanthropy'){
+                    return vis.serviceScale(d);
+                }
+                else if(awardSelection == 'Media Performance'){
+                    return vis.mediaPerformanceScale(d);
+                }
+            }).attr('transform', `translate (${vis.margin.left + 10}, 0)`);
+
+        vis.bars.exit().remove();
+
+        vis.labels = vis.legend.selectAll('.labels')
+            .data(vis.typeContainer[awardSelection]);
+
+        vis.labels.enter()
+            .append('text')
+            .attr('class', 'labels')
+            .merge(vis.labels)
+            .text(d => d)
+            .attr('x', (d, i) => i * vis.categoryPlacement.bandwidth() + 30)
+            .attr('y', (vis.legendHeight / 2) + 5)
+            .attr('fill', 'white')
+            .attr('transform', `translate (${vis.margin.left + 10}, 0)`);
+
+        vis.labels.exit().remove();
+
+    }
+
 
 }

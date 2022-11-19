@@ -41,8 +41,8 @@ class TimeSeries {
             .range([0, vis.height])
             .domain([1,100]);
 
-        vis.bubbleScale = d3.scaleLinear()
-            .range([100,600])
+        vis.bubbleScale = d3.scalePow()
+            .range([100,800])
             .domain(d3.extent(vis.data.map(d=>d["n_weeks"])));
 
         // Axis
@@ -86,6 +86,9 @@ class TimeSeries {
             {song: "When I Get Where I'm Going", date: "2006-04-01", rank:39}
         ];
 
+        // legend
+        vis.buildLegend()
+
         // append tooltip
         vis.tooltip = d3.select("body")
             .append('div')
@@ -97,8 +100,8 @@ class TimeSeries {
         vis.max_year = 1984;
 
         // Time series slider
-        vis.slider = document.getElementById('vis-2-slider');
-        document.getElementById("vis-2-slider").style.margin = `0px ${vis.margin.right}px 10px ${vis.margin.left-15}px`;
+        vis.slider = document.getElementById(vis.parentElement +'-slider');
+        document.getElementById(vis.parentElement +"-slider").style.margin = `0px ${vis.margin.right}px 10px ${vis.margin.left-15}px`;
 
         noUiSlider.create(vis.slider, {
             start: [1974, 1985],
@@ -315,6 +318,14 @@ class TimeSeries {
         vis.artist_filter = selectedCategory;
         d3.selectAll('.curve').remove()
         vis.wrangleData()
+
+    }
+
+    buildLegend(){
+        let vis = this
+        vis.legend  = d3.select('#' + vis.parentElement + "-legend")
+            .append('svg')
+
 
     }
 

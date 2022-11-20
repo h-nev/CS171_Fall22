@@ -31,6 +31,8 @@ class Dendrogram{
     initVis(){
         let vis = this;
 
+        console.log(vis.baseData)
+
         // Outsource all the math for proper sizing
         vis.calculate();
 

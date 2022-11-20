@@ -9,8 +9,10 @@
 
 class Awards{
 
-    constructor(parentElement, baseData){
+    constructor(parentElement, legendElement, baseData){
         this.parentElement = parentElement;
+        this.legendElement = legendElement;
+
         this.baseData = baseData;
         this.displayData = [];
 
@@ -110,7 +112,7 @@ class Awards{
         // Create empty legend svg we overwrite depending on the selection
         vis.legendHeight = 50;
 
-        vis.legend = d3.select('#vis-3-legend')
+        vis.legend = d3.select('#' + vis.legendElement)
             .append('svg')
             .attr('width', document.getElementById('vis-3-legend').getBoundingClientRect().width)
             .attr('height', vis.legendHeight);
@@ -163,8 +165,6 @@ class Awards{
 
         // Ensures that we can revert to base if needed after filtering display a ton
         vis.displayData = vis.baseData
-
-        console.log(vis.displayData);
 
     }
 

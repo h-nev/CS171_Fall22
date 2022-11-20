@@ -41,7 +41,7 @@ function initMainPage(dataArray) {
     countryBubbles_a = new BubbleVis('vis-1a', dataArray[0], []);
     countryBubbles_b = new BubbleVis('vis-1b', dataArray[0], dataArray[1]);
     fancyTimeSeries = new TimeSeries('vis-2', chartsData);
-    awardsWon = new Awards('vis-3', dataArray[3]);
+    awardsWon = new Awards('vis-3', 'vis-3-legend', dataArray[3]);
     charityBubbles = new Charity('vis-4', placeHolder);
 }
 
@@ -58,5 +58,3 @@ function awardsFilter(){
     awardsWon.wrangleData();
 
 }
-
-const delay = async (ms = 1000) => new Promise(resolve => setTimeout(resolve, ms));

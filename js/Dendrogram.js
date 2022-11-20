@@ -14,6 +14,8 @@ class Dendrogram{
     }
     
     calculate(){
+        let vis = this;
+        
         // Expect external legend and title, but possible bottom axis
         vis.margin = {top: 10, left: 10, bottom: 20, right: 10, scale: 0.5};
 

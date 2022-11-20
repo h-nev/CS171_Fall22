@@ -68,7 +68,7 @@ class Awards{
         // "All" is purposefully redundant with "Won" and "Nominated" selection color scales
         vis.allScale = d3.scaleOrdinal()
         .domain(vis.all)
-        .range(['gold', 'white']);
+        .range(['gold', '#ffffff']);
 
         vis.wonScale = d3.scaleOrdinal()
             .domain(vis.won)
@@ -77,27 +77,32 @@ class Awards{
 
         vis.nominatedScale = d3.scaleOrdinal()
             .domain(vis.nominated)
-            .range(['white'])
+            .range(['#ffffff'])
             .unknown(['black']);
 
+        // Current scheme: bright white, slitherin green
         vis.musicPerformanceScale = d3.scaleOrdinal()
             .domain(vis.musicPerformance)
-            .range(['#57C19B', '#32AB80'])
+            .range(['#ffffff', '#32AB80'])
             .unknown('black');
 
+        // Current scheme: bright pale yellow, bright white, infra red
         vis.musicScale = d3.scaleOrdinal()
                 .domain(vis.music)
-                .range(['#FFFD73', '#FEFC4A', '#F3F01C'])
+                .range(['#FFFD73', '#ffffff', '#ff496c'])
                 .unknown('black');
 
+        // Current scheme: bright white / cornflower blue
         vis.serviceScale = d3.scaleOrdinal()
                 .domain(vis.service)
-                .range(['#ffffff', '#c9c0bb'])
+                .range(['#ffffff', '#6495ed'])
                 .unknown('black');
         
+        // Current scheme: bright pale yellow, bright white, infra red
         vis.mediaPerformanceScale = d3.scaleOrdinal()
                 .domain(vis.mediaPerformance)
-                .range(['#FFA073', '#FE854A', '#F3621C'])
+                // .range(['#FFA073', '#FE854A', '#F3621C'])
+                .range(['#FFFD73', '#ffffff', '#ff496c'])
                 .unknown('black');
 
         // NO AXES REQUIRED FOR THIS ONE

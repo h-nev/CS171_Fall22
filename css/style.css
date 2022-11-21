@@ -154,3 +154,11 @@ body{
     opacity: 60%;
     font-size: 1500%;
 }
+
+.missing{
+    font-size:1000%;
+    text-align: center;
+    color: white;
+    font-family:monospace;
+    
+}

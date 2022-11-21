@@ -16,6 +16,11 @@ body{
 
 }
 
+.vis-title{
+    font-family: googleJuliasSans;
+
+}
+
 .gutter{
     /* Allows us to make custom row-breaks so svgs are not directly touching */
     background-color: black;
@@ -128,7 +133,23 @@ body{
     transform: translate(-50%, -50%);
 }
 
+@font-face {
+    font-family: 'googleSatisfy';
+    src: url(../fonts/Satisfy-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'googleTanBold';
+    src: url(../fonts/Tangerine-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'googleJuliasSans';
+    src: url(../fonts/JuliusSansOne-Regular.ttf);
+}
+
 #text-cover{
+    font-family: googleTanBold;
     color: #FFFFFF;
     opacity: 60%;
     font-size: 1500%;

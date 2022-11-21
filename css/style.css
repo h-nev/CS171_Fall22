@@ -88,3 +88,48 @@ body{
     font-family: 'Courier New', Courier, monospace;
 
 }
+
+/*----------Video -------------------------*/
+.vidContain {
+    width: 100%;
+    height: 100%;
+    position:relative;
+    /*display:inline-block;*/
+    margin:10px;
+}
+.vid {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 95vw;
+    height: 90vh;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+@media (min-aspect-ratio: 16/9) {
+    .vid iframe {
+        /* height = 100 * (9 / 16) = 56.25 */
+        height: 56.25vw;
+    }
+}
+
+@media (max-aspect-ratio: 16/9) {
+    .vid iframe {
+        /* width = 100 / (9 / 16) = 177.777777 */
+        width: 177.78vh;
+    }
+}
+
+#text{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#text-cover{
+    color: #FFFFFF;
+    opacity: 60%;
+    font-size: 1500%;
+}

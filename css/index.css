@@ -1,0 +1,58 @@
+/*---------- General customization ----------*/
+html{
+    scroll-behavior: smooth;
+
+}
+
+.module{
+    /* Overall backing to the page and heading */
+    background-color: black;
+
+}
+
+.title{
+    /* Stands out on dark backgrounds */
+    color:#d3d3d3;
+
+}
+
+.vis-title{
+    font-family: googleJuliasSans;
+
+}
+
+.gutter{
+    /* Allows us to make custom row-breaks so svgs are not directly touching */
+    background-color: black;
+    padding-bottom: 4%;
+
+}
+
+.gutter-light{
+    background-color: #d3d3d3;
+    padding-bottom: 4%;
+
+}
+
+.big-gutter{
+    /* Allows us to make custom row-breaks that are larger than the small visual separation between visualizations */
+    background-color: black;
+    padding-bottom: 12%;
+}
+
+.big-gutter-light{
+    background-color: #d3d3d3;
+    padding-bottom: 12%;
+
+}
+
+#footer{
+    /* Light grey with generous fluid space at the bottom of the page to cite / include our contacts */
+    background-color: #d3d3d3;
+
+}
+
+.numeric{
+    font-family: 'Courier New', Courier, monospace;
+
+}

@@ -50,7 +50,6 @@
 			<div class = 'col-4'>
 				<img src="img/dolly-parton-tmh.jpg" class="d-block w-100" alt="...">
 			</div>
-
 			<div class = 'col-8'>
 				<h3 class = 'title'>Dolly Parton was born in the impoverished Appalachian region of Tennessee in 1946, growing up with 12 siblings. 
 					Her rise to fame is undeniably impressive, landing her in many halls of fame, associated with hundreds of songs, receiving over one hundred awards,
@@ -297,18 +296,11 @@
 					<div class = 'col' id = 'vis-4-title'>
 						<h3 class = 'vis-title title'>My Tennessee Mountain Home</h3>
 					</div>
-		
-					<div class = 'col' id = 'vis-4-legend'>
-						<!-- Outsource charitable legend here -->
-					</div>
 				</div>
 		
-				<div class = 'row' id = 'vis-4'>
+				<div class = 'row'>
+					<div class = 'col charity-vis' id = 'vis-4' style='height: 80vh'></div>
 					<!-- Map / Bubbles / whatever visualization we pick of her charitable impact -->
-				</div>
-		
-				<div class = 'row' id = 'vis-4-slider'>
-					<!-- Row with custom time slider for charitable work can go here -->
 				</div>
 			</div>
 		</div>
@@ -377,6 +369,11 @@
 	<script src="js/nouislider.js"></script>
 	<!-- annotations -->
 	<script src="js/d3-annotation.js"></script>
+	<!-- topojson -->
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
+    <script src="https://d3js.org/d3-geo.v1.min.js"></script>
+	<!-- date selector for charity visualization -->
+	<script src="https://unpkg.com/d3-simple-slider"></script>
 	<!-- JS -->
 	<script src = "js/BubbleVis.js"></script>
 	<script src= "js/Dendrogram.js"></script>

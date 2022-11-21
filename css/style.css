@@ -62,18 +62,18 @@ body{
 
 
 /*---------- Time Series customization ----------*/
-.axis text {
+#vis-2 .axis text {
     fill: #8FA2AC;
     /*font: 12px sans-serif;*/
     /*font-family: SansSerif;*/
 }
-.axis-title {
+#vis-2 .axis-title {
     fill: #8FA2AC;
     text-anchor: middle;
     /*font-family:  SansSerif;*/
 }
-.axis path,
-.axis line {
+#vis-2 .axis path,
+#vis-2 .axis line {
     fill: none;
     stroke: none;
     shape-rendering: crispEdges;
@@ -160,5 +160,74 @@ body{
     text-align: center;
     color: white;
     font-family:monospace;
-    
+}
+
+/*---------- Charity customization ----------*/
+
+.charity-vis .county {
+    stroke-width: 1px;
+    stroke: black;
+}
+.charity-vis .county-sevier {
+    stroke-width: 4px;
+    stroke: steelblue;
+}
+.charity-vis .countyPattern {
+    stroke: none;
+    fill: url(#diagonalHatch);
+}
+.charity-vis #scale-pattern-rect {
+    stroke-width: 1px;
+    stroke: black;
+    fill: url(#diagonalHatch);
+}
+.charity-vis #state-average-text {
+    text-anchor: middle;
+    alignment-baseline: baseline;
+}
+
+.charity-vis .donation-entry-wrap {
+    margin: 0px;
+    border: none;
+}
+.charity-vis .donation-entry {
+    border: 1px solid #404040;
+    border-radius: 5px;
+    padding: 5px;
+}
+.charity-vis .donation-when {
+    display: inline-block;
+    width: 4em;
+    font-style: italic;
+}
+.charity-vis .donation-where {
+    display: inline-block;
+    width: 12em;
+}
+.charity-vis .donation-what {
+    display: inline-block;
+}
+.charity-vis .donation-desc {
+    display: inline-block;
+    margin-top: 10px;
+}
+.charity-vis .donation-colorbar {
+    width:5px;
+    margin-right:5px;
+}
+.charity-vis .donation-flyout-line {
+    stroke-width: 1px;
+    stroke: white;
+}
+.charity-vis .donation-flyout-circle {
+    stroke: none;
+}
+.charity-vis {
+    color:#d3d3d3;
+}
+.charity-vis text {
+    fill:#d3d3d3;
+}
+.charity-vis #scale-pattern-rect {
+    stroke:#d3d3d3;
 }

@@ -12,7 +12,10 @@ let promises = [
     d3.csv("data/dolly-parton-released-songs.csv"),
     d3.csv("data/charts_wrangled.csv"),
     d3.csv("data/dolly-wiki-awards.csv"),
-    d3.csv("data/DollyPartonSongs_cleaned.csv")
+    d3.csv("data/DollyPartonSongs_cleaned.csv"),
+    d3.json("data/tennessee-county-1960.topojson"),
+    d3.csv("data/TN_poverty_rates_by_county_1960-2020.csv"),
+    d3.csv("data/dolly-charity.csv")
 ];
 
 Promise.all(promises)
@@ -46,7 +49,7 @@ function initMainPage(dataArray) {
     fancyTimeSeries = new TimeSeries('vis-2', chartsData);
     awardsWon = new Awards('vis-3', 'vis-3-legend', dataArray[3]);
 
-    charityBubbles = new Charity('vis-4', placeHolder);
+    charityBubbles = new CharityVis('vis-4', dataArray[5], dataArray[6], dataArray[7]);
 }
 
 let selectedCategory =  document.getElementById('vis-2-selector').value;

@@ -44,11 +44,11 @@ body{
     stroke: black;
 }
 .bubble-vis .artist-dolly {
-    fill: yellowgreen;
+    fill: #FFFD73;
 }
 .bubble-vis .artist-dolly-linked {
     stroke-width: 3px;
-    fill: lightseagreen;
+    fill: #6495ed;
 }
 .bubble-vis .artist-circle-text {
     text-anchor: middle;

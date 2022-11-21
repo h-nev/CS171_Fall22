@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<!--nouislider-->
 	<link rel="stylesheet" href="css/nouislider.css" >
+	<link rel = "stylesheet" href = "css/dendrogram.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -176,19 +177,8 @@
 				</div>
 		
 				<div class = 'row'>
-					<!-- Spider plot -->
-					<div class = 'col bubble-vis' id = 'vis-1c' style="height: 80vh; width: 100%;" >
-						<ol type="1">
-							<li>Listen to the current bubbles above for scroll action</li>
-							<li>Filter out all those not associated with Dolly that we previously had, exiting with transition so only the green and blue bubbles are left</li>
-							<li>Transition (duration = 800) collab bubbles position such that cy = vis.height - radius - marginal_padding, cx = i * (vis.width / data.length)</li>
-							<li>Transition (duration = 800) Dolly's bubble position to the top simultaneously with cy = 0 + marginal_padding, cx = vis.width / data.length</li>
-							<li>Draw curveMonotoneX paths from Dolly's bubble x = cx, y = cy + radius to all others such that x = cx, y = cy  - radius with simultaneous transition of longer duration</li>
-							<li>Transition the line thickness to scale proportional to number of collaborated songs (if available) or another related metric</li>
-							<li>Mouseover listener greys out all other bubbles (excluding Dolly and the one hovered on) and paths and displays Bootstrap card in a non-invasive area with relevant information</li>
-							<li>Mouseout resets bubble colors, path line colors, and removes pop out</li>
-							<li>Listen to other scroll events to transition to a new part of the DOM (vis 2 -- fancy time-series)</li>
-						</ol> 
+					<div class = 'col bubble-vis' id = 'vis-1c' >
+						<!-- Radial dendrogram goes here -->
 					</div>
 				</div>
 			</div>
@@ -229,9 +219,16 @@
 				<div class = 'row' id = 'vis-2' style="height: 70vh; width:100%;">
 					<!-- Row with the timeline vis -->
 				</div>
+				<div class = 'row' >
+					<h3 style="color: white"> Explore other decades! </h3>
+				</div>
 
 				<div class = 'row' id = 'vis-2-slider'>
 					<!-- Row with custom slider for the timeline can go here -->
+				</div>
+
+				<div class = 'row'>
+					<p></p>
 				</div>
 
 	<div class = 'big-gutter'></div>
@@ -362,10 +359,13 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!-- d3 -->
 	<script src = "https://d3js.org/d3.v6.min.js"></script>
-	<!-- nouislider-->
+	<!-- nouislider -->
 	<script src="js/nouislider.js"></script>
+	<!-- annotations -->
+	<script src="js/d3-annotation.js"></script>
 	<!-- JS -->
 	<script src = "js/BubbleVis.js"></script>
+	<script src= "js/Dendrogram.js"></script>
 	<script src = 'js/TimeSeries.js'></script>
 	<script src = 'js/Awards.js'></script>
 	<script src = 'js/Charity.js'></script>

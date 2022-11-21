@@ -80,11 +80,6 @@ class TimeSeries {
             .y(function(d) { return vis.yScale(d['rank']); })
             .curve(d3.curveMonotoneX);
 
-        // lines selected labels
-        vis.show_labels = [{song: '9 To 5', date: '1980-01-01', rank: 21.40},
-            {song: 'Jolene', date: '1974-01-01', rank: 60},
-            {song: "When I Get Where I'm Going", date: "2006-04-01", rank:39}
-        ];
 
         // legend
         vis.buildLegend()
@@ -124,6 +119,9 @@ class TimeSeries {
             }
             if(value === 1958 || value === 2022 ){return 2}
         }
+
+        vis.annotations = vis.svg.append("g")
+            .attr('class', 'annotations')
 
         // (Filter, aggregate, modify data)
         vis.wrangleData();
@@ -263,6 +261,7 @@ class TimeSeries {
             })
         .on('mouseover', function (event, d) {
                 d3.selectAll('.curve').remove()
+                vis.annotations.style("opacity", 0)
 
                 // console.log(event.currentTarget)
 
@@ -295,8 +294,9 @@ class TimeSeries {
             d3.selectAll('.dot')
                 .style('fill', '#B3CDE0')
                 .style("opacity", 0.1)
-
+            vis.annotations.style("opacity", 1)
             d3.selectAll('.curve').remove()
+
 
             // Go back to original Dolly Parton view
             vis.artist_filter = selectedCategory
@@ -311,20 +311,126 @@ class TimeSeries {
 
         vis.bubbles.exit().remove()
 
+
+        // ------------- Annotations ---------------------
+        vis.show_annotations = [
+            {
+                note: {
+                    label: "",
+                    title: "9 To 5"
+                },
+                x: vis.xScale(dateParser('1981-02-01')),
+                y: vis.yScale(2.25),
+                dy: 0,
+                dx: 50
+            },
+            {
+                note: {
+                    label: "",
+                    title: "Jolene"
+                },
+                x: vis.xScale(dateParser('1974-02-01')),
+                y: vis.yScale(61),
+                dy: 0,
+                dx: 50
+            },
+            {
+                note: {
+                    label: "",
+                    title: "Here you come again"
+                },
+                x: vis.xScale(dateParser('1978-01-01')),
+                y: vis.yScale(6),
+                dy: 0,
+                dx: 50
+            },
+            {
+                note: {
+                    label: "",
+                    title: "I will always love you"
+                },
+                x: vis.xScale(dateParser('1982-08-01')),
+                y: vis.yScale(66),
+                dy: 0,
+                dx: 50
+            }
+            ,
+            {
+                note: {
+                    label: "",
+                    title: "Islands in the stream"
+                },
+                x: vis.xScale(dateParser('1983-12-01')),
+                y: vis.yScale(10.8),
+                dy: 0,
+                dx: 50
+            }
+        ]
+        vis.makeAnnotations = d3.annotation()
+            .annotations(vis.show_annotations)
+
+        vis.annotations
+            .call(vis.makeAnnotations)
+            .raise()
+
     }
 
     selectorChange(){
         let vis = this;
         vis.artist_filter = selectedCategory;
         d3.selectAll('.curve').remove()
+        d3.selectAll('.annotations').remove()
         vis.wrangleData()
 
     }
 
     buildLegend(){
         let vis = this
+        vis.widthLegend = document.getElementById(vis.parentElement + "-legend").getBoundingClientRect().width;
+        vis.heightLegend = document.getElementById(vis.parentElement + "-legend").getBoundingClientRect().height;
+        vis.legendWeeks = [1,3,5]
+
         vis.legend  = d3.select('#' + vis.parentElement + "-legend")
             .append('svg')
+
+        let circleData = [
+            {week:1, cx:vis.widthLegend/2, cy:vis.heightLegend-10, radius:5},
+            {week:3, cx:vis.widthLegend/2, cy:vis.heightLegend-5, radius:10},
+            {week:5, cx:vis.widthLegend/2, cy:vis.heightLegend, radius:15}
+        ]
+
+        vis.legend.append("text")
+            .attr("class", "legend-title")
+            .attr("x", vis.widthLegend/4)
+            .attr("y", 10)
+            // .attr("dx", ".5em")
+            .style("fill", "white")
+            .style("font-size", "10px")
+            .text("Number of weeks");
+
+        vis.legend.selectAll("legend-text")
+            .data(vis.legendWeeks)
+            .enter()
+            .append("text")
+            .attr("class", "legend-text")
+            .attr("x", vis.widthLegend*0.35)
+            .attr("y", (d,i)=>i*12+25)
+            .style("fill", "#B3CDE0")
+            .style("font-size", "10px")
+            .text(d=>d);
+
+        vis.circles = vis.legend.selectAll("g")
+            .data(circleData)
+            .enter()
+            .append("g");
+// Add outer circle.
+        vis.circles.append("circle")
+            .attr("cx", function (d) { return d.cx; })
+            .attr("cy", function (d) { return d.cy; })
+            .attr("r", function (d) { return d.radius; })
+            .style("fill", "none")
+            .style("stroke", "#B3CDE0")
+            .style("stroke-width", 2);
 
 
     }

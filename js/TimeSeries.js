@@ -313,8 +313,6 @@ class TimeSeries {
 
 
         // ------------- Annotations ---------------------
-        console.log(vis.annotations)
-
         vis.show_annotations = [
             {
                 note: {
@@ -331,7 +329,7 @@ class TimeSeries {
                     label: "",
                     title: "Jolene"
                 },
-                x: vis.xScale(dateParser('1974-01-01')),
+                x: vis.xScale(dateParser('1974-02-01')),
                 y: vis.yScale(61),
                 dy: 0,
                 dx: 50
@@ -388,8 +386,51 @@ class TimeSeries {
 
     buildLegend(){
         let vis = this
+        vis.widthLegend = document.getElementById(vis.parentElement + "-legend").getBoundingClientRect().width;
+        vis.heightLegend = document.getElementById(vis.parentElement + "-legend").getBoundingClientRect().height;
+        vis.legendWeeks = [1,3,5]
+
         vis.legend  = d3.select('#' + vis.parentElement + "-legend")
             .append('svg')
+
+        let circleData = [
+            {week:1, cx:vis.widthLegend/2, cy:vis.heightLegend-10, radius:5},
+            {week:3, cx:vis.widthLegend/2, cy:vis.heightLegend-5, radius:10},
+            {week:5, cx:vis.widthLegend/2, cy:vis.heightLegend, radius:15}
+        ]
+
+        vis.legend.append("text")
+            .attr("class", "legend-title")
+            .attr("x", vis.widthLegend/4)
+            .attr("y", 10)
+            // .attr("dx", ".5em")
+            .style("fill", "white")
+            .style("font-size", "10px")
+            .text("Number of weeks");
+
+        vis.legend.selectAll("legend-text")
+            .data(vis.legendWeeks)
+            .enter()
+            .append("text")
+            .attr("class", "legend-text")
+            .attr("x", vis.widthLegend*0.35)
+            .attr("y", (d,i)=>i*12+25)
+            .style("fill", "#B3CDE0")
+            .style("font-size", "10px")
+            .text(d=>d);
+
+        vis.circles = vis.legend.selectAll("g")
+            .data(circleData)
+            .enter()
+            .append("g");
+// Add outer circle.
+        vis.circles.append("circle")
+            .attr("cx", function (d) { return d.cx; })
+            .attr("cy", function (d) { return d.cy; })
+            .attr("r", function (d) { return d.radius; })
+            .style("fill", "none")
+            .style("stroke", "#B3CDE0")
+            .style("stroke-width", 2);
 
 
     }

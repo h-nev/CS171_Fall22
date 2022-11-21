@@ -28,10 +28,22 @@ html{
 
 }
 
+.gutter-light{
+    background-color: #d3d3d3;
+    padding-bottom: 4%;
+
+}
+
 .big-gutter{
     /* Allows us to make custom row-breaks that are larger than the small visual separation between visualizations */
     background-color: black;
     padding-bottom: 12%;
+}
+
+.big-gutter-light{
+    background-color: #d3d3d3;
+    padding-bottom: 12%;
+
 }
 
 #footer{

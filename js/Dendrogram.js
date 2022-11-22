@@ -52,19 +52,36 @@ class Dendrogram{
     wrangleData(){
         let vis = this;
 
+        // Get the unique collaborators and how many times they collaborated with her
         let children = Array.from(d3.rollup(vis.baseData, d => d.length, d => d.Connection), ([name, value]) => ({name, value}))
 
+        // Get only the single-timers
         let occasional = children.filter(d => {
             return d.value <= 1
-
         })
 
-        // console.log(occasional)
+        // Figure out how many unique years we have (don't really need value)
+        let years = Array.from(d3.rollup(vis.baseData, d => d.length, d => d.Year), ([name, value]) => ({name, value}))
+
+        // For each of the years we found, use the base data to find all the artists that are associated there
+        years.forEach(year => {
+            let yearChild = vis.baseData.filter(d => {
+                return d.Year == year.name
+            })
+
+            // We have them connected to year, now re-rollup 
+           let temp =  Array.from(d3.rollup(yearChild, d => d.length, d => d.Connection), ([name, value]) => ({name, value}))
+
+           // Put that in the children of this year
+            year['children'] = temp
+        })
+
+        console.log(years)
 
         // Rollup to count number of times collaborated by person and cast to dictionary, set that as the children for hierarchy purposes
         vis.displayData = {
             name: 'Dolly Parton',
-            children: occasional};
+            children: years};
 
         console.log(vis.displayData)
 

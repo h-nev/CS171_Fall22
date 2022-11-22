@@ -43,7 +43,7 @@ class Dendrogram{
             .attr('width', vis.width)
             .attr('height', vis.height)
             .append('g')
-            .attr('transform', `translate (${vis.height}, ${vis.radius})`);
+            .attr('transform', `translate (${vis.radius}, ${vis.radius})`);
 
             vis.wrangleData();
 
@@ -54,10 +54,17 @@ class Dendrogram{
 
         let children = Array.from(d3.rollup(vis.baseData, d => d.length, d => d.Connection), ([name, value]) => ({name, value}))
 
+        let occasional = children.filter(d => {
+            return d.value <= 1
+
+        })
+
+        // console.log(occasional)
+
         // Rollup to count number of times collaborated by person and cast to dictionary, set that as the children for hierarchy purposes
         vis.displayData = {
             name: 'Dolly Parton',
-            children: children};
+            children: occasional};
 
         console.log(vis.displayData)
 
@@ -69,7 +76,7 @@ class Dendrogram{
         let vis = this;
 
         vis.cluster = d3.cluster()
-            .size([320, vis.radius/1.15])
+            .size([345, vis.radius/1.15])
 
           // Give the data to this cluster layout:
         vis.root = d3.hierarchy(vis.displayData, d => d.children);

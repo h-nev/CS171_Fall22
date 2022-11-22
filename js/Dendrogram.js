@@ -65,46 +65,47 @@ class Dendrogram{
         let vis = this;
 
         vis.dendro = d3.tree()
-            .size([vis.height, vis.width]);
-            
+            .size([vis.height, vis.width/2]);
+
         let nodes = d3.hierarchy(vis.displayData, d => d.children);
         nodes = vis.dendro(nodes);
 
-        console.log(nodes)
+
+        console.log(nodes.descendants())
 
         vis.node = vis.svg.selectAll('.node')
             .data(nodes.descendants())
             .enter()
             .append('g')
-            .attr('class', d => 'node' + (d.children ? ' node--internal' : ' node--leaf'))
-            .attr('transform', d => `translate(${d.y}, ${d.x})`);
+            .attr('class', d => 'node')
+            .attr('transform', d => `translate(${d.y + vis.margin.left}, ${d.x})`);
 
         vis.edge = vis.svg.selectAll('.edge')
             .data(nodes.descendants().slice(1))
             .enter()
-            .append('g')
+            .append('path')
             .attr('stroke', '#ffffff')
-            .attr('stroke-width', d => d.value)
-            .attr('d', d => {
+            .attr('stroke-width', d => 2)
+            .attr('d', d => { 
                 return "M" + d.y + "," + d.x
                 + "C" + (d.y + d.parent.y) / 2 + "," + d.x
                 + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
-                + " " + d.parent.y + "," + d.parent.x;
+                + " " + (d.parent.y + 20) + "," + d.parent.x;
             });
 
         vis.node.append('circle')
-           .attr('r', 20)
+           .attr('r', 10)
            .attr('stroke', 'black')
            .attr('fill', '#ffffff');
            
-        vis.node.append('text')
-            .attr('dy', '.35em')
-            .attr("x", d => d.children ? (d.data.value + 5) * -1 :
-               d.data.value + 5)
-            .attr("y", d => d.children && d.depth !== 0 ?
-               -(d.data.value + 5) : d)
-            .style("text-anchor", d => d.children ? "end" : "start")
-            .text(d => d.data.name);
+        // vis.node.append('text')
+        //     .attr('dy', '.35em')
+        //     .attr("x", d => d.children ? (d.data.value + 5) * -1 :
+        //        d.data.value + 5)
+        //     .attr("y", d => d.children && d.depth !== 0 ?
+        //        -(d.data.value + 5) : d)
+        //     .style("text-anchor", d => d.children ? "end" : "start")
+        //     .text(d => d.data.name);
 
 
     }

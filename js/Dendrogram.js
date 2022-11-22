@@ -17,11 +17,12 @@ class Dendrogram{
         let vis = this;
         
         // Expect external legend and title, but possible bottom axis
-        vis.margin = {top: 10, left: 10, bottom: 20, right: 10, scale: 0.5};
+        vis.margin = {top: 10, left: 10, bottom: 10, right: 10};
 
         // Most computers have a "dock" which is not accounted for in innerHeight
-        vis.height = window.innerHeight - 100;
+        vis.height = window.innerHeight - vis.margin.bottom - vis.margin.top;
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
+        vis.radius = vis.height / 2; 
 
         // Keep transition duration the same for all elements
         vis.duration = 800;
@@ -41,7 +42,8 @@ class Dendrogram{
             .append('svg')
             .attr('width', vis.width)
             .attr('height', vis.height)
-            .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
+            .append('g')
+            .attr('transform', `translate (${vis.height}, ${vis.radius})`);
 
             vis.wrangleData();
 
@@ -50,10 +52,12 @@ class Dendrogram{
     wrangleData(){
         let vis = this;
 
+        let children = Array.from(d3.rollup(vis.baseData, d => d.length, d => d.Connection), ([name, value]) => ({name, value}))
+
         // Rollup to count number of times collaborated by person and cast to dictionary, set that as the children for hierarchy purposes
         vis.displayData = {
             name: 'Dolly Parton',
-            children: Array.from(d3.rollup(vis.baseData, d => d.length, d => d.Connection), ([name, value]) => ({name, value}))};
+            children: children};
 
         console.log(vis.displayData)
 
@@ -64,49 +68,40 @@ class Dendrogram{
     updateVis(){
         let vis = this;
 
-        vis.dendro = d3.tree()
-            .size([vis.height, vis.width/2]);
+        vis.cluster = d3.cluster()
+            .size([320, vis.radius/1.15])
 
-        let nodes = d3.hierarchy(vis.displayData, d => d.children);
-        nodes = vis.dendro(nodes);
+          // Give the data to this cluster layout:
+        vis.root = d3.hierarchy(vis.displayData, d => d.children);
 
+        console.log(vis.root)
+        
+        vis.cluster(vis.root);
 
-        console.log(nodes.descendants())
+        // Features of the links between nodes
+        vis.linksGenerator = d3.linkRadial()
+            .angle(d => d.x / 180 * Math.PI)
+            .radius(d => d.y);
 
-        vis.node = vis.svg.selectAll('.node')
-            .data(nodes.descendants())
-            .enter()
-            .append('g')
-            .attr('class', d => 'node')
-            .attr('transform', d => `translate(${d.y + vis.margin.left}, ${d.x})`);
+        // Add the links between nodes:
+        vis.svg.selectAll('path')
+            .data(vis.root.links())
+            .join('path')
+            .attr("d", vis.linksGenerator)
+            .attr("fill", 'none')
+            .attr("stroke", '#ffffff')
 
-        vis.edge = vis.svg.selectAll('.edge')
-            .data(nodes.descendants().slice(1))
-            .enter()
-            .append('path')
-            .attr('stroke', '#ffffff')
-            .attr('stroke-width', d => 2)
-            .attr('d', d => { 
-                return "M" + d.y + "," + d.x
-                + "C" + (d.y + d.parent.y) / 2 + "," + d.x
-                + " " + (d.y + d.parent.y) / 2 + "," + d.parent.x
-                + " " + (d.parent.y + 20) + "," + d.parent.x;
-            });
-
-        vis.node.append('circle')
-           .attr('r', 10)
-           .attr('stroke', 'black')
-           .attr('fill', '#ffffff');
-           
-        // vis.node.append('text')
-        //     .attr('dy', '.35em')
-        //     .attr("x", d => d.children ? (d.data.value + 5) * -1 :
-        //        d.data.value + 5)
-        //     .attr("y", d => d.children && d.depth !== 0 ?
-        //        -(d.data.value + 5) : d)
-        //     .style("text-anchor", d => d.children ? "end" : "start")
-        //     .text(d => d.data.name);
-
+         // Add a circle for each node.
+        vis.svg.selectAll("g")
+            .data(vis.root.descendants())
+            .join("g")
+            .attr("transform", d => `rotate(${d.x-90}) translate(${d.y})`)
+            .append("circle")
+                .attr("r", 5)
+                .attr("fill", "#ffffff")
+                .attr("stroke", "black")
+                .style("stroke-width", 1);
+        
 
     }
 

@@ -56,3 +56,9 @@ html{
     font-family: 'Courier New', Courier, monospace;
 
 }
+
+.horizontal-line{
+    background-color: #ffffff;
+    padding-bottom: 0.015%;
+
+}

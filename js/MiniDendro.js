@@ -39,6 +39,12 @@ class MiniDendro{
             .append('g')
             .attr('transform', `translate (${vis.radius}, ${vis.radius})`);
 
+        d3.select(`#${vis.parentElement}`)
+            .append('h3')
+            .attr('class', 'vis-title title')
+            .attr('stroke', '#ffffff')
+            .text(`${vis.timePeriod[0]}s`);
+
 
         vis.wrangleData();
 

@@ -4,8 +4,9 @@
 
 class Dendrogram{
 
-    constructor(parentElement, legendElement, baseData){
+    constructor(parentElement, parent2, legendElement, baseData){
         this.parentElement = parentElement;
+        this.parent2 = parent2;
         this.legendElement = legendElement;
         this.baseData = baseData;
         this.displayData = [];
@@ -22,7 +23,7 @@ class Dendrogram{
         // Most computers have a "dock" which is not accounted for in innerHeight
         vis.height = window.innerHeight - vis.margin.bottom - vis.margin.top;
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
-        vis.radius = vis.height / 2; 
+        vis.radius = vis.width / 1.88; 
 
         // Keep transition duration the same for all elements
         vis.duration = 800;
@@ -73,17 +74,19 @@ class Dendrogram{
            let temp =  Array.from(d3.rollup(yearChild, d => d.length, d => d.Connection), ([name, value]) => ({name, value}))
 
            // Put that in the children of this year
+           year['color'] = 'purple'
             year['children'] = temp
         })
 
-        console.log(years)
+        // console.log(years)
 
         // Rollup to count number of times collaborated by person and cast to dictionary, set that as the children for hierarchy purposes
         vis.displayData = {
             name: 'Dolly Parton',
+            color: 'purple',
             children: years};
 
-        console.log(vis.displayData)
+        // console.log(vis.displayData)
 
     
         vis.updateVis();
@@ -93,12 +96,10 @@ class Dendrogram{
         let vis = this;
 
         vis.cluster = d3.cluster()
-            .size([345, vis.radius/1.15])
+            .size([360, vis.radius/1.15])
 
           // Give the data to this cluster layout:
         vis.root = d3.hierarchy(vis.displayData, d => d.children);
-
-        console.log(vis.root)
         
         vis.cluster(vis.root);
 
@@ -106,6 +107,8 @@ class Dendrogram{
         vis.linksGenerator = d3.linkRadial()
             .angle(d => d.x / 180 * Math.PI)
             .radius(d => d.y);
+
+        console.log(vis.root.descendants())
 
         // Add the links between nodes:
         vis.svg.selectAll('path')
@@ -121,12 +124,40 @@ class Dendrogram{
             .join("g")
             .attr("transform", d => `rotate(${d.x-90}) translate(${d.y})`)
             .append("circle")
-                .attr("r", 5)
-                .attr("fill", "#ffffff")
-                .attr("stroke", "black")
-                .style("stroke-width", 1);
-        
+            .attr("r", d => {
+                if (d.height == 2){
+                    return 15
+                }
+                else{
+                    return 5
+                }
 
+            })
+            .attr("fill", d => {
+                if (d.height == 2){
+                    return '#FFFD73'
+                }
+                else if (d.height == 1){
+                    return '#ffffff'
+                }
+                else if (d.height == 0){
+                    return '#6495ed'
+                }
+            })
+            .attr("stroke", "black")
+            .attr("stroke-width", 1)
+            .attr('opacity', d => {
+                if (d.height == 0){
+                    return 0.75
+                }
+                else{
+                    return 1
+                }
+            })
+            .on('mouseover', (event, d) => {
+                console.log(d.data.name, d.parent.data.name)
+            });
+        
     }
 
 }

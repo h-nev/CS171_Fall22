@@ -45,6 +45,7 @@ function initMainPage(dataArray) {
     countryBubbles_a = new BubbleVis('vis-1a', dataArray[0], []);
     countryBubbles_b = new BubbleVis('vis-1b', dataArray[0], dataArray[1]);
     radialDendrogram = new Dendrogram('vis-1ac', 'vis-1bc', 'vis-1c-legend', dataArray[4]);
+    radialDendrogram2 = new Dendrogram2('vis-radial2', 'vis-radial2-sup', dataArray[4])
 
     fancyTimeSeries = new TimeSeries('vis-2', chartsData);
     awardsWon = new Awards('vis-3', 'vis-3-legend', dataArray[3]);

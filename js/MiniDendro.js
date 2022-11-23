@@ -133,7 +133,9 @@ class MiniDendro{
             .attr("stroke", "black")
             .attr("stroke-width", 1)
             .on('mouseover', (event, d) => {
-                console.log(d.parent.data.name)
+                console.log(d)
+
+
                 
 
                 // vis.tooltip.attr("opacity", 1)

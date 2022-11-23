@@ -57,12 +57,19 @@ class Dendrogram{
         let children = Array.from(d3.rollup(vis.baseData, d => d.length, d => d.Connection), ([name, value]) => ({name, value}))
 
         // Get only the single-timers
-        let occasional = children.filter(d => {
-            return d.value <= 1
+        vis.single = []
+        children.forEach(entry => {
+            if(entry.value == 1){
+                vis.single.push(entry.name)
+            }
+
         })
 
         // Figure out how many unique years we have (don't really need value)
         let years = Array.from(d3.rollup(vis.baseData, d => d.length, d => d.Year), ([name, value]) => ({name, value}))
+            .sort(function(a, b){
+                return a.name - b.name;
+            });
 
         // For each of the years we found, use the base data to find all the artists that are associated there
         years.forEach(year => {
@@ -71,23 +78,25 @@ class Dendrogram{
             })
 
             // We have them connected to year, now re-rollup 
-           let temp =  Array.from(d3.rollup(yearChild, d => d.length, d => d.Connection), ([name, value]) => ({name, value}))
+            let temp =  Array.from(d3.rollup(yearChild, d => d.length, d => d.Connection), ([name]) => ({name}))
+            let filtered = temp.filter(d => {
+                return vis.single.includes(d.name)
+
+            })
 
            // Put that in the children of this year
-           year['color'] = 'purple'
-            year['children'] = temp
+            year['children'] = filtered
         })
 
-        // console.log(years)
+        // Get rid of all the years where there was not an artist that collabed only once
+        years = years.filter(d => {
+            return d.children.length > 0
+        })
 
         // Rollup to count number of times collaborated by person and cast to dictionary, set that as the children for hierarchy purposes
         vis.displayData = {
             name: 'Dolly Parton',
-            color: 'purple',
             children: years};
-
-        // console.log(vis.displayData)
-
     
         vis.updateVis();
     }

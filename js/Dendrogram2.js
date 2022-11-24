@@ -2,12 +2,11 @@
 // Inspo from The History of Space Flight by The Space Monkeys 
 // Credits to Mike Bostock's Tidy Tree vs. Dendrogam example: https://bl.ocks.org/mbostock/e9ba78a2c1070980d1b530800ce7fa2b
 
-class Dendrogram{
+class Dendrogram2{
 
-    constructor(parentElement, parent2, legendElement, baseData){
+    constructor(parentElement, parent2, baseData){
         this.parentElement = parentElement;
         this.parent2 = parent2;
-        this.legendElement = legendElement;
         this.baseData = baseData;
         this.displayData = [];
 
@@ -44,11 +43,14 @@ class Dendrogram{
             .append('g')
             .attr('transform', `translate (${vis.radius}, ${vis.radius})`);
 
+        // Viridis color scale for number of times worked with dolly parton
+
+
         // Append a tooltip to the div so we can use hover effects
-        vis.tooltip = d3.select(`#${vis.parent2}`)
-            .append('div')
-            .attr('class', "tooltip")
-            .attr('id', 'singleRadialDendro');
+        // vis.tooltip = d3.select(`#${vis.parent2}`)
+        //     .append('div')
+        //     .attr('class', "tooltip")
+        //     .attr('id', 'singleRadialDendro');
 
 
         vis.wrangleData();
@@ -61,11 +63,11 @@ class Dendrogram{
         // Get the unique collaborators and how many times they collaborated with her
         let children = Array.from(d3.rollup(vis.baseData, d => d.length, d => d.Connection), ([name, value]) => ({name, value}))
 
-        // Get the names of only the single-timers
-        vis.single = []
+        // Get the names of only the multi-timers
+        vis.multi = []
         children.forEach(entry => {
-            if(entry.value == 1){
-                vis.single.push(entry.name)
+            if(entry.value > 1){
+                vis.multi.push(entry.name)
             }
 
         })
@@ -85,7 +87,7 @@ class Dendrogram{
             // We have them connected to year, now re-rollup 
             let temp =  Array.from(d3.rollup(yearChild, d => d.length, d => d.Connection), ([name]) => ({name}))
             let filtered = temp.filter(d => {
-                return vis.single.includes(d.name);
+                return vis.multi.includes(d.name);
 
             });
 
@@ -170,13 +172,13 @@ class Dendrogram{
                 console.log(d.parent.data.name)
                 
 
-                vis.tooltip.attr("opacity", 1)
-                    .html(`
-                        <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">
-                        <h4> ${d.data.name}</h4>
-                        <h4> ${d.parent.data.name}</h4>              
-                        </div>`
-                    );
+                // vis.tooltip.attr("opacity", 1)
+                //     .html(`
+                //         <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">
+                //         <h4> ${d.data.name}</h4>
+                //         <h4> ${d.parent.data.name}</h4>              
+                //         </div>`
+                //     );
 
         });
         

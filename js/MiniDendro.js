@@ -39,11 +39,17 @@ class MiniDendro{
             .append('g')
             .attr('transform', `translate (${vis.radius}, ${vis.radius})`);
 
+        // Append time-title based on what was passed
         d3.select(`#${vis.parentElement}`)
             .append('h3')
             .attr('class', 'vis-title title')
             .attr('stroke', '#ffffff')
             .text(`${vis.timePeriod[0]}s`);
+
+        vis.tooltip = d3.select("body")
+            .append('div')
+            .attr('class', "tooltip")
+            .attr('id', 'dendroToolTip');
 
 
         vis.wrangleData();
@@ -75,12 +81,20 @@ class MiniDendro{
 
         // Get rid of all the years where there was not an artist that collabed only once
         vis.years = years.filter(d => {
-            return d.name <= vis.timePeriod[1] && d.name > vis.timePeriod[0];
-        });
+            return d.name < vis.timePeriod[1] && d.name >= vis.timePeriod[0];
+        })
+        
+        let total = 0
+        // Reset the aggregated value in the rollup with the correct number of children, then store it in a total for this decade
+        vis.years.forEach(year => {
+            year.value = year.children.length
+            total = total + year.value
+        })
 
         // Rollup to count number of times collaborated by person and cast to dictionary, set that as the children for hierarchy purposes
         vis.displayData = {
             name: 'Dolly Parton',
+            total: total,
             children: vis.years};
     
         vis.updateVis();
@@ -121,7 +135,7 @@ class MiniDendro{
                     return 11
                 }
                 else{
-                    return 5
+                    return 6
                 }
 
             })
@@ -138,21 +152,67 @@ class MiniDendro{
             })
             .attr("stroke", "black")
             .attr("stroke-width", 1)
+            .attr('opacity', d => {
+                if (d.height == 0){
+                    return 0.7
+                }
+                else{
+                    return 1
+                }
+            })
             .on('mouseover', (event, d) => {
                 console.log(d)
 
+                vis.tooltip
+                .style("opacity", 0.9)
+                .style("left", event.pageX + 10 + "px")
+                .style("top", event.pageY + "px")
+                .style('font-size', '8px');
 
-                
+                if (d.height == 0){
+                    vis.tooltip.html(`
+                    <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">
+                    <h4> ${d.parent.data.name}</h4>     
+                    <h4> ${d.data.name}</h4>         
+                    </div>`
+                    );
 
-                // vis.tooltip.attr("opacity", 1)
-                //     .html(`
-                //         <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">
-                //         <h4> ${d.data.name}</h4>
-                //         <h4> ${d.parent.data.name}</h4>              
-                //         </div>`
-                //     );
+                }
+                else if (d.height == 1){
+                    let people = ''
+                    
+                    d.children.forEach(person => {
+                        people += person.data.name + ', '
+                    });
 
-        });
+                    // Get rid of the last comma
+                    // people.slice(0, -2)
+
+                    vis.tooltip.html(`
+                    <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px; width: 400px">
+                    <h3> ${d.data.name}</h3>    
+                    <h4> ${people}</h4>      
+                    </div>`
+                    );
+
+                }
+                else if (d.height == 2){
+                    vis.tooltip.html(`
+                    <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px; width: 300px">
+                    <h3> ${d.data.name}, ${vis.timePeriod[0]}s</h3>    
+                    <h4> ${d.data.total} collaborators</h4>      
+                    </div>`
+                    );
+
+                }
+
+            })
+            .on('mouseout', (event, d) => {
+            vis.tooltip
+            .style("opacity", 0);
+
+
+            });
         
     }
 

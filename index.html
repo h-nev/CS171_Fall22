@@ -127,11 +127,7 @@
 		<!-- Anything relating to the (3RD STATIC BUBBLE) country bubble visualization would go in this row -->
 		<!-- Title for the country bubble visualization will be to the left of an external legend -->
 		<div class = 'row'>
-			<div class = 'col-4'>
-				<p class = 'title'>Anything we want to comment on?</p>
-			</div>
-
-			<div class = 'col-8'>
+			<div class = 'col'>
 				<div class = "row">
 					<div class = 'col' id = 'vis-1c-title'>
 						<h3 class = 'vis-title title'>Beyond the Billboards</h3>
@@ -143,9 +139,34 @@
 				</div>
 		
 				<div class = 'row'>
-					<div class = 'col bubble-vis' id = 'vis-1c' >
+					<div class = 'col bubble-vis' id = 'vis-1ac' >
 						<!-- Radial dendrogram goes here -->
-						<h1 class = 'missing'>404</h1>
+					</div>
+					<div class = 'col bubble-vis' id = 'vis-1bc' >
+						<!-- Radial dendrogram goes here -->
+					</div>
+				</div>
+
+				<div class = "row">
+					<div class = 'col-4' id = 'vis-radial-1960s'></div>
+					<div class = 'col-4' id = 'vis-radial-1970s'></div>
+					<div class = 'col-4' id = 'vis-radial-1980s'></div>
+				</div>
+
+				<div class = 'horizontal-line'></div>
+
+				<div class = 'row'>
+					<div class = 'col-4' id = 'vis-radial-1990s'></div>
+					<div class = 'col-4' id = 'vis-radial-2000s'></div>
+					<div class = 'col-4' id = 'vis-radial-2010s'></div>
+				</div>
+
+				<div class = "row">
+					<div class = "col bubble-vis" id = 'vis-radial2-sup'>
+
+					</div>
+					<div class = 'col bubble-vis' id = 'vis-radial2'>
+
 					</div>
 				</div>
 			</div>
@@ -153,7 +174,7 @@
 	</div>
 
 
-	<div class = 'gutter'></div>
+	<div class = 'big-gutter'></div>
 
 
 	<!-- Title and external legend side by side, plot underneath that, slider underneath the timeline -->
@@ -269,7 +290,7 @@
 	</div>
 
 
-	<div class = 'gutter'></div>
+	<div class = 'big-gutter'></div>
 
 
 	<div class = 'container-fluid module' id = 'module-4'>
@@ -391,6 +412,8 @@
 	<!-- JS -->
 	<script src = "js/BubbleVis.js"></script>
 	<script src= "js/Dendrogram.js"></script>
+	<script src= "js/Dendrogram2.js"></script>
+	<script src= "js/MiniDendro.js"></script>
 	<script src = 'js/TimeSeries.js'></script>
 	<script src = 'js/Awards.js'></script>
 	<script src = 'js/Charity.js'></script>

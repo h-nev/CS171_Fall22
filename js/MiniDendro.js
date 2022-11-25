@@ -221,8 +221,10 @@ class MiniDendro{
             })
             .on('mouseout', (event, d) => {
             vis.tooltip
-            .style("opacity", 0);
-
+                .style("opacity", 0)
+                .style("left", 0)
+                .style("top", 0)
+                .html(``);
 
             });
         

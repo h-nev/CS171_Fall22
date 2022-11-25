@@ -161,13 +161,24 @@ class MiniDendro{
                 }
             })
             .on('mouseover', (event, d) => {
-                console.log(d)
+                console.log(event.pageX+10)
+                console.log(screen.width)
+
+                let locX = event.pageX + 10
+                // 400 is the largest box we use, and we want to make sure the info doesn't get cut off on the left
+                if (screen.width - event.pageX - 10 < 300 && d.height == 0){
+                    locX = event.pageX - 200 - 10
+                }
+                else if (screen.width - event.pageX - 10 < 400 && d.height == 1){
+                    locX = event.pageX - 400 - 10
+
+                }
 
                 vis.tooltip
-                .style("opacity", 0.9)
-                .style("left", event.pageX + 10 + "px")
-                .style("top", event.pageY + "px")
-                .style('font-size', '8px');
+                    .style("opacity", 0.9)
+                    .style("left", locX + "px")
+                    .style("top", event.pageY + "px")
+                    .style('font-size', '8px');
 
                 if (d.height == 0){
                     vis.tooltip.html(`
@@ -197,6 +208,7 @@ class MiniDendro{
 
                 }
                 else if (d.height == 2){
+
                     vis.tooltip.html(`
                     <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px; width: 300px">
                     <h3> ${d.data.name}, ${vis.timePeriod[0]}s</h3>    

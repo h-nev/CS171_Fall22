@@ -5,7 +5,7 @@ let dateFormatter = d3.timeFormat("%Y-%m-%d");
 let dateParser = d3.timeParse("%Y-%m-%d");
 
 //Initialize current select box values
-let awardSelection = document.getElementById('vis-3-select').value;
+let awardSelection = "All";
 
 let promises = [
     d3.csv("data/billboard-top100-filtered.csv"),
@@ -85,7 +85,6 @@ function initMainPage(dataArray) {
                 selectorPhilanthropy: "Philanthropy",
                 selectorMediaPerformance: "Media Performance"};
 
-            document.getElementById('vis-3-select').value = selectorMap[elementId];
             awardSelection = selectorMap[elementId];
             awardsWon.wrangleData();
         });
@@ -147,11 +146,5 @@ let selectedCategory =  document.getElementById('vis-2-selector').value;
 function categoryChange() {
     selectedCategory =  document.getElementById('vis-2-selector').value;
     fancyTimeSeries.selectorChange();
-
-}
-
-function awardsFilter(){
-    awardSelection = document.getElementById('vis-3-select').value;
-    awardsWon.wrangleData();
 
 }

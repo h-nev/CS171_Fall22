@@ -21,6 +21,8 @@ class BubbleVis {
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
+        vis.showLinked = false;
+
         vis.wrangleData();
     }
 
@@ -87,7 +89,7 @@ class BubbleVis {
         vis.circles.append("circle")
             .classed("artist-circle", true)
             .classed("artist-dolly", d => (d.data.name == "Dolly Parton"))
-            .classed("artist-dolly-linked", d => (vis.collabArtists.has(d.data.name)))
+            .classed("artist-dolly-linked", d => (vis.showLinked && vis.collabArtists.has(d.data.name)))
             .attr("cx", d => d.x)
             .attr("cy", d => d.y)
             .attr("r", d => d.r);
@@ -112,5 +114,10 @@ class BubbleVis {
 
     updateVis() {
         let vis = this;
+
+        vis.svg.selectAll("circle")
+            .data(vis.pack.leaves())
+            .merge(vis.circles)
+            .classed("artist-dolly-linked", d => (vis.showLinked && vis.collabArtists.has(d.data.name)));
     }
 }

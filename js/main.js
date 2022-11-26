@@ -5,7 +5,8 @@ let dateFormatter = d3.timeFormat("%Y-%m-%d");
 let dateParser = d3.timeParse("%Y-%m-%d");
 
 //Initialize current select box values
-let awardSelection = "All";
+let awardSelection = document.getElementById('vis-3-select').value;
+document.getElementById("vis-3-select").style.display = "none";
 
 let promises = [
     d3.csv("data/billboard-top100-filtered.csv"),
@@ -148,3 +149,9 @@ function categoryChange() {
     fancyTimeSeries.selectorChange();
 
 }
+
+// function awardsFilter(){
+//     awardSelection = document.getElementById('vis-3-select').value;
+//     awardsWon.wrangleData();
+
+// }

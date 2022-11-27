@@ -177,7 +177,6 @@ class CharityVis {
         vis.donationData.forEach(function(d) {
             d.position = vis.projection([d.LatLong[1], d.LatLong[0]]);
             d.enabledFlyoutPos = vis.projection([d.FlyoutLatLong[1], d.FlyoutLatLong[0]]);
-            d.enabledFlyoutR = vis.projection([d.FlyoutLatLong[1], d.FlyoutLatLong[0] - d.FlyoutLatSize])[1] - d.enabledFlyoutPos[1];
         });
 
         // Legend
@@ -312,6 +311,48 @@ class CharityVis {
             .attr("cy", d => d.position[1])
             .attr("r", 0);
 
+        // Donation flyout scaling.
+        vis.donationFlyouts = {
+            sizeScale: function(x) { return Math.pow(x, 0.125); },
+            fixedScale: true,
+            maxFlyoutRadius: (vis.countiesBBox.y1 - vis.countiesBBox.y0) / 5,
+            maxDonationSize: function() {
+                return d3.max(vis.donationData
+                    .filter(d => (d.visible || this.fixedScale))
+                    .map(d => this.sizeScale(d.RawAmountEstimate)));
+            },
+            donationRadius: function(x) {
+                return this.sizeScale(x) / this.maxDonationSize() * this.maxFlyoutRadius;
+            }
+        };
+
+        // Donation flyout legend
+        {
+            let scaleEntries = [
+                {name: "1B", value: 1000000000},
+                {name: "10M", value: 10000000},
+                {name: "100K", value: 100000}];
+
+            let ytop = vis.countiesBBox.y0 + (vis.countiesBBox.y1 - vis.countiesBBox.y0) * 0.32;
+            let cx = vis.countiesBBox.x1 - vis.donationFlyouts.maxFlyoutRadius;
+
+            scaleEntries.forEach(function(entry) {
+                let r = vis.donationFlyouts.donationRadius(entry.value);
+                let cy = ytop + r;
+
+                vis.svg.append("circle")
+                    .attr("cx", cx)
+                    .attr("cy", cy)
+                    .attr("r", r)
+                    .attr("style", "stroke: white; fill: white; fill-opacity: 0.1");
+                vis.svg.append("text")
+                    .attr("x", cx)
+                    .attr("y", cy + r + 2)
+                    .text(entry.name)
+                    .attr("style", "alignment-baseline: hanging; text-anchor: middle; font-size: 8px");
+            });
+        }
+
         vis.wrangleData();
 
         // Helps for generating values for the equations in expectedMapSize.
@@ -348,7 +389,7 @@ class CharityVis {
         let visIdx = 0;
         vis.donationData.forEach(donation => {
             donation.visible = (donation.Decade == vis.selectedYear);
-            donation.flyoutR = donation.visible ? donation.enabledFlyoutR : 0;
+            donation.flyoutR = donation.visible ? vis.donationFlyouts.donationRadius(donation.RawAmountEstimate) : 0;
             donation.flyoutPos = donation.visible ? donation.enabledFlyoutPos : donation.position;
             if (donation.visible) {
                 // donation.flyoutColor = d3.schemeCategory10[visIdx];

@@ -25,25 +25,54 @@ class CharityVis {
         this.initVis();
     }
 
+    expectedMapSize(width, height) {
+        // The resulting fitted map size for a given height and width.
+        let widthForYFit = height * 4 - 762;
+        let heightForXFit = width * 0.25 + 167;
+        let widthLimit = width - 40;
+        let heightLimit = height - 12.5;
+        console.log(
+            "width",width,
+            "height",height,
+            "widthForYFit",widthForYFit,
+            "heightForXFit",heightForXFit,
+            "widthLimit",widthLimit,
+            "heightLimit",heightLimit);
+
+        if (widthForYFit > widthLimit) {
+            // Constrained by width.
+            return [widthLimit, heightForXFit];
+        } else {
+            // Constrained by height.
+            return [widthForYFit, heightLimit];
+        }
+    }
+
     initVis() {
         let vis = this;
 
         let parentElement = document.getElementById(vis.parentElement);
         let parentElementBounds = parentElement.getBoundingClientRect()
 
-        // Change to being side-by-side if the screen is very landscape.
-        console.log(parentElementBounds.height, parentElementBounds.width);
-        if (parentElementBounds.height > parentElementBounds.width * 0.60) {
-            vis.mapElement =  d3.select(parentElement).append("div").attr("style", "height: 49vh; width: 100%");
-            vis.textElement =  d3.select(parentElement).append("div").attr("style", "height: 49vh; width: 100%");
-        } else {
+        // Pick either side-by-side or above/below, depending on which makes the map larger.
+        vis.margin = {top: 70, right: 20, bottom: 120, left: 20};
+
+        let useSideBySide = this.expectedMapSize(parentElementBounds.width / 2, parentElementBounds.height)[1] >
+            this.expectedMapSize(parentElementBounds.width, parentElementBounds.height * 0.6)[1];
+        if (useSideBySide) {
+            // Side-by-side will give the larger map.
             parentElement.style.display = "flex";
             parentElement.style.flexDirection = "row";
-            vis.mapElement =  d3.select(parentElement).append("div").attr("style", "height: 98vh; width: 49%");
-            vis.textElement =  d3.select(parentElement).append("div").attr("style", "height: 98vh; width: 49%; margin: 0 0 0 auto; overflow-y: auto");
-        }
+            vis.mapElement =  d3.select(parentElement).append("div").attr("style", "height: 100%; width: 50%");
+            vis.textElement =  d3.select(parentElement).append("div").attr("style", "height: 100%; width: 50%; overflow-y: auto");
+        } else {
+            // Above/below will give the larger map.
+            parentElement.style.display = "flex";
+            parentElement.style.flexDirection = "column";
+            vis.mapElement =  d3.select(parentElement).append("div").attr("style", "height: 60%; width: 100%");
+            vis.textElement =  d3.select(parentElement).append("div").attr("style", "height: 40%; width: 100%; flex-grow: 1; overflow-y: auto");
+         }
 
-        vis.margin = {top: 70, right: 20, bottom: 120, left: 20};
         vis.width = vis.mapElement.node().getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = vis.mapElement.node().getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
@@ -58,9 +87,11 @@ class CharityVis {
         });
 
         // Init the drawing area.
-        vis.svg = vis.mapElement.append("svg")
+        vis.svgElement =
+            vis.mapElement.append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
+            .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
+        vis.svg = vis.svgElement
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
@@ -282,6 +313,23 @@ class CharityVis {
             .attr("r", 0);
 
         vis.wrangleData();
+
+        // Helps for generating values for the equations in expectedMapSize.
+        // console.log(
+        //     vis.mapElement.node().getBoundingClientRect().width,
+        //     vis.mapElement.node().getBoundingClientRect().height,
+        //     vis.svg.node().getBBox().width,
+        //     vis.svg.node().getBBox().height);
+
+        // Tighten the bounding box around the map.
+        let viewportBox = vis.svgElement.node().getBBox({stroke: true});
+        viewportBox.x = 0;
+        viewportBox.width = vis.width + vis.margin.left + vis.margin.right;
+        viewportBox.y -= 40;
+        viewportBox.height += 80;
+        vis.svgElement.attr("viewBox", `${viewportBox.x} ${viewportBox.y} ${viewportBox.width} ${viewportBox.height}`);
+        vis.svgElement.attr("height", `${viewportBox.height}px`);
+        vis.mapElement.style("height", `${viewportBox.height}px`);
     }
 
     wrangleData() {

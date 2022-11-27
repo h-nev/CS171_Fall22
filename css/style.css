@@ -133,6 +133,7 @@
 .charity-vis .donation-entry-wrap {
     margin: 0px;
     border: none;
+    overflow-y: hidden;
 }
 .charity-vis .donation-entry {
     border: 1px solid #404040;

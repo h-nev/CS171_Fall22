@@ -43,9 +43,7 @@ function initMainPage(dataArray) {
 
     // Instantiate the visualizations
     countryBubbles_a = new BubbleVis('vis-1a', dataArray[0], dataArray[1]);
-    // radialDendrogram = new Dendrogram('vis-1ac', 'vis-1bc', 'vis-1c-legend', dataArray[4]);
-    // radialDendrogram2 = new Dendrogram2('vis-radial2', 'vis-radial2-sup', dataArray[4]);
-
+    
     experiment1 = new MiniDendro('vis-radial-1960s', [1960, 1970], dataArray[4]);
     experiment2 = new MiniDendro('vis-radial-1970s', [1970, 1980], dataArray[4]);
     experiment3 = new MiniDendro('vis-radial-1980s', [1980, 1990], dataArray[4]);

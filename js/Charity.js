@@ -25,25 +25,54 @@ class CharityVis {
         this.initVis();
     }
 
+    expectedMapSize(width, height) {
+        // The resulting fitted map size for a given height and width.
+        let widthForYFit = height * 4 - 762;
+        let heightForXFit = width * 0.25 + 167;
+        let widthLimit = width - 40;
+        let heightLimit = height - 12.5;
+        console.log(
+            "width",width,
+            "height",height,
+            "widthForYFit",widthForYFit,
+            "heightForXFit",heightForXFit,
+            "widthLimit",widthLimit,
+            "heightLimit",heightLimit);
+
+        if (widthForYFit > widthLimit) {
+            // Constrained by width.
+            return [widthLimit, heightForXFit];
+        } else {
+            // Constrained by height.
+            return [widthForYFit, heightLimit];
+        }
+    }
+
     initVis() {
         let vis = this;
 
         let parentElement = document.getElementById(vis.parentElement);
         let parentElementBounds = parentElement.getBoundingClientRect()
 
-        // Change to being side-by-side if the screen is very landscape.
-        console.log(parentElementBounds.height, parentElementBounds.width);
-        if (parentElementBounds.height > parentElementBounds.width * 0.60) {
-            vis.mapElement =  d3.select(parentElement).append("div").attr("style", "height: 49vh; width: 100%");
-            vis.textElement =  d3.select(parentElement).append("div").attr("style", "height: 49vh; width: 100%");
-        } else {
+        // Pick either side-by-side or above/below, depending on which makes the map larger.
+        vis.margin = {top: 70, right: 20, bottom: 120, left: 20};
+
+        let useSideBySide = this.expectedMapSize(parentElementBounds.width / 2, parentElementBounds.height)[1] >
+            this.expectedMapSize(parentElementBounds.width, parentElementBounds.height * 0.6)[1];
+        if (useSideBySide) {
+            // Side-by-side will give the larger map.
             parentElement.style.display = "flex";
             parentElement.style.flexDirection = "row";
-            vis.mapElement =  d3.select(parentElement).append("div").attr("style", "height: 98vh; width: 49%");
-            vis.textElement =  d3.select(parentElement).append("div").attr("style", "height: 98vh; width: 49%; margin: 0 0 0 auto; overflow-y: auto");
-        }
+            vis.mapElement =  d3.select(parentElement).append("div").attr("style", "height: 100%; width: 50%");
+            vis.textElement =  d3.select(parentElement).append("div").attr("style", "height: 100%; width: 50%; overflow-y: auto");
+        } else {
+            // Above/below will give the larger map.
+            parentElement.style.display = "flex";
+            parentElement.style.flexDirection = "column";
+            vis.mapElement =  d3.select(parentElement).append("div").attr("style", "height: 60%; width: 100%");
+            vis.textElement =  d3.select(parentElement).append("div").attr("style", "height: 40%; width: 100%; flex-grow: 1; overflow-y: auto");
+         }
 
-        vis.margin = {top: 70, right: 20, bottom: 120, left: 20};
         vis.width = vis.mapElement.node().getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = vis.mapElement.node().getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
 
@@ -58,9 +87,11 @@ class CharityVis {
         });
 
         // Init the drawing area.
-        vis.svg = vis.mapElement.append("svg")
+        vis.svgElement =
+            vis.mapElement.append("svg")
             .attr("width", vis.width + vis.margin.left + vis.margin.right)
-            .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
+            .attr("height", vis.height + vis.margin.top + vis.margin.bottom);
+        vis.svg = vis.svgElement
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
@@ -146,7 +177,6 @@ class CharityVis {
         vis.donationData.forEach(function(d) {
             d.position = vis.projection([d.LatLong[1], d.LatLong[0]]);
             d.enabledFlyoutPos = vis.projection([d.FlyoutLatLong[1], d.FlyoutLatLong[0]]);
-            d.enabledFlyoutR = vis.projection([d.FlyoutLatLong[1], d.FlyoutLatLong[0] - d.FlyoutLatSize])[1] - d.enabledFlyoutPos[1];
         });
 
         // Legend
@@ -281,7 +311,66 @@ class CharityVis {
             .attr("cy", d => d.position[1])
             .attr("r", 0);
 
+        // Donation flyout scaling.
+        vis.donationFlyouts = {
+            sizeScale: function(x) { return Math.pow(x, 0.125); },
+            fixedScale: true,
+            maxFlyoutRadius: (vis.countiesBBox.y1 - vis.countiesBBox.y0) / 5,
+            maxDonationSize: function() {
+                return d3.max(vis.donationData
+                    .filter(d => (d.visible || this.fixedScale))
+                    .map(d => this.sizeScale(d.RawAmountEstimate)));
+            },
+            donationRadius: function(x) {
+                return this.sizeScale(x) / this.maxDonationSize() * this.maxFlyoutRadius;
+            }
+        };
+
+        // Donation flyout legend
+        {
+            let scaleEntries = [
+                {name: "1B", value: 1000000000},
+                {name: "10M", value: 10000000},
+                {name: "100K", value: 100000}];
+
+            let ytop = vis.countiesBBox.y0 + (vis.countiesBBox.y1 - vis.countiesBBox.y0) * 0.32;
+            let cx = vis.countiesBBox.x1 - vis.donationFlyouts.maxFlyoutRadius;
+
+            scaleEntries.forEach(function(entry) {
+                let r = vis.donationFlyouts.donationRadius(entry.value);
+                let cy = ytop + r;
+
+                vis.svg.append("circle")
+                    .attr("cx", cx)
+                    .attr("cy", cy)
+                    .attr("r", r)
+                    .attr("style", "stroke: white; fill: white; fill-opacity: 0.1");
+                vis.svg.append("text")
+                    .attr("x", cx)
+                    .attr("y", cy + r + 2)
+                    .text(entry.name)
+                    .attr("style", "alignment-baseline: hanging; text-anchor: middle; font-size: 8px");
+            });
+        }
+
         vis.wrangleData();
+
+        // Helps for generating values for the equations in expectedMapSize.
+        // console.log(
+        //     vis.mapElement.node().getBoundingClientRect().width,
+        //     vis.mapElement.node().getBoundingClientRect().height,
+        //     vis.svg.node().getBBox().width,
+        //     vis.svg.node().getBBox().height);
+
+        // Tighten the bounding box around the map.
+        let viewportBox = vis.svgElement.node().getBBox({stroke: true});
+        viewportBox.x = 0;
+        viewportBox.width = vis.width + vis.margin.left + vis.margin.right;
+        viewportBox.y -= 40;
+        viewportBox.height += 80;
+        vis.svgElement.attr("viewBox", `${viewportBox.x} ${viewportBox.y} ${viewportBox.width} ${viewportBox.height}`);
+        vis.svgElement.attr("height", `${viewportBox.height}px`);
+        vis.mapElement.style("height", `${viewportBox.height}px`);
     }
 
     wrangleData() {
@@ -300,7 +389,7 @@ class CharityVis {
         let visIdx = 0;
         vis.donationData.forEach(donation => {
             donation.visible = (donation.Decade == vis.selectedYear);
-            donation.flyoutR = donation.visible ? donation.enabledFlyoutR : 0;
+            donation.flyoutR = donation.visible ? vis.donationFlyouts.donationRadius(donation.RawAmountEstimate) : 0;
             donation.flyoutPos = donation.visible ? donation.enabledFlyoutPos : donation.position;
             if (donation.visible) {
                 // donation.flyoutColor = d3.schemeCategory10[visIdx];

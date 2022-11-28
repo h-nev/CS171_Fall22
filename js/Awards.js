@@ -128,10 +128,10 @@ class Awards{
         let vis = this;
 
         // Expecting to outsource the legend, only need space for axes
-        vis.margin = {top: 10, bottom: 20, left: 20, right: 10, padding: 5, spacing: 30};
+        vis.margin = {top: 10, bottom: 20, left: 20, right: 10, padding: 4, spacing: 27.5};
 
         // Path scaling factor (scaling as a square so same for both)
-        vis.scaling = 0.2;
+        vis.scaling = 0.175;
 
         // Keep the transition duration the same for all elements in this vis
         vis.duration = 800
@@ -278,8 +278,8 @@ class Awards{
             .merge(vis.bars)
             .attr('x', (d, i) => i * vis.categoryPlacement.bandwidth())
             .attr('y', (vis.legendHeight / 2) - 10)
-            .attr('width', 20)
-            .attr('height', 20)
+            .attr('width', 15)
+            .attr('height', 15)
             .attr('fill', d =>{
                 if (awardSelection == 'All'){
                     return vis.allScale(d);

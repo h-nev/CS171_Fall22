@@ -253,10 +253,17 @@ class Awards{
             .attr('width', 25)
             .attr('opacity', 0)
             .on('mouseover', (event, d) => {
+
+                let locY = event.pageY
+                // Make sure the info doesn't get cut off on the bottom
+                if (d.ypos > 355){
+                    locY = event.pageY - 200
+                }
+
                 vis.tooltip
                     .style("opacity", 0.9)
                     .style("left", event.pageX + 10 + "px")
-                    .style("top", event.pageY + "px")
+                    .style("top", locY + "px")
                     .style('font-size', '8px');
     
                 vis.tooltip.html(`

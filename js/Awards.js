@@ -273,7 +273,7 @@ class Awards{
                         <h4> ${d.year}</h4> 
                         <h4> ${d.category}</h4>  
                         <h4> ${d.status}</h4>      
-                        <h4> For: ${d.original}</h4>
+                        <h4> For: ${d.title}</h4>
                         </div>`
                     );
 

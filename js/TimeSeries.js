@@ -426,11 +426,13 @@ class TimeSeries {
 
         vis.legend  = d3.select('#' + vis.parentElement + "-legend")
             .append('svg')
+            .attr("width", vis.widthLegend)
+            .attr("height", vis.heightLegend);
 
         let circleData = [
-            {week:1, cx:vis.widthLegend/2, cy:vis.heightLegend-10, radius:5},
-            {week:3, cx:vis.widthLegend/2, cy:vis.heightLegend-5, radius:10},
-            {week:5, cx:vis.widthLegend/2, cy:vis.heightLegend, radius:15}
+            {week:1, cx:vis.widthLegend/2, cy:vis.heightLegend-26, radius:5},
+            {week:3, cx:vis.widthLegend/2, cy:vis.heightLegend-21, radius:10},
+            {week:5, cx:vis.widthLegend/2, cy:vis.heightLegend-16, radius:15}
         ]
 
         vis.legend.append("text")

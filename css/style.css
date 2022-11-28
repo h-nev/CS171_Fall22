@@ -8,6 +8,9 @@
 .bubble-vis .artist-dolly {
     fill: #FFFD73;
 }
+.bubble-vis .artist-elvis {
+    fill: #ab3f84;
+}
 .bubble-vis .artist-dolly-linked {
     stroke-width: 3px;
     fill: #6495ed;
@@ -15,6 +18,11 @@
 .bubble-vis .artist-circle-text {
     text-anchor: middle;
     alignment-baseline: middle;
+}
+.bubble-vis .artist-circle-tooltip {
+    fill: #FFFFFF;
+    fill-opacity: 0;
+    stroke: none;
 }
 
 
@@ -100,7 +108,7 @@
 }
 
 #text-cover{
-    font-family: googleTanBold;
+    font-family: googleJuliasSans;
     color: #FFFFFF;
     opacity: 60%;
     font-size: 1500%;
@@ -133,6 +141,7 @@
 .charity-vis .donation-entry-wrap {
     margin: 0px;
     border: none;
+    overflow-y: hidden;
 }
 .charity-vis .donation-entry {
     border: 1px solid #404040;

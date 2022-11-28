@@ -5,7 +5,7 @@ let dateFormatter = d3.timeFormat("%Y-%m-%d");
 let dateParser = d3.timeParse("%Y-%m-%d");
 
 //Initialize current select box values
-let awardSelection = document.getElementById('vis-3-select').value;
+let awardSelection = "All";
 
 let promises = [
     d3.csv("data/billboard-top100-filtered.csv"),
@@ -42,11 +42,8 @@ function initMainPage(dataArray) {
     });
 
     // Instantiate the visualizations
-    countryBubbles_a = new BubbleVis('vis-1a', dataArray[0], []);
-    countryBubbles_b = new BubbleVis('vis-1b', dataArray[0], dataArray[1]);
-    // radialDendrogram = new Dendrogram('vis-1ac', 'vis-1bc', 'vis-1c-legend', dataArray[4]);
-    // radialDendrogram2 = new Dendrogram2('vis-radial2', 'vis-radial2-sup', dataArray[4]);
-
+    countryBubbles_a = new BubbleVis('vis-1a', dataArray[0], dataArray[1]);
+    
     experiment1 = new MiniDendro('vis-radial-1960s', [1960, 1970], dataArray[4]);
     experiment2 = new MiniDendro('vis-radial-1970s', [1970, 1980], dataArray[4]);
     experiment3 = new MiniDendro('vis-radial-1980s', [1980, 1990], dataArray[4]);
@@ -59,6 +56,87 @@ function initMainPage(dataArray) {
     awardsWon = new Awards('vis-3', 'vis-3-legend', dataArray[3]);
 
     charityBubbles = new CharityVis('vis-4', dataArray[5], dataArray[6], dataArray[7]);
+
+    let bubbleTextObserver = new IntersectionObserver(function(entries) {
+        countryBubbles_a.showLinked = entries[0].intersectionRatio >= 0.10;
+        countryBubbles_a.updateVis();
+    }, {threshold: [0.10]});
+    bubbleTextObserver.observe(document.getElementById("bubble-second-text"));
+
+    new MostVisibleTracker(
+        [
+            document.getElementById("selectorAll"),
+            document.getElementById("selectorWon"),
+            document.getElementById("selectorNominated"),
+            document.getElementById("selectorMusicPerformance"),
+            document.getElementById("selectorMusic"),
+            document.getElementById("selectorPhilanthropy"),
+            document.getElementById("selectorMediaPerformance")
+        ],
+        function(elementId) {
+            let selectorMap = {
+                selectorAll: "All",
+                selectorWon: "Won",
+                selectorNominated: "Nominated",
+                selectorMusicPerformance: "Music Performance",
+                selectorMusic: "Music",
+                selectorPhilanthropy: "Philanthropy",
+                selectorMediaPerformance: "Media Performance"};
+
+            awardSelection = selectorMap[elementId];
+            awardsWon.wrangleData();
+        });
+}
+
+class MostVisibleTracker {
+    constructor(elements, callback) {
+        let tracker = this;
+
+        tracker.callback = callback;
+
+        tracker.elementAreas = new Map();
+        elements.forEach(function(element) { tracker.elementAreas.set(element.id, 0); });
+        tracker.mostVisibleElementId = elements[0].id;
+
+        tracker.observer = new IntersectionObserver(function(entries) {
+            tracker.visibilityChanged(entries);
+        }, { threshold: tracker.buildThresholdList() });
+        elements.forEach(function(element) { tracker.observer.observe(element); });
+    }
+
+    buildThresholdList() {
+        let thresholds = [];
+        let numSteps = 20;
+
+        for (let i = 1.0; i <= numSteps; i++) {
+          let ratio = i/numSteps;
+          thresholds.push(ratio);
+        }
+
+        thresholds.push(0);
+        return thresholds;
+      }
+
+    visibilityChanged(entries) {
+        let tracker = this;
+
+        entries.forEach(function(entry) {
+            let visibleArea = entry.intersectionRect.height * entry.intersectionRect.width;
+            tracker.elementAreas.set(entry.target.id, visibleArea);
+        });
+
+        let newMostVisibleElementId = tracker.mostVisibleElementId;
+        let mostVisibleArea = tracker.elementAreas.get(newMostVisibleElementId);
+        tracker.elementAreas.forEach(function(elementVisibleArea, elementId) {
+            if (elementVisibleArea > mostVisibleArea) {
+                newMostVisibleElementId = elementId;
+            }
+        });
+        if (newMostVisibleElementId != tracker.mostVisibleElementId) {
+            tracker.mostVisibleElementId = newMostVisibleElementId;
+            tracker.callback(tracker.mostVisibleElementId);
+        }
+    }
 }
 
 let selectedCategory =  document.getElementById('vis-2-selector').value;
@@ -66,11 +144,5 @@ let selectedCategory =  document.getElementById('vis-2-selector').value;
 function categoryChange() {
     selectedCategory =  document.getElementById('vis-2-selector').value;
     fancyTimeSeries.selectorChange();
-
-}
-
-function awardsFilter(){
-    awardSelection = document.getElementById('vis-3-select').value;
-    awardsWon.wrangleData();
 
 }

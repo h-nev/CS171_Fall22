@@ -21,6 +21,13 @@ class BubbleVis {
             .append('g')
             .attr('transform', `translate (${vis.margin.left}, ${vis.margin.top})`);
 
+        vis.showLinked = false;
+
+        // Tooltip div.
+        vis.tooltip = d3.select("body")
+            .append('div')
+            .attr('class', "tooltip");
+
         vis.wrangleData();
     }
 
@@ -28,16 +35,39 @@ class BubbleVis {
         let vis = this;
 
         // Determine the list of artists who have worked with Dolly Parton.
-        vis.collabArtists = new Set();
+        vis.collabArtists = new Map();
         vis.dollyPartonSongs.forEach(function(song) {
             song.Artists.split(";").forEach(function(artist) {
-                vis.collabArtists.add(artist);
+                if (!vis.collabArtists.has(artist)) {
+                    vis.collabArtists.set(artist, {asArtist: [], asWriter: []});
+                }
+                vis.collabArtists.get(artist).asArtist.push({title: song.Title, year: song.Year});
             });
             song.Writers.split(";").forEach(function(artist) {
-                vis.collabArtists.add(artist);
+                if (!vis.collabArtists.has(artist)) {
+                    vis.collabArtists.set(artist, {asArtist: [], asWriter: []});
+                }
+                vis.collabArtists.get(artist).asWriter.push({title: song.Title, year: song.Year});
             });
         });
 
+        // Sort collab by year and then title.
+        let collabOrder = function(l, r) {
+            if (l.year == r.year) {
+                if (l.title < r.title) {
+                    return -1;
+                }
+                if (l.title > r.title) {
+                    return 1;
+                }
+            }
+            return l.year - r.year;
+        };
+
+        vis.collabArtists.forEach(function(d) {
+            d.asArtist.sort(collabOrder);
+            d.asWriter.sort(collabOrder);
+        });
 
         // Build up an aggregate score for each artist involved with each billboard song.
         let artists = new Map();
@@ -87,7 +117,8 @@ class BubbleVis {
         vis.circles.append("circle")
             .classed("artist-circle", true)
             .classed("artist-dolly", d => (d.data.name == "Dolly Parton"))
-            .classed("artist-dolly-linked", d => (vis.collabArtists.has(d.data.name)))
+            .classed("artist-elvis", d => (vis.showLinked && (d.data.name == "Elvis Presley")))
+            .classed("artist-dolly-linked", d => (vis.showLinked && vis.collabArtists.has(d.data.name)))
             .attr("cx", d => d.x)
             .attr("cy", d => d.y)
             .attr("r", d => d.r);
@@ -107,10 +138,82 @@ class BubbleVis {
             })
             .style("font-size", d => d.scale + "px");
 
+        vis.circles.append("circle")
+            .attr("class", "artist-circle-tooltip")
+            .attr("cx", d => d.x)
+            .attr("cy", d => d.y)
+            .attr("r", d => d.r)
+            .on('mouseover', (event, d) => {
+                let collab = vis.collabArtists.get(d.data.name);
+                let tooltipHTML = '';
+                if (d.data.name == "Elvis Presley") {
+                    // Special case for Elvis.
+                    tooltipHTML =
+                        'While Dolly Parton and Elvis never recorded together, Elvis and his team wanted ' +
+                        'to record "I Will Always Love You" in 1974. She was initially thrilled with the ' +
+                        'proposal, until Elvis\'s manager insisted that she also sign over half her ' +
+                        'publishing rights. She says she cried all night but refused to give up her ' +
+                        'rights to her song.  Whitney Houston ultimately popularized the song, again in ' +
+                        'the 90s - and went on to break billboard records and win Grammy\'s - and make ' +
+                        'Dolly Parton millions.';
+                } else if (collab != undefined) {
+                    // General case for everyone else.
+                    let getLines = function(collabs) {
+                        let lines = collabs.map(d => `<h6 style="display:inline">${d.title}</h6> <i>(${d.year})</i><br>`);
+                        let lineCount = lines.length;
+                        if (lineCount <= 5) {
+                            return lines;
+                        }
+                        // Limit to a list of at most 5 items.
+                        return [
+                            lines[0],
+                            lines[1],
+                            `<span style="font-weight:bold;font-style:italic;">(... ${lineCount - 4} more ...)</span><br>`,
+                            lines[lineCount - 2],
+                            lines[lineCount - 1]];
+                    };
+
+                    if (collab.asArtist.length > 0) {
+                        tooltipHTML = getLines(collab.asArtist).reduce(
+                            function(a, x) { return a + x; },
+                            tooltipHTML + "<h5>As artist:</h5>");
+                    }
+                    if (collab.asWriter.length > 0) {
+                        if (collab.asArtist.length > 0) {
+                            tooltipHTML += '<br>';
+                        }
+                        tooltipHTML = getLines(collab.asWriter).reduce(
+                            function(a, x) { return a + x; },
+                            tooltipHTML + "<h5>As writer:</h5>");
+                    }
+
+                    tooltipHTML.replace(/<br>$/, "");
+                }
+                if (tooltipHTML.length > 0) {
+                    vis.tooltip
+                        .style("opacity", 1)
+                        .html('<div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">' + tooltipHTML + '</div>')
+                        .style("left", (event.pageX + 10) + "px")
+                        .style("top", (event.pageY + 10) + "px");
+                }
+            })
+            .on('mouseout', (event, d) => {
+                vis.tooltip
+                    .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html('');
+            });
         vis.updateVis();
     }
 
     updateVis() {
         let vis = this;
+
+        vis.svg.selectAll("circle")
+            .data(vis.pack.leaves())
+            .merge(vis.circles)
+            .classed("artist-elvis", d => (vis.showLinked && (d.data.name == "Elvis Presley")))
+            .classed("artist-dolly-linked", d => (vis.showLinked && vis.collabArtists.has(d.data.name)));
     }
 }

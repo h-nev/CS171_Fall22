@@ -3,7 +3,25 @@ class TimeSeries {
     constructor(parentElement, data) {
         this.parentElement = parentElement;
         this.data = data;
-        this.displayData = []
+        this.displayData = [];
+        this.colors = [
+            "#9e0142"
+            , "#fdae61"
+            , "#3288bd"
+            , "#66c2a5"
+            , "#fee08b"
+            ,"#d53e4f"
+            , "#ffffbf"
+            , "#f46d43"
+            , "#e6f598"
+            , "#312956"
+            , "#abdda4"
+            , "#5e4fa2"
+            ]
+
+
+
+;
 
         this.initVis();
     }
@@ -44,6 +62,13 @@ class TimeSeries {
         vis.bubbleScale = d3.scalePow()
             .range([100,800])
             .domain(d3.extent(vis.data.map(d=>d["n_weeks"])));
+
+        vis.artistScale =
+            // d3.scaleOrdinal().domain(d3.map(vis.data, d=>d.artist).keys()).range(vis.colors)
+            d3.scaleOrdinal()
+            .range(vis.colors)
+            .domain(["Dolly Parton", "Taylor Swift", "Elvis Presley", "Whitney Houston",  "Madonna"]);
+
 
         // Axis
         // y
@@ -217,9 +242,17 @@ class TimeSeries {
                     .attr('class', function(d) {return 'curve';})
                     .attr('d', vis.line)
                     .style('fill', 'none')
-                    .style('stroke','#005B96')
+                    .style('stroke',
+                        function(d) {
+                        console.log(vis.artistScale([0]["artist"]))
+                        return '#B3CDE0'
+                            // vis.artistScale([0]["artist"])
+                            ;
+                    }
+                        // '#005B96'
+                    )
                     .style('stroke-width', 2)
-                    .style('opacity', function(d) {return 1})
+                    .style('opacity', function(d) {return 0.6})
 
                 vis.linePaths.exit().remove()
 
@@ -243,7 +276,7 @@ class TimeSeries {
             })
             .style('fill', function(d){
                 if (d.artist.includes(vis.artist_filter)) {
-                    return '#005B96'
+                    return vis.artistScale(vis.artist_filter)
                 }else{
                     return '#B3CDE0'
                 }
@@ -294,9 +327,10 @@ class TimeSeries {
             d3.selectAll('.dot')
                 .style('fill', '#B3CDE0')
                 .style("opacity", 0.1)
-            vis.annotations.style("opacity", 1)
-            d3.selectAll('.curve').remove()
 
+            vis.annotations.style("opacity", 1)
+
+            d3.selectAll('.curve').remove()
 
             // Go back to original Dolly Parton view
             vis.artist_filter = selectedCategory
@@ -392,11 +426,13 @@ class TimeSeries {
 
         vis.legend  = d3.select('#' + vis.parentElement + "-legend")
             .append('svg')
+            .attr("width", vis.widthLegend)
+            .attr("height", vis.heightLegend);
 
         let circleData = [
-            {week:1, cx:vis.widthLegend/2, cy:vis.heightLegend-10, radius:5},
-            {week:3, cx:vis.widthLegend/2, cy:vis.heightLegend-5, radius:10},
-            {week:5, cx:vis.widthLegend/2, cy:vis.heightLegend, radius:15}
+            {week:1, cx:vis.widthLegend/2, cy:vis.heightLegend-26, radius:5},
+            {week:3, cx:vis.widthLegend/2, cy:vis.heightLegend-21, radius:10},
+            {week:5, cx:vis.widthLegend/2, cy:vis.heightLegend-16, radius:15}
         ]
 
         vis.legend.append("text")

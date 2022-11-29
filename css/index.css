@@ -12,12 +12,14 @@ html{
 
 .title{
     /* Stands out on dark backgrounds */
-    color:#d3d3d3;
+    font-family: googleLato;
+    color:#ffffff;
 
 }
 
 .vis-title{
     font-family: googleJuliasSans;
+    color: #d3d3d3;
 
 }
 

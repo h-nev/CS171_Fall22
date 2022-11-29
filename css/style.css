@@ -107,6 +107,12 @@
     src: url(../fonts/JuliusSansOne-Regular.ttf);
 }
 
+@font-face {
+    font-family: 'googleLato';
+    src: url(../fonts/Lato-Light.ttf)
+
+}
+
 #text-cover{
     font-family: googleJuliasSans;
     color: #FFFFFF;

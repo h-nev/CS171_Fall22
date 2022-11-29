@@ -10,6 +10,12 @@ html{
 
 }
 
+.news-feature{
+    background-image: url(../img/bw_cropped_news.jpg);
+    background-size: cover;
+    padding-bottom: 38%;
+}
+
 .title{
     /* Stands out on dark backgrounds */
     font-family: googleLato;
@@ -40,6 +46,7 @@ html{
     /* Allows us to make custom row-breaks that are larger than the small visual separation between visualizations */
     background-color: black;
     padding-bottom: 12%;
+
 }
 
 .big-gutter-light{

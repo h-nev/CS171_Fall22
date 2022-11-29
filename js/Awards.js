@@ -265,16 +265,32 @@ class Awards{
                     .style("left", event.pageX + 10 + "px")
                     .style("top", locY + "px")
                     .style('font-size', '8px');
+
+                if(d.title != 'General'){
+                    vis.tooltip.html(`
+                        <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">
+                        <h4> ${d.award}</h4>     
+                        <h4> ${d.year}</h4> 
+                        <h4> ${d.category}</h4>  
+                        <h4> ${d.status}</h4>      
+                        <h4> For: ${d.title}</h4>
+                        </div>`
+                    );
+
+                }
+                else{
+                    vis.tooltip.html(`
+                        <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">
+                        <h4> ${d.award}</h4>     
+                        <h4> ${d.year}</h4> 
+                        <h4> ${d.category}</h4>  
+                        <h4> ${d.status}</h4>      
+                        </div>`
+                    );
+
+                }
     
-                vis.tooltip.html(`
-                    <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">
-                    <h4> ${d.award}</h4>     
-                    <h4> ${d.year}</h4> 
-                    <h4> ${d.category}</h4>  
-                    <h4> ${d.status}</h4>      
-                    <h4> For: ${d.title}</h4>
-                    </div>`
-                );
+
     
             })
             .on('mouseout', (event, d) => {

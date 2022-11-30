@@ -21,7 +21,7 @@ class MiniDendro{
 
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = vis.width
-        vis.radius = vis.width / 2; 
+        vis.radius = vis.width / 1.98; 
 
     }
 
@@ -193,7 +193,12 @@ class MiniDendro{
                     let people = ''
                     
                     d.children.forEach(person => {
-                        people += person.data.name + ', '
+                        if (person.data.name == d.children[d.children.length - 1].data.name){
+                            people += person.data.name
+                        }
+                        else{
+                            people += person.data.name + ', '
+                        }
                     });
 
                     // Get rid of the last comma

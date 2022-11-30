@@ -20,8 +20,8 @@ class MiniDendro{
         vis.margin = {top: 10, left: 10, bottom: 10, right: 10};
 
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
-        vis.height = vis.width
-        vis.radius = vis.width / 1.98; 
+        vis.height = vis.width - 25;
+        vis.radius = vis.width / 2; 
 
     }
 

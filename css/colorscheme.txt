@@ -1,0 +1,23 @@
+Colors that have been used so far:
+
+General
+-----------------------------------------------------------------------------------------------------------------------------
+Black               Black                   Standard black
+Black Leather       #253529                 Dark, cool greenish grey
+Jet                 #343434                 Very dark, cool grey
+Space Cadet         #1d2951                 
+Oxford Blue         #002147
+White               #ffffff                 Brightest white
+
+
+Internal Vis Accents
+-----------------------------------------------------------------------------------------------------------------------------
+White               #ffffff                 Brightest white
+Cornflower Blue     #6495ed                 Paleish Blue
+Pale Yellow         #FFFD73                 Pale, bright Yellow
+
+
+
+Timeline Specific Shade
+-----------------------------------------------------------------------------------------------------------------------------
+Royal Blue           #005B96                Dark blue in the UI connect and for dolly

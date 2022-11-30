@@ -21,3 +21,11 @@ Pale Yellow         #FFFD73                 Pale, bright Yellow
 Timeline Specific Shade
 -----------------------------------------------------------------------------------------------------------------------------
 Royal Blue           #005B96                Dark blue in the UI connect and for dolly
+
+
+
+Awards Specific Shades
+-----------------------------------------------------------------------------------------------------------------------------
+Gold                Gold                    A darker yellow
+Pale Mint Green     #32AB80                 A pale mint green
+Infrared            #ff496c                 A vibrant pinkish red

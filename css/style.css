@@ -190,3 +190,26 @@
 .charity-vis #scale-pattern-rect {
     stroke:#d3d3d3;
 }
+
+/*---------- Left menu ----------*/
+
+.left-menu {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    height: 100vh;
+}
+
+.left-menu a {
+    text-decoration: none;
+}
+
+.left-menu .item-text {
+    opacity: 0;
+}
+
+.left-menu a:hover .item-text {
+    opacity: 1;
+}

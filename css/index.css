@@ -48,6 +48,12 @@ html{
 
 }
 
+#readandwrite{
+    text-align: center;
+    padding: 20% 0;
+    background-color: #2b3339;
+}
+
 #footer{
     /* Light grey with generous fluid space at the bottom of the page to cite / include our contacts */
     background-color: #ffffff;

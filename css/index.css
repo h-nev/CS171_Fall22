@@ -19,7 +19,7 @@ html{
 
 .vis-title{
     font-family: googleJuliasSans;
-    color: #d3d3d3;
+    color: #ffffff;
 
 }
 
@@ -31,7 +31,7 @@ html{
 }
 
 .gutter-light{
-    background-color: #d3d3d3;
+    background-color: #ffffff;
     padding-bottom: 4%;
 
 }
@@ -43,14 +43,14 @@ html{
 }
 
 .big-gutter-light{
-    background-color: #d3d3d3;
+    background-color: #ffffff;
     padding-bottom: 12%;
 
 }
 
 #footer{
     /* Light grey with generous fluid space at the bottom of the page to cite / include our contacts */
-    background-color: #d3d3d3;
+    background-color: #ffffff;
 
 }
 

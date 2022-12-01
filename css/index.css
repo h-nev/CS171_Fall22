@@ -23,6 +23,11 @@ html{
 
 }
 
+.dark-title{
+    font-family: googleJuliasSans;
+    color: black;
+}
+
 .gutter{
     /* Allows us to make custom row-breaks so svgs are not directly touching */
     background-color: black;
@@ -49,10 +54,20 @@ html{
 
 }
 
-#readandwrite{
+.quote-mod{
     text-align: center;
     padding: 20% 0;
     background-color: #2b3339;
+}
+
+.quote-mod2{
+    text-align: center;
+    padding: 20% 0;
+    background-color: #1a1b1b;
+}
+
+#outsource2{
+    padding: 5% 0;
 }
 
 #footer{

@@ -140,7 +140,7 @@ class Awards{
         vis.scaling = 0.175;
 
         // Keep the transition duration the same for all elements in this vis
-        vis.duration = 800
+        vis.duration = 700
 
         // Height depends on this variable, must be first
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;

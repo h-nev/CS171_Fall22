@@ -190,3 +190,9 @@
 .charity-vis #scale-pattern-rect {
     stroke:#d3d3d3;
 }
+
+#readandwrite{
+    text-align: center;
+    padding: 20% 0;
+    background-color: #2b3339;
+}

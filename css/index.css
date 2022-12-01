@@ -12,13 +12,20 @@ html{
 
 .title{
     /* Stands out on dark backgrounds */
-    color:#d3d3d3;
+    font-family: googleLato;
+    color:#ffffff;
 
 }
 
 .vis-title{
     font-family: googleJuliasSans;
+    color: #ffffff;
 
+}
+
+.dark-title{
+    font-family: googleJuliasSans;
+    color: black;
 }
 
 .gutter{
@@ -29,7 +36,7 @@ html{
 }
 
 .gutter-light{
-    background-color: #d3d3d3;
+    background-color: #ffffff;
     padding-bottom: 4%;
 
 }
@@ -38,17 +45,34 @@ html{
     /* Allows us to make custom row-breaks that are larger than the small visual separation between visualizations */
     background-color: black;
     padding-bottom: 12%;
+
 }
 
 .big-gutter-light{
-    background-color: #d3d3d3;
+    background-color: #ffffff;
     padding-bottom: 12%;
 
 }
 
+.quote-mod{
+    text-align: center;
+    padding: 20% 0;
+    background-color: #2b3339;
+}
+
+.quote-mod2{
+    text-align: center;
+    padding: 20% 0;
+    background-color: #1a1b1b;
+}
+
+#outsource2{
+    padding: 5% 0;
+}
+
 #footer{
     /* Light grey with generous fluid space at the bottom of the page to cite / include our contacts */
-    background-color: #d3d3d3;
+    background-color: #ffffff;
 
 }
 

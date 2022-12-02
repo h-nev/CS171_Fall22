@@ -82,29 +82,28 @@ class Awards{
             .range(['#ffffff'])
             .unknown(['black']);
 
-        // Current scheme: bright white, slitherin green
+        // Current scheme: silvery grey, pale mint green
         vis.musicPerformanceScale = d3.scaleOrdinal()
             .domain(vis.musicPerformance)
-            .range(['#ffffff', '#32AB80'])
+            .range(['#bebebe', '#32AB80'])
             .unknown('black');
 
-        // Current scheme: bright pale yellow, bright white, infra red
+        // Current scheme: blonde yellow, silvery grey, cornflower blue
         vis.musicScale = d3.scaleOrdinal()
                 .domain(vis.music)
-                .range(['#FFFD73', '#ffffff', '#ff496c'])
+                .range(['#f4cf66', '#bebebe', '#6495ed'])
                 .unknown('black');
 
-        // Current scheme: bright white / cornflower blue
+        // Current scheme: silvery grey, pale mint green
         vis.serviceScale = d3.scaleOrdinal()
                 .domain(vis.service)
-                .range(['#ffffff', '#6495ed'])
+                .range(['#bebebe', '#32AB80'])
                 .unknown('black');
         
-        // Current scheme: bright pale yellow, bright white, infra red
+        // Current scheme: blonde yellow, silvery grey, cornflower blue
         vis.mediaPerformanceScale = d3.scaleOrdinal()
                 .domain(vis.mediaPerformance)
-                // .range(['#FFA073', '#FE854A', '#F3621C'])
-                .range(['#FFFD73', '#ffffff', '#ff496c'])
+                .range(['#f4cf66', '#bebebe', '#6495ed'])
                 .unknown('black');
 
         // NO AXES REQUIRED FOR THIS ONE

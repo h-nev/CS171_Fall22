@@ -51,6 +51,10 @@ class MiniDendro{
             .attr('class', "tooltip")
             .attr('id', 'dendroToolTip');
 
+        // Blonde yellow, pure white, cornflower blue
+        vis.heightScale = d3.scaleOrdinal()
+            .domain([2, 1, 0])
+            .range(['#f4cf66', '#ffffff', '#6495ed']);
 
         vis.wrangleData();
 
@@ -139,17 +143,7 @@ class MiniDendro{
                 }
 
             })
-            .attr("fill", d => {
-                if (d.height == 2){
-                    return '#FFFD73'
-                }
-                else if (d.height == 1){
-                    return '#ffffff'
-                }
-                else if (d.height == 0){
-                    return '#6495ed'
-                }
-            })
+            .attr("fill", d => vis.heightScale(d.height))
             .attr("stroke", "black")
             .attr("stroke-width", 1)
             .attr('opacity', d => {

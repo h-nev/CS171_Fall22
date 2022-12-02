@@ -15,7 +15,8 @@ let promises = [
     d3.csv("data/DollyPartonSongs_cleaned.csv"),
     d3.json("data/tennessee-county-1960.topojson"),
     d3.csv("data/TN_poverty_rates_by_county_1960-2020.csv"),
-    d3.csv("data/dolly-charity.csv")
+    d3.csv("data/dolly-charity.csv"),
+    d3.csv("data/spotify_artist_data.csv")
 ];
 
 Promise.all(promises)
@@ -41,6 +42,11 @@ function initMainPage(dataArray) {
         };
     });
 
+    // Spotify Stats with fun path icons
+    spotifyStats = new StreamStats('metric1', 'leadstreams', 'leadrecord', dataArray[8], 'Lead Streams')
+    spotifyStats = new StreamStats('metric2', 'feats', 'featsrecord', dataArray[8], 'Feats')
+    spotifyStats = new StreamStats('metric3', 'tracks', 'tracksrecord', dataArray[8], 'Tracks')
+    spotifyStats = new StreamStats('metric4', 'onemill', 'onemillrecord', dataArray[8], '100 Million')
     // Instantiate the visualizations
     countryBubbles_a = new BubbleVis('vis-1a', dataArray[0], dataArray[1]);
     

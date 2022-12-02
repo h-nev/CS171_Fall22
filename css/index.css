@@ -60,6 +60,12 @@ html{
     background-color: #2b3339;
 }
 
+#spotifystats{
+    text-align: center;
+    padding: 2% 3%;
+    background-color: #2b3339;
+}
+
 .quote-mod2{
     text-align: center;
     padding: 20% 0;

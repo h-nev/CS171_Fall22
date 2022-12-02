@@ -62,6 +62,46 @@
 	<div class = 'big-gutter'></div>
 
 
+	<div class = 'row'>
+		<img src = "img/bw_cropped_news_s11.jpg" width = 99%>
+	</div>
+	<div class = 'container-fluid' id = 'spotifystats'>
+		<!-- Quote or text break -->
+		<div class = 'row'>
+			<div class = 'col' id = 'metric1'>
+				<div class = 'row' id = 'leadrecord'></div>
+				<div class = 'row' id = 'leadstreams'></div>
+				<div class = 'row'>
+					<h2 class = 'title'>Lead Streams</h2>
+				</div>
+			</div>
+			<div class = 'col' id = 'metric2'>
+				<div class = 'row' id = 'featsrecord'></div>
+				<div class = 'row' id = 'feats'></div>
+				<div class = 'row'>
+					<h2 class = 'title'>Features</h2>
+				</div>
+			</div>
+			<div class = 'col' id = 'metric3'>
+				<div class = 'row' id = 'tracksrecord'></div>
+				<div class = 'row' id = 'tracks'></div>
+				<div class = 'row'>
+					<h2 class = 'title'>Tracks</h2>
+				</div>
+			</div>
+			<div class = 'col' id = 'metric4'>
+				<div class = 'row' id = 'onemillrecord'></div>
+				<div class = 'row' id = 'onemill'></div>
+				<div class = 'row'>
+					<h2 class = 'title'>One Million Streams</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class = 'gutter'></div>
+
+
 	<!-- CONTAINS ALL STATIC VERSIONS OF WHAT SHOULD BE TRANSITIONAL VISUALIZATIONS -->
 	<a id="billboard"></a>
 	<div class = "container-fluid module" id = 'module-1'>
@@ -156,9 +196,6 @@
 	<div class = 'gutter'></div>
 
 
-	<div class = 'row'>
-		<img src = "img/bw_cropped_news_s11.jpg" width = 99%>
-	</div>
 	<div class = 'container-fluid quote-mod' id = 'outsource0'>
 		<!-- Quote or text break -->
 	</div>
@@ -435,7 +472,8 @@
 			<!-- For the moment, would like to add card bootstrapping with auto-rowing columns to list these -->
 			<ul>
 				<li>Wikipedia contributors. (2022, October 23). List of awards and nominations received by Dolly Parton. <em>In Wikipedia, The Free Encyclopedia.</em></li>
-				<li></li>
+				<li>Dhruvil Dave. (2021). Billboard "The Hot 100" Songs[Data set]. Kaggle.</li>
+				<li>Adnan Anam. (2022). Spotify Artist Stats[Data set]. Kaggle. </li>
 			</ul>
 		</div>
 
@@ -446,31 +484,34 @@
 		<div class = 'row justify-content-center'>
 			<h3 class = "dark-title">Project Team</h3>
 		</div>
-		<div class = "row justify-content-between">
-			<div class = 'col-4'>
-				<div class="card" style="width: 18rem;">
+		<div class = "row ">
+			<div class = 'col justify-content-center'>
+				<div class="card" style="width: 25rem;">
 					<div class="card-body">
 						<h5 class="card-title">Isidora Diaz</h5>
+						<h6 class="card-subtitle mb-2 text-muted">Harvard University</h6>
 						<h6 class="card-subtitle mb-2 text-muted">Data Science MS Candidate</h6>
 						<p class="card-text">...</p>
 					</div>
 				</div>
 			</div>
 
-			<div class = "col-4">
-				<div class="card" style="width: 18rem;">
+			<div class = "col">
+				<div class="card" style="width: 25rem;">
 					<div class="card-body">
 						<h5 class="card-title">Hope Neveux</h5>
+						<h6 class="card-subtitle mb-2 text-muted">Harvard University</h6>
 						<h6 class="card-subtitle mb-2 text-muted">Data Science MS Candidate</h6>
 						<p class="card-text">Passionate about accessible, digestible, honest, and impactful visualization.</p>
 					</div>
 				</div>
 			</div>
 
-			<div class = "col-4">
-				<div class="card" style="width: 18rem;">
+			<div class = "col">
+				<div class="card" style="width: 25rem;">
 					<div class="card-body">
 						<h5 class="card-title">Loralee Ryan</h5>
+						<h6 class="card-subtitle mb-2 text-muted">Harvard University</h6>
 						<h6 class="card-subtitle mb-2 text-muted">Data Science MS Candidate</h6>
 						<p class="card-text">...</p>
 					</div>
@@ -515,6 +556,7 @@
 	<!-- date selector for charity visualization -->
 	<script src="https://unpkg.com/d3-simple-slider"></script>
 	<!-- JS -->
+	<script src = 'js/StreamStats.js'></script>
 	<script src = "js/BubbleVis.js"></script>
 	<script src= "js/MiniDendro.js"></script>
 	<script src = 'js/TimeSeries.js'></script>

@@ -7,7 +7,28 @@ html{
 .module{
     /* Overall backing to the page and heading */
     background-color: black;
+    font-family: Verdana;
+    font-size: x-large;
 
+}
+/*
+#cover{
+    background-color: #f2e0a9 ;
+}
+*/
+
+#introduction{
+    background-color: #253529;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    color: #f2e0a9;
+}
+
+#popularity{
+    background-color: #2a3c2e; /*slightly lighter shade of black leather found with https://www.w3schools.com/colors/colors_picker.asp*/
+    padding-top: 3%;
+    padding-bottom: 3%;
+    color: #f2e0a9;
 }
 
 .title{
@@ -92,12 +113,22 @@ html{
     padding-bottom: 0.1%;
 }
 
-.title {
+.fader2 {
     transition: opacity 2s;
     opacity: 0;
 }
 
-.fader {
+.fader3 {
+    transition: opacity 3s;
+    opacity: 0;
+}
+
+.fader4 {
+    transition: opacity 4s;
+    opacity: 0;
+}
+
+.fader6 {
     transition: opacity 6s;
     opacity: 0;
 }

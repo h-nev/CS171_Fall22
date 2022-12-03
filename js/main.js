@@ -155,9 +155,9 @@ function categoryChange() {
 
 /* for fade-in on scroll animation */
 /* from https://codepen.io/bstonedev/pen/MWWZgKz */
-let elementsArray = document.querySelectorAll(".title");
+let elementsArray = document.querySelectorAll(".fader2");
 console.log(Array.isArray(elementsArray));
-let elements2Array = document.querySelectorAll('.fader');
+let elements2Array = document.querySelectorAll('.fader6');
 //elementsArray = elementsArray.concat(elements2Array);
 console.log(elementsArray);
 window.addEventListener('scroll', fadeIn ); 

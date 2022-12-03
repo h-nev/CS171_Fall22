@@ -152,3 +152,34 @@ function categoryChange() {
     fancyTimeSeries.selectorChange();
 
 }
+
+/* for fade-in on scroll animation */
+/* from https://codepen.io/bstonedev/pen/MWWZgKz */
+let elementsArray = document.querySelectorAll(".title");
+console.log(Array.isArray(elementsArray));
+let elements2Array = document.querySelectorAll('.fader');
+//elementsArray = elementsArray.concat(elements2Array);
+console.log(elementsArray);
+window.addEventListener('scroll', fadeIn ); 
+function fadeIn() {
+    for (var i = 0; i < elementsArray.length; i++) {
+        var elem = elementsArray[i]
+        var distInView = elem.getBoundingClientRect().top - window.innerHeight + 20;
+        if (distInView < 0) {
+            elem.classList.add("inView");
+        } else {
+            elem.classList.remove("inView");
+        }
+    }
+    //elementsArray = elements2Array;
+    for (var i = 0; i < elements2Array.length; i++) {
+        var elem = elements2Array[i]
+        var distInView = elem.getBoundingClientRect().top - window.innerHeight + 20;
+        if (distInView < 0) {
+            elem.classList.add("inView");
+        } else {
+            elem.classList.remove("inView");
+        }
+    }
+}
+fadeIn();

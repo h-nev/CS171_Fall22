@@ -90,5 +90,18 @@ html{
 .horizontal-line{
     background-color: #ffffff;
     padding-bottom: 0.1%;
+}
 
+.title {
+    transition: opacity 2s;
+    opacity: 0;
+}
+
+.fader {
+    transition: opacity 6s;
+    opacity: 0;
+}
+
+.inView {
+    opacity: 1;
 }

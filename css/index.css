@@ -9,6 +9,7 @@ html{
     background-color: black;
     font-family: Verdana;
     font-size: x-large;
+    text-align: center;
 
 }
 /*
@@ -18,14 +19,26 @@ html{
 */
 
 #introduction{
-    background-color: #253529;
+    background-color: #1a1b1b ;
     padding-top: 3%;
     padding-bottom: 3%;
     color: #f2e0a9;
 }
 
-#popularity{
-    background-color: #2a3c2e; /*slightly lighter shade of black leather found with https://www.w3schools.com/colors/colors_picker.asp*/
+#popularity1{
+    background-color: #3e4141; /*slightly lighter shade of intro color found with https://www.w3schools.com/colors/colors_picker.asp*/
+    padding-top: 12%;
+    padding-bottom: 12%;
+    color: #f6d17b;
+    font-family: Optima;
+    padding-left: 25%;
+   padding-right: 25%;
+    font-size: xxx-large;
+
+}
+
+#popularity2{
+    background-color: #1a1b1b;
     padding-top: 3%;
     padding-bottom: 3%;
     color: #f2e0a9;
@@ -36,6 +49,9 @@ html{
     font-family: googleLato;
     color:#ffffff;
 
+}
+#vis-1a{
+    background-color: #2b3339;
 }
 
 .vis-title{
@@ -114,22 +130,22 @@ html{
 }
 
 .fader2 {
-    transition: opacity 2s;
-    opacity: 0;
-}
-
-.fader3 {
     transition: opacity 3s;
     opacity: 0;
 }
 
-.fader4 {
+.fader3 {
     transition: opacity 4s;
     opacity: 0;
 }
 
+.fader4 {
+    transition: opacity 5s;
+    opacity: 0;
+}
+
 .fader6 {
-    transition: opacity 6s;
+    transition: opacity 7s;
     opacity: 0;
 }
 

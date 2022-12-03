@@ -131,10 +131,10 @@ class BubbleVis {
             .style("font-size", "1px")
             .each(function(d) {
                 // Use the bounding box as calculated with 1px font size, and the target size as
-                // given by 2 * radius, to determine a font size that'll have the string nicely fit
+                // given by 1.8 * radius, to determine a font size that'll have the string nicely fit
                 // in the circle.
                 var bbox = this.getBBox();
-                d.scale = Math.min(16, 2 * d.r / bbox.width);
+                d.scale = Math.min(16, 1.8 * d.r / bbox.width);
             })
             .style("font-size", d => d.scale + "px");
 

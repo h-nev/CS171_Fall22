@@ -158,10 +158,9 @@ function categoryChange() {
 
 /* for fade-in on scroll animation */
 /* from https://codepen.io/bstonedev/pen/MWWZgKz */
-let elementsArray = document.querySelectorAll(".fader2");
+let elementsArray = document.querySelectorAll(".fader2, .fader3, .fader4, .fader6");
 console.log(Array.isArray(elementsArray));
-let elements2Array = document.querySelectorAll('.fader6');
-//elementsArray = elementsArray.concat(elements2Array);
+
 console.log(elementsArray);
 window.addEventListener('scroll', fadeIn ); 
 function fadeIn() {
@@ -174,15 +173,6 @@ function fadeIn() {
             elem.classList.remove("inView");
         }
     }
-    //elementsArray = elements2Array;
-    for (var i = 0; i < elements2Array.length; i++) {
-        var elem = elements2Array[i]
-        var distInView = elem.getBoundingClientRect().top - window.innerHeight + 20;
-        if (distInView < 0) {
-            elem.classList.add("inView");
-        } else {
-            elem.classList.remove("inView");
-        }
-    }
+
 }
 fadeIn();

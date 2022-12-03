@@ -1,15 +1,15 @@
 /*---------- Country Bubble customization ----------*/
 
 .bubble-vis .artist-circle {
-    fill: #ffffff;
+    fill: #f2e0a9;
     stroke-width: 1px;
     stroke: black;
 }
 .bubble-vis .artist-dolly {
-    fill: #f4cf66;
+    fill: #32AB80;
 }
 .bubble-vis .artist-elvis {
-    fill: #8c6251;
+    fill: #eba976;
 }
 .bubble-vis .artist-dolly-linked {
     stroke-width: 3px;

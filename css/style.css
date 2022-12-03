@@ -191,6 +191,31 @@
     stroke:#d3d3d3;
 }
 
+/*---------- Imagination library ----------*/
+
+.library-vis {
+    width: 100%;
+    height: 100%;
+}
+.library-vis .bar {
+    fill: #eba976;
+    stroke: none;
+}
+
+.library-vis .x-axis-label {
+    text-anchor: middle;
+    alignment-baseline: hanging;
+}
+
+.library-vis .y-axis-label {
+    text-anchor: middle;
+    transform: rotate(-90deg);
+}
+
+.library-vis text {
+    fill: white;
+}
+
 /*---------- Left menu ----------*/
 
 .left-menu {

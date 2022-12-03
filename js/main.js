@@ -16,7 +16,8 @@ let promises = [
     d3.json("data/tennessee-county-1960.topojson"),
     d3.csv("data/TN_poverty_rates_by_county_1960-2020.csv"),
     d3.csv("data/dolly-charity.csv"),
-    d3.csv("data/spotify_artist_data.csv")
+    d3.csv("data/spotify_artist_data.csv"),
+    d3.csv("data/imagination-library.csv")
 ];
 
 Promise.all(promises)
@@ -92,6 +93,8 @@ function initMainPage(dataArray) {
             awardSelection = selectorMap[elementId];
             awardsWon.wrangleData();
         });
+
+    libraryGraph = new BarGraph('vis-5', dataArray[9]);
 }
 
 class MostVisibleTracker {

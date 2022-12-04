@@ -110,6 +110,17 @@ body{
     font-size: xxx-large;
 }
 
+.timeline_intro{
+    background-color: #1E222B;
+    padding-top: 12%;
+    padding-bottom: 12%;
+    color: #f6d17b;
+    font-family: Optima;
+    padding-left: 25%;
+    padding-right: 25%;
+    font-size: xxx-large;
+}
+
 #vis-1c-title{
     background-color: black;
     padding-top: 6%;

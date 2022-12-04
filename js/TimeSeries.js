@@ -450,7 +450,7 @@ class TimeSeries {
             .append("text")
             .attr("class", "legend-text")
             .attr("x", vis.widthLegend*0.35)
-            .attr("y", (d,i)=>i*12+25)
+            .attr("y", (d,i)=>i*12+28)
             .style("fill", "#B3CDE0")
             .style("font-size", "10px")
             .text(d=>d);

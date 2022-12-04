@@ -131,6 +131,6 @@ The project was built using D3 and Bootstrap. We also used different external an
 
 ```│   ├── d3-annotation.js.map```: external library used to annotate TimeSeries.js viz
 
-```│   ├── main.js # main```: javascript file of our project
+```│   ├── main.js```: main javascript file of our project
 
 ```│   └── nouislider.js```: external library used for time slider TimeSeries.js viz

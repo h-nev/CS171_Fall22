@@ -294,3 +294,8 @@
     opacity: 1;
     background-color:rgba(37, 53, 41, 0.5);
 }
+
+#cardcontainer{
+    padding-left: 4%;
+
+}

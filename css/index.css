@@ -195,6 +195,9 @@ body{
     width:20rem;
     padding-bottom: 16pt;
 }
+.card-body {
+    background-color: #E2D0BC;
+}
 
 #vis-2{
     font-size: 15px;
@@ -262,7 +265,7 @@ body{
 
 #footer{
     /* Light grey with generous fluid space at the bottom of the page to cite / include our contacts */
-    background-color: #ffffff;
+    background-color: #E2D0BC;
 
 }
 

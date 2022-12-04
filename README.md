@@ -82,20 +82,20 @@ The project was built using D3 and Bootstrap. We also used different external an
 │   └── partonfamily.jpeg
 ├── index.html
 └── js
-    ├── Awards.js # class for awards visualization
-    ├── BarGraph.js # class for imagination library visualization
-    ├── BubbleVis.js # class for connection bubbles visualization
-    ├── Charity.js # class for charity map visualization
-    ├── MiniDendro.js # class for connections visualization
-    ├── StreamStats.js # class for spotify streaming statistics
-    ├── TimeSeries.js # class for billboard hot 100 timeline visualization
+    ├── Awards.js
+    ├── BarGraph.js
+    ├── BubbleVis.js
+    ├── Charity.js
+    ├── MiniDendro.js
+    ├── StreamStats.js
+    ├── TimeSeries.js
     ├── archived
     │   ├── Dendrogram.js
     │   └── Dendrogram2.js
-    ├── d3-annotation.js # external library used to annotate TimeSeries.js viz
-    ├── d3-annotation.js.map # external library used to annotate TimeSeries.js viz
-    ├── main.js # main javascript file of our project
-    └── nouislider.js # external library used for time slider TimeSeries.js viz
+    ├── d3-annotation.js 
+    ├── d3-annotation.js.map
+    ├── main.js
+    └── nouislider.js
 ```
 
 ### Details

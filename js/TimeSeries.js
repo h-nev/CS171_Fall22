@@ -5,14 +5,14 @@ class TimeSeries {
         this.data = data;
         this.displayData = [];
         this.colors = [
-            "#9e0142"
-            , "#fdae61"
-            , "#3288bd"
-            , "#66c2a5"
-            , "#fee08b"
+            "#F4C963"
+            , "#5B85AD"
+            , "#8A3240"
+            , "#D5C081"
+            , "#CA9293"
             ,"#d53e4f"
             , "#ffffbf"
-            , "#f46d43"
+            , "#F2927C"
             , "#e6f598"
             , "#312956"
             , "#abdda4"
@@ -38,7 +38,7 @@ class TimeSeries {
             max_date: 1985};
 
         // Margins & Dimensions
-        vis.margin = {top: 40, right: 60, bottom: 40, left: 60};
+        vis.margin = {top: 50, right: 60, bottom: 50, left: 60};
 
         vis.width = document.getElementById(vis.parentElement).getBoundingClientRect().width - vis.margin.left - vis.margin.right;
         vis.height = document.getElementById(vis.parentElement).getBoundingClientRect().height - vis.margin.top - vis.margin.bottom;
@@ -450,7 +450,7 @@ class TimeSeries {
             .append("text")
             .attr("class", "legend-text")
             .attr("x", vis.widthLegend*0.35)
-            .attr("y", (d,i)=>i*12+25)
+            .attr("y", (d,i)=>i*12+28)
             .style("fill", "#B3CDE0")
             .style("font-size", "10px")
             .text(d=>d);

@@ -1,19 +1,19 @@
 /*---------- Country Bubble customization ----------*/
 
 .bubble-vis .artist-circle {
-    fill: lightcyan;
+    fill: #f2e0a9;
     stroke-width: 1px;
     stroke: black;
 }
 .bubble-vis .artist-dolly {
-    fill: #FFFD73;
+    fill: #A5B99F;
 }
 .bubble-vis .artist-elvis {
-    fill: #ab3f84;
+    fill: #BEA1A5;
 }
 .bubble-vis .artist-dolly-linked {
     stroke-width: 3px;
-    fill: #6495ed;
+    fill: #A3BEC9;
 }
 .bubble-vis .artist-circle-text {
     text-anchor: middle;
@@ -54,21 +54,34 @@
 }
 
 /*----------Video -------------------------*/
+.cover {
+    width: 90vw;
+    height: 110vh;
+    position:fixed;
+    /*display:inline-block;*/
+    fill: none;
+}
+
 .vidContain {
-    width: 100%;
+    width: 90vw;
     height: 100%;
     position:relative;
     /*display:inline-block;*/
-    margin:10px;
+    margin-top:3vh;
+    fill: none;
 }
 .vid {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 95vw;
-    height: 90vh;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+    min-width: 120%;
+    min-height: 100%;
+    width: auto;
+    height: auto
+    z-index:-1;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
 }
 
 @media (min-aspect-ratio: 16/9) {
@@ -90,6 +103,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+
 }
 
 @font-face {
@@ -117,7 +131,8 @@
     font-family: googleJuliasSans;
     color: #FFFFFF;
     opacity: 60%;
-    font-size: 1500%;
+    font-size: 1200%;
+    font-weight: bold;
 }
 
 /*---------- Charity customization ----------*/
@@ -125,6 +140,7 @@
 .charity-vis .county {
     stroke-width: 1px;
     stroke: black;
+    fill-opacity: 100%;
 }
 .charity-vis .county-sevier {
     stroke-width: 4px;
@@ -179,16 +195,58 @@
     stroke: white;
 }
 .charity-vis .donation-flyout-circle {
-    stroke: none;
+    stroke: black;
+    opacity: 100%;
 }
 .charity-vis {
     color:#d3d3d3;
 }
 .charity-vis text {
     fill:#d3d3d3;
+    font-size: medium;
 }
 .charity-vis #scale-pattern-rect {
     stroke:#d3d3d3;
+}
+.charity-vis .wedge{
+    fill:white;
+}
+.charity-vis .city-dot {
+    fill:black;
+    stroke:none;
+}
+.charity-vis .city-label {
+    fill: black;
+    stroke: none;
+    /*text-anchor: middle;*/
+    alignment-baseline: hanging;
+}
+
+/*---------- Imagination library ----------*/
+
+.library-vis {
+    width: 100%;
+    height: 100%;
+}
+.library-vis .bar {
+    fill: #B99599;
+    stroke: none;
+}
+
+.library-vis .x-axis-label {
+    text-anchor: middle;
+    alignment-baseline: hanging;
+    opacity: 0;
+}
+
+.library-vis .y-axis-label {
+    text-anchor: middle;
+    transform: rotate(-90deg);
+    font-size: medium;
+}
+
+.library-vis text {
+    fill: #E2D0BC;
 }
 
 /*---------- Left menu ----------*/
@@ -198,18 +256,46 @@
     display: flex;
     flex-direction: column;
     top: 0;
-    left: 0;
+    left: 0.5em;
     height: 100vh;
+}
+
+.left-menu .bgbox {
+    width: 1.3em;
+    height: 100%;
+    background-color: rgba(37, 53, 41, 0.5);
+    border-radius:0.5em;
 }
 
 .left-menu a {
     text-decoration: none;
+    line-height: 2rem;
+    color: #f6d17b;
+}
+
+.left-menu .bullet {
+    font-size: 2rem;
+    vertical-align: middle;
+    opacity: 0.5;
 }
 
 .left-menu .item-text {
     opacity: 0;
+    vertical-align: middle;
+    padding:3px;
+    padding-right:1em;
+}
+
+.left-menu a:hover .bullet {
+    opacity: 1;
 }
 
 .left-menu a:hover .item-text {
     opacity: 1;
+    background-color:rgba(37, 53, 41, 0.5);
+}
+
+#cardcontainer{
+    padding-left: 4%;
+
 }

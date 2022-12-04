@@ -196,6 +196,9 @@ body{
     padding-bottom: 16pt;
 }
 
+#vis-2{
+    font-size: 15px;
+}
 
 .vis-title{
     font-family: googleJuliasSans;

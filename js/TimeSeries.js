@@ -5,8 +5,8 @@ class TimeSeries {
         this.data = data;
         this.displayData = [];
         this.colors = [
-            "#5B85AD"
-            , "#F4C963"
+            "#F4C963"
+            , "#5B85AD"
             , "#8A3240"
             , "#D5C081"
             , "#CA9293"

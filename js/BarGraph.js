@@ -49,13 +49,19 @@ class BarGraph {
             .append("text")
             .attr("class", "y-axis-label")
             .text("Annual total expense ($ millions)");
+
+        // Tooltip div.
+        vis.tooltip = d3.select("body")
+            .append('div')
+            .attr('class', "tooltip");
+
         vis.wrangleData();
     }
 
     wrangleData() {
         let vis = this;
 
-        vis.displayData = vis.data.map(d => ({year: d.Year, value: +d.TotalSpent/1000000}));
+        vis.displayData = vis.data.map(d => ({year: d.Year, dollars: +d.TotalSpent, millions: +d.TotalSpent/1000000}));
         vis.displayData.sort((a, b) => (b.year - a.year));
 
         vis.updateVis()
@@ -65,7 +71,7 @@ class BarGraph {
         let vis = this;
 
         vis.x.domain(vis.displayData.map(d => d.year));
-        vis.y.domain([0, d3.max(vis.displayData, d => d.value)]);
+        vis.y.domain([0, d3.max(vis.displayData, d => d.millions)]);
 
         let bars = vis.svg.selectAll(".bar")
             .data(vis.displayData);
@@ -73,9 +79,32 @@ class BarGraph {
             .append("rect")
             .attr("class", "bar")
             .attr("x", d => vis.x(d.year))
-            .attr("y", d => vis.y(d.value))
+            .attr("y", d => vis.y(d.millions))
             .attr("width", vis.x.bandwidth())
-            .attr("height", d => (vis.y(0) - vis.y(d.value)));
+            .attr("height", d => (vis.y(0) - vis.y(d.millions)))
+            .on('mouseover', (event, d) => {
+                vis.tooltip
+                    .style("opacity", 1)
+                    .html(`<div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">$${d.dollars.toLocaleString()}</div>`)
+                    .style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY + 10) + "px");
+
+                // Ensure that the bounding box doesn't go off the edge.
+                let tooltipBBox = vis.tooltip.node().getBoundingClientRect();
+                let containerBBox = d3.select("#" + vis.parentElement).node().getBoundingClientRect();
+                let maxX = containerBBox.x + containerBBox.width - tooltipBBox.width;
+                if (tooltipBBox.x > maxX) {
+                    vis.tooltip
+                        .style("left", (event.pageX + 10 - (tooltipBBox.x - maxX)) + "px");
+                }
+            })
+            .on('mouseout', (event, d) => {
+                vis.tooltip
+                    .style("opacity", 0)
+                    .style("left", 0)
+                    .style("top", 0)
+                    .html('');
+            });
         bars.exit().remove();
 
         vis.xAxisGroup.call(vis.xAxis);

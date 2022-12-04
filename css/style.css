@@ -6,14 +6,14 @@
     stroke: black;
 }
 .bubble-vis .artist-dolly {
-    fill: #32AB80;
+    fill: #A5B99F;
 }
 .bubble-vis .artist-elvis {
-    fill: #eba976;
+    fill: #BEA1A5;
 }
 .bubble-vis .artist-dolly-linked {
     stroke-width: 3px;
-    fill: #6495ed;
+    fill: #A3BEC9;
 }
 .bubble-vis .artist-circle-text {
     text-anchor: middle;
@@ -180,12 +180,14 @@
 }
 .charity-vis .donation-flyout-circle {
     stroke: none;
+    opacity: 80%;
 }
 .charity-vis {
     color:#d3d3d3;
 }
 .charity-vis text {
     fill:#d3d3d3;
+    font-size: medium;
 }
 .charity-vis #scale-pattern-rect {
     stroke:#d3d3d3;
@@ -198,22 +200,24 @@
     height: 100%;
 }
 .library-vis .bar {
-    fill: #eba976;
+    fill: #B99599;
     stroke: none;
 }
 
 .library-vis .x-axis-label {
     text-anchor: middle;
     alignment-baseline: hanging;
+    opacity: 0;
 }
 
 .library-vis .y-axis-label {
     text-anchor: middle;
     transform: rotate(-90deg);
+    font-size: medium;
 }
 
 .library-vis text {
-    fill: white;
+    fill: #E2D0BC;
 }
 
 /*---------- Left menu ----------*/
@@ -223,18 +227,41 @@
     display: flex;
     flex-direction: column;
     top: 0;
-    left: 0;
+    left: 0.5em;
     height: 100vh;
+}
+
+.left-menu .bgbox {
+    width: 1.3em;
+    height: 100%;
+    background-color: rgba(37, 53, 41, 0.5);
+    border-radius:0.5em;
 }
 
 .left-menu a {
     text-decoration: none;
+    line-height: 2rem;
+    color: #f6d17b;
+}
+
+.left-menu .bullet {
+    font-size: 2rem;
+    vertical-align: middle;
+    opacity: 0.5;
 }
 
 .left-menu .item-text {
     opacity: 0;
+    vertical-align: middle;
+    padding:3px;
+    padding-right:1em;
+}
+
+.left-menu a:hover .bullet {
+    opacity: 1;
 }
 
 .left-menu a:hover .item-text {
     opacity: 1;
+    background-color:rgba(37, 53, 41, 0.5);
 }

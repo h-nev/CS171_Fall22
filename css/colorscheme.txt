@@ -67,4 +67,14 @@ DEEP Black Brown    #24261d                 A cool blackish brown like espresso
 DEEP Grey           #1a1b1b                 Basically black
 DEEP Brown          #242619                 Super dark brown, almost black
 Dark Cyan Blue      #2b3339                 A deep steel jean blue
+Medium Blue         #455E7D                 lighter steel jean blue
+Light Grey          #949CA9                 Light grey blue
 Pale Mint Green     #32AB80                 A pale mint green
+Mossier Green       #A5B99F                  earthier green
+Faded blue          #A3BEC9                 Like faded blue jeans
+Dusty Rose          #BEA1A5                 dusty pinkish color
+Dusty Rose          #BE9496                 brighter pinkish color
+                    #B99599
+Creamy yellow       #E5DAC8                 pale cream yellow
+Cream               #E2D0BC                 more of a direct cream from her hair
+

@@ -1,7 +1,10 @@
 /*---------- General customization ----------*/
 html{
     scroll-behavior: smooth;
+}
 
+body{
+    background-color: black;
 }
 
 .module{
@@ -10,6 +13,7 @@ html{
     font-family: Verdana;
     font-size: x-large;
     text-align: center;
+    padding-left: 3em;
 
 }
 /*
@@ -44,14 +48,73 @@ html{
     color: #f2e0a9;
 }
 
+#popularity3{
+    background-color: #1E222B;
+    padding-top: 12%;
+    padding-bottom: 12%;
+    color: #f6d17b;
+    font-family: Optima;
+    padding-left: 25%;
+    padding-right: 25%;
+    font-size: xxx-large;
+}
+
 .title{
     /* Stands out on dark backgrounds */
     font-family: googleLato;
     color:#ffffff;
+}
+
+#vis-1a-title{
+    background-color: #263143;
+    padding-top: 6%;
+    padding-bottom: 1%;
+    text-align: center;
+}
+
+#vis-1b-title{
+    background-color: #263143;
+    padding-bottom: 6%;
+    text-align: center;
+    padding-right: 25%;
+    padding-left: 25%;
+}
+
+#vis-1a{
+    background-color: #263143;
 
 }
-#vis-1a{
-    background-color: #2b3339;
+
+#module-1{
+    background-color: #263143;
+}
+
+#collab_intro{
+    background-color: #1E222B;
+    padding-top: 12%;
+    padding-bottom: 12%;
+    color: #f6d17b;
+    font-family: Optima;
+    padding-left: 25%;
+    padding-right: 25%;
+    font-size: xxx-large;
+}
+
+#vis-1c-title{
+    background-color: #black;
+    padding-top: 6%;
+    text-align: center;
+}
+
+#module-4{
+    background-color: #1D2436;
+}
+
+.library {
+    color: #E2D0BC
+}
+#vis-1f-title{
+    color: #B99599;
 }
 
 .vis-title{
@@ -67,7 +130,7 @@ html{
 
 .gutter{
     /* Allows us to make custom row-breaks so svgs are not directly touching */
-    background-color: black;
+    /*background-color: black;*/
     padding-bottom: 4%;
 
 }
@@ -80,7 +143,7 @@ html{
 
 .big-gutter{
     /* Allows us to make custom row-breaks that are larger than the small visual separation between visualizations */
-    background-color: black;
+    /*background-color: black; */
     padding-bottom: 12%;
 
 }
@@ -146,6 +209,11 @@ html{
 
 .fader6 {
     transition: opacity 7s;
+    opacity: 0;
+}
+
+.fader8 {
+    transition: opacity 8s;
     opacity: 0;
 }
 

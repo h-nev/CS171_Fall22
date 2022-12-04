@@ -158,7 +158,7 @@ function categoryChange() {
 
 /* for fade-in on scroll animation */
 /* from https://codepen.io/bstonedev/pen/MWWZgKz */
-let elementsArray = document.querySelectorAll(".fader2, .fader3, .fader4, .fader6");
+let elementsArray = document.querySelectorAll(".fader2, .fader3, .fader4, .fader6, .fader8");
 console.log(Array.isArray(elementsArray));
 
 console.log(elementsArray);

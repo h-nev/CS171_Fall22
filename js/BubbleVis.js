@@ -99,6 +99,9 @@ class BubbleVis {
         });
         sortedArtists.length = Math.min(sortedArtists.length, 50);
 
+ 
+
+        
         // Build a D3 hierarchy. Scale the total rank score to reduce the variation in size of the
         // bubbles a bit.
         let hierarchy = d3.hierarchy({"children": sortedArtists.map(d => ({"name": d.artist, "value": Math.pow(d.totalRankScore, 0.7)}))})
@@ -144,6 +147,9 @@ class BubbleVis {
             .attr("cy", d => d.y)
             .attr("r", d => d.r)
             .on('mouseover', (event, d) => {
+                if (!vis.showLinked) {
+                    return;
+                }
                 let collab = vis.collabArtists.get(d.data.name);
                 let tooltipHTML = '';
                 if (d.data.name == "Elvis Presley") {

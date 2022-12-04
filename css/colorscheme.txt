@@ -77,4 +77,5 @@ Dusty Rose          #BE9496                 brighter pinkish color
                     #B99599
 Creamy yellow       #E5DAC8                 pale cream yellow
 Cream               #E2D0BC                 more of a direct cream from her hair
+                    #455262                 Medium steel grey
 

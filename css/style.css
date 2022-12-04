@@ -125,6 +125,7 @@
 .charity-vis .county {
     stroke-width: 1px;
     stroke: black;
+    fill-opacity: 100%;
 }
 .charity-vis .county-sevier {
     stroke-width: 4px;
@@ -179,8 +180,8 @@
     stroke: white;
 }
 .charity-vis .donation-flyout-circle {
-    stroke: none;
-    opacity: 80%;
+    stroke: black;
+    opacity: 100%;
 }
 .charity-vis {
     color:#d3d3d3;
@@ -191,6 +192,9 @@
 }
 .charity-vis #scale-pattern-rect {
     stroke:#d3d3d3;
+}
+.charity-vis .wedge{
+    fill:white;
 }
 
 /*---------- Imagination library ----------*/

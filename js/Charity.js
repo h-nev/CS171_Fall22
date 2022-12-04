@@ -224,7 +224,8 @@ class CharityVis {
             .attr("y", 33);
 
         vis.legend.append("path")
-            .attr("d", `M ${vis.width * 0.25} 35 l -7 -7 l 14 0 z`);
+            .attr("d", `M ${vis.width * 0.25} 35 l -7 -7 l 14 0 z`)
+            .attr("class","wedge");
 
         vis.legend.append("text")
             .attr("id", "state-average-text")
@@ -393,7 +394,7 @@ class CharityVis {
             donation.flyoutPos = donation.visible ? donation.enabledFlyoutPos : donation.position;
             if (donation.visible) {
                 // donation.flyoutColor = d3.schemeCategory10[visIdx];
-                donation.flyoutColor = d3.schemeCategory10[donation.index % 10];
+                donation.flyoutColor = d3.schemePastel2[donation.index % 8];
                 visIdx++;
             }
         });

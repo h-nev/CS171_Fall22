@@ -105,7 +105,16 @@ body{
     padding-top: 6%;
     text-align: center;
 }
-
+#charity_intro{
+    background-color: #1E222B;
+    padding-top: 12%;
+    padding-bottom: 12%;
+    color: #f6d17b;
+    font-family: Optima;
+    padding-left: 25%;
+    padding-right: 25%;
+    font-size: xx-large;
+}
 #module-4{
     background-color: #1D2436;
 }
@@ -114,7 +123,44 @@ body{
     color: #E2D0BC
 }
 #vis-1f-title{
+    padding-top: 3%;
     color: #B99599;
+    font-family: googleJuliasSans
+}
+
+#ten_intro{
+    background-color: #455E7D;
+    padding-top: 9%;
+    padding-bottom: 9%;
+    color: #f6d17b;
+    font-family: Optima;
+    padding-left: 15%;
+    padding-right: 15%;
+    font-size: xx-large;
+    text-shadow: #1D2436;
+}
+
+#ten_intro img{
+    width:100%
+}
+
+#module-5{
+    background-color: #21252c;
+}
+
+#charitypics img {
+    width:100%;
+    aspect-ratio: 16/9
+}
+
+#charitypics{
+    background-color: #455E7D;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    font-size: large;
+    text-align: center;
+    color: #f2e0a9;
+
 }
 
 .vis-title{

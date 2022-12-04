@@ -16,7 +16,8 @@ let promises = [
     d3.json("data/tennessee-county-1960.topojson"),
     d3.csv("data/TN_poverty_rates_by_county_1960-2020.csv"),
     d3.csv("data/dolly-charity.csv"),
-    d3.csv("data/spotify_artist_data.csv")
+    d3.csv("data/spotify_artist_data.csv"),
+    d3.csv("data/imagination-library.csv")
 ];
 
 Promise.all(promises)
@@ -92,6 +93,8 @@ function initMainPage(dataArray) {
             awardSelection = selectorMap[elementId];
             awardsWon.wrangleData();
         });
+
+    libraryGraph = new BarGraph('vis-5', dataArray[9]);
 }
 
 class MostVisibleTracker {
@@ -152,3 +155,24 @@ function categoryChange() {
     fancyTimeSeries.selectorChange();
 
 }
+
+/* for fade-in on scroll animation */
+/* from https://codepen.io/bstonedev/pen/MWWZgKz */
+let elementsArray = document.querySelectorAll(".fader2, .fader3, .fader4, .fader6, .fader8");
+console.log(Array.isArray(elementsArray));
+
+console.log(elementsArray);
+window.addEventListener('scroll', fadeIn ); 
+function fadeIn() {
+    for (var i = 0; i < elementsArray.length; i++) {
+        var elem = elementsArray[i]
+        var distInView = elem.getBoundingClientRect().top - window.innerHeight + 20;
+        if (distInView < 0) {
+            elem.classList.add("inView");
+        } else {
+            elem.classList.remove("inView");
+        }
+    }
+
+}
+fadeIn();

@@ -85,7 +85,7 @@ class Awards{
         // Current scheme: silvery grey, pale mint green
         vis.musicPerformanceScale = d3.scaleOrdinal()
             .domain(vis.musicPerformance)
-            .range(['#bebebe', '#32AB80'])
+            .range(['#bebebe', '#a34453'])
             .unknown('black');
 
         // Current scheme: blonde yellow, silvery grey, cornflower blue
@@ -97,7 +97,7 @@ class Awards{
         // Current scheme: silvery grey, pale mint green
         vis.serviceScale = d3.scaleOrdinal()
                 .domain(vis.service)
-                .range(['#bebebe', '#32AB80'])
+                .range(['#bebebe', '#a34453'])
                 .unknown('black');
         
         // Current scheme: blonde yellow, silvery grey, cornflower blue
@@ -401,7 +401,7 @@ class Awards{
 
         vis.labels.enter()
             .append('text')
-            .attr('class', 'labels')
+            .attr('class', 'labels title')
             .merge(vis.labels)
             .text(d => d)
             .attr('x', (d, i) => i * vis.categoryPlacement.bandwidth() + 30)

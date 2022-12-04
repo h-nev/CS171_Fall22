@@ -143,6 +143,37 @@ class CharityVis {
             .classed("county-sevier", d => (d.properties.NHGISNAM == "Sevier"))
             .attr("d", vis.path)
             .attr("fill", "none");
+        // Draw some of the major cities. This needs to happen before drawing the hatching.
+        let cities = [
+            {name: "Nashville", latitude: 36.1627, longitude: -86.7816},
+            {name: "Memphis", latitude: 35.1495, longitude: -90.0490},
+            {name: "Knoxville", latitude: 35.9606, longitude: -83.9207},
+            //{name: "Chattanooga", latitude: 35.0458, longitude: -85.3094},
+            {name: "Clarksville", latitude: 36.5298, longitude: -87.3595}
+            //{name: "Murfreesboro", latitude: 35.8456, longitude: -86.3903};
+        ];
+        cities.forEach(function(d) {
+            d.position = vis.projection([d.longitude, d.latitude]);
+        });
+
+        vis.svg.selectAll(".city-dot")
+            .data(cities)
+            .enter()
+            .append("circle")
+            .attr("class", "city-dot")
+            .attr("cx", d => d.position[0])
+            .attr("cy", d => d.position[1])
+            .attr("r", "2");
+        vis.svg.selectAll(".city-label")
+            .data(cities)
+            .enter()
+            .append("text")
+            .attr("class", "city-label")
+            .attr("x", d => d.position[0])
+            .attr("y", d => d.position[1]+4)
+            .text(d => d.name);
+
+        // Draw the hatching for each county (it'll be enabled where required).
 
         vis.countiesPattern = vis.svg.selectAll(".countyPattern")
             .data(geodata.features, d => d.properties.NHGISNAM)

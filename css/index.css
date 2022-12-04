@@ -146,6 +146,13 @@ body{
 
 #module-5{
     background-color: #21252c;
+    color: #A5B99F;
+}
+
+.ten-title {
+    padding-top: 3%;
+    color: #A5B99F;
+    font-family: googleJuliasSans
 }
 
 #charitypics img {
@@ -160,8 +167,13 @@ body{
     font-size: large;
     text-align: center;
     color: #f2e0a9;
-
 }
+
+.card-body img{
+    width:20rem;
+    padding-bottom: 16pt;
+}
+
 
 .vis-title{
     font-family: googleJuliasSans;

@@ -196,6 +196,16 @@
 .charity-vis .wedge{
     fill:white;
 }
+.charity-vis .city-dot {
+    fill:black;
+    stroke:none;
+}
+.charity-vis .city-label {
+    fill: black;
+    stroke: none;
+    /*text-anchor: middle;*/
+    alignment-baseline: hanging;
+}
 
 /*---------- Imagination library ----------*/
 

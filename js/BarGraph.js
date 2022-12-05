@@ -85,7 +85,7 @@ class BarGraph {
             .on('mouseover', (event, d) => {
                 vis.tooltip
                     .style("opacity", 1)
-                    .html(`<div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">$${d.dollars.toLocaleString()}</div>`)
+                    .html(`<div style="border: thin solid grey; border-radius: 25px; background: #7C94B6; padding: 10px">$${d.dollars.toLocaleString()}</div>`)
                     .style("left", (event.pageX + 10) + "px")
                     .style("top", (event.pageY + 10) + "px");
 

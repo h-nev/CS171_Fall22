@@ -8,6 +8,14 @@
 .bubble-vis .artist-dolly {
     fill: #BEA1A5;
 }
+
+.bubble-vis .artist-circle-tooltip:hover {
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+    stroke:#89414D;
+    stroke-width: 8px;
+    stroke-opacity: .5;
+}
+
 .bubble-vis .artist-elvis {
     fill: #A5B99F;
 }
@@ -232,7 +240,10 @@
     fill: #B99599;
     stroke: none;
 }
+.library-vis .bar:hover {
+    fill: #89414D;
 
+}
 .library-vis .x-axis-label {
     text-anchor: middle;
     alignment-baseline: hanging;

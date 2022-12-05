@@ -176,7 +176,7 @@ class MiniDendro{
 
                 if (d.height == 0){
                     vis.tooltip.html(`
-                    <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">
+                    <div style="border: thin solid grey; border-radius: 25px; background: #A4BFD2; padding: 10px">
                     <h4> ${d.parent.data.name}</h4>     
                     <h4> ${d.data.name}</h4>         
                     </div>`
@@ -199,7 +199,7 @@ class MiniDendro{
                     // people.slice(0, -2)
 
                     vis.tooltip.html(`
-                    <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px; width: 400px">
+                    <div style="border: thin solid grey; border-radius: 25px; background: #A4BFD2; padding: 10px; width: 400px">
                     <h3> ${d.data.name}</h3>    
                     <h4> ${people}</h4>      
                     </div>`
@@ -209,7 +209,7 @@ class MiniDendro{
                 else if (d.height == 2){
 
                     vis.tooltip.html(`
-                    <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px; width: 300px">
+                    <div style="border: thin solid grey; border-radius: 25px; background: #A4BFD2; padding: 10px; width: 300px">
                     <h3> ${d.data.name}, ${vis.timePeriod[0]}s</h3>    
                     <h4> ${d.data.total} collaborators</h4>      
                     </div>`

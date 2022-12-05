@@ -133,8 +133,7 @@
         </div>
     </div>
 
-
-    <div class='gutter'></div>
+</div>
 
 
     <!-- CONTAINS ALL STATIC VERSIONS OF WHAT SHOULD BE TRANSITIONAL VISUALIZATIONS -->
@@ -147,14 +146,14 @@
                 <div class="big-gutter"></div>
 
                 <div style="height: 50vh" id="bubble-first-text">
-                    <p fader2'>Ranging from classic country legend <em>Johnny Cash</em> to pop country hit
+                    <p class = 'fader2'>Ranging from classic country legend <em>Johnny Cash</em> to pop country hit
                         <em>Luke Bryan</em>, country
                         music casts a wide net. Still, it's sound is unique to the United States. A bubble that doesn't
                         stand out in the presence of
                         <em>Taylor Swift</em> and <em>Elvis Presley</em> is renowned artist <em> Dolly Parton</em>.</p>
                 </div>
                 <div style="height: 60vh" id="bubble-second-text">
-                    <p fader2'>Despite her comparatively small impact on the Billboards, she is famous for
+                    <p class = 'fader2'>Despite her comparatively small impact on the Billboards, she is famous for
                         more than her solo music career.
                         Out of these major players on the Billboards, she has collaborated with 14 of them. Taylor Swift
                         has
@@ -180,10 +179,11 @@
                 </div>
             </div>
         </div>
+        <div class='gutter'></div>
     </div>
 
 
-    <div class='gutter'></div>
+
     <div class='container-fluid module' id='collab_intro'>
         <div class='row'>
 
@@ -217,10 +217,6 @@
                 <div class="row">
                     <div class='col' id='vis-1c-title'>
                         <h3 class='vis-title title'></h3>
-                    </div>
-
-                    <div class='col' id='vis-1c-legend'>
-                        <!-- Outsource bubble legend here -->
                     </div>
                 </div>
 
@@ -284,6 +280,7 @@
 <!-- Title and external legend side by side, plot underneath that, slider underneath the timeline -->
 <a id="musicalhistory"></a>
 <div class='container-fluid module fader4' id='module-2'>
+    <div class = 'gutter'></div>
     <div class="row">
         <div class='col-12' id='vis-2-title' style="height: 100%; white-space: nowrap; padding: 1.5%" >
             <h1 class='vis-title title fader3' >Billboard Hot 100: A Brief Musical History
@@ -321,10 +318,7 @@
         <!-- Row with custom slider for the timeline can go here -->
     </div>
 
-    <div class='row'>
-        <p></p>
-    </div>
-
+    <div class = 'gutter'></div>
     <div class = 'gutter'></div>
 
 </div>
@@ -343,28 +337,28 @@
 
 <div class='container-fluid fader3' id='spotifystats'>
     <div class='row'>
-        <div class='col' id='metric1'>
+        <div class='col-3' id='metric1'>
             <div class='row' id='leadrecord'></div>
             <div class='row' id='leadstreams'></div>
             <div class='row'>
                 <h2 class='title'>Total Streams</h2>
             </div>
         </div>
-        <div class='col' id='metric2'>
+        <div class='col-3' id='metric2'>
             <div class='row' id='featsrecord'></div>
             <div class='row' id='feats'></div>
             <div class='row'>
                 <h2 class='title'>Features</h2>
             </div>
         </div>
-        <div class='col' id='metric3'>
+        <div class='col-3' id='metric3'>
             <div class='row' id='tracksrecord'></div>
             <div class='row' id='tracks'></div>
             <div class='row'>
                 <h2 class='title'>Tracks</h2>
             </div>
         </div>
-        <div class='col' id='metric4'>
+        <div class='col-3' id='metric4'>
             <div class='row' id='onemillrecord'></div>
             <div class='row' id='onemill'></div>
             <div class='row'>
@@ -378,7 +372,24 @@
 <a id="recognition"></a>
 <div class='container-fluid' id='module-3'>
     <div class = 'gutter'></div>
+    <div class = 'gutter'></div>
     <div class='row'>
+        <!-- Awards vis -->
+        <div class='col-8' style="height: 80vh; width: 100%; position: sticky; top: 0">
+            <div class='row' id= "vis-3-title">
+                <h3 class='title fader3'>Music, Acting, Composition, Achievements, and
+                    Service</h3>
+            </div>
+
+            <div class='row' id='vis-3-legend'>
+                <!-- Outsource award legend -->
+            </div>
+
+            <div class='row fader4' id='vis-3'>
+                <!-- Awards matrix vis -->
+            </div>
+        </div>        
+
         <!-- Right of the vis -->
         <div class='col-4'>
             <div class=row style="position: sticky; top: 0; background-color: black">
@@ -512,21 +523,6 @@
                 </h4>
             </div>
         </div>
-                <!-- Awards vis -->
-                <div class='col-8' style="height: 80vh; width: 100%; position: sticky; top: 0">
-                    <div class='row' id= "vis-3-title">
-                        <h3 class='title fader3'>Music, Acting, Composition, Achievements, and
-                            Service</h3>
-                    </div>
-        
-                    <div class='row' id='vis-3-legend'>
-                        <!-- Outsource award legend -->
-                    </div>
-        
-                    <div class='row fader4' id='vis-3'>
-                        <!-- Awards matrix vis -->
-                    </div>
-                </div>        
     </div>
 </div>
 
@@ -543,7 +539,6 @@
                 charitable efforts.
             </p>
         </div>
-
     </div>
 </div>
 <div class='row fader4'>

@@ -259,10 +259,6 @@ class Awards{
                     locY = event.pageY - 220
                 }
 
-                if (d.xpos > 618){
-                    locX = event.pageX - 320
-                }
-
                 vis.tooltip
                     .style("opacity", 0.9)
                     .style("left", locX + 10 + "px")

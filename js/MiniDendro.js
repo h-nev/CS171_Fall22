@@ -155,8 +155,6 @@ class MiniDendro{
                 }
             })
             .on('mouseover', (event, d) => {
-                console.log(event.pageX+10)
-                console.log(screen.width)
 
                 let locX = event.pageX + 10
                 // 400 is the largest box we use, and we want to make sure the info doesn't get cut off on the left

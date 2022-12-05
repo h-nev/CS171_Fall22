@@ -278,6 +278,11 @@ body{
 #footer{
     /* Light grey with generous fluid space at the bottom of the page to cite / include our contacts */
     background-color: #E2D0BC;
+    font-family: Verdana;
+    text-align: left;
+    font-size: medium;
+    padding-left: 5%;
+
 
 }
 

@@ -267,23 +267,23 @@ class Awards{
 
                 if(d.title != 'General'){
                     vis.tooltip.html(`
-                        <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px;  width: 300px">
-                        <h4> ${d.award}</h4>     
-                        <h4> ${d.year}</h4> 
-                        <h4> ${d.category}</h4>  
-                        <h4> ${d.status}</h4>      
-                        <h4> For: ${d.title}</h4>
+                        <div class = "ttip" style="border: thin solid grey; border-radius: 25px; background: #9BB7A1; padding: 10px;  width: 300px">
+                        <p> ${d.award}</p>     
+                        <p> ${d.year}</p> 
+                        <p> ${d.category}</p>  
+                        <p> ${d.status}</p>      
+                        <p> For: ${d.title}</p>
                         </div>`
                     );
 
                 }
                 else{
                     vis.tooltip.html(`
-                        <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px;  width: 300px">
-                        <h4> ${d.award}</h4>     
-                        <h4> ${d.year}</h4> 
-                        <h4> ${d.category}</h4>  
-                        <h4> ${d.status}</h4>      
+                        <div class = "ttip" style="border: thin solid grey; border-radius: 25px; background: #9BB7A1; padding: 10px;  width: 300px">
+                        <p> ${d.award}</p>     
+                        <p> ${d.year}</p> 
+                        <p> ${d.category}</p>  
+                        <p> ${d.status}</p>      
                         </div>`
                     );
 

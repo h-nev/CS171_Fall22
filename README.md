@@ -8,6 +8,7 @@ Completed as a final project for Harvard University's Visualization course. Focu
 *Team*: Isidora Diaz, Hope Neveux, Loralee Ryan
 
 + [Project Website](https://code.harvard.edu/pages/hon821/CS171FP/)
++ [Process Book](https://docs.google.com/document/d/1U5zToUgqU9AknzWW-_Guzpe9N0TiHKTKJtSsBoTUR3s/edit?usp=sharing)
 + Video Presentation
 
 ## Description

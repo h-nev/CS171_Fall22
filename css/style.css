@@ -9,7 +9,7 @@
     fill: #BEA1A5;
 }
 
-.bubble-vis .artist-circle-tooltip:hover {
+.bubble-vis .artist-circle-tooltip-hover:hover {
     filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
     stroke:#89414D;
     stroke-width: 8px;
@@ -266,6 +266,7 @@
     top: 0;
     left: 0.5em;
     height: 100vh;
+    pointer-events: none;
 }
 
 .left-menu .bgbox {
@@ -279,6 +280,7 @@
     text-decoration: none;
     line-height: 2rem;
     color: #f6d17b;
+    pointer-events: auto;
 }
 
 .left-menu .bullet {

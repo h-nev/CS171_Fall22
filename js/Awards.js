@@ -228,8 +228,6 @@ class Awards{
 
         })
 
-        console.log(awardSelection)
-
         vis.updateVis();
 
     }

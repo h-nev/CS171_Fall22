@@ -31,13 +31,6 @@ class CharityVis {
         let heightForXFit = width * 0.25 + 167;
         let widthLimit = width - 40;
         let heightLimit = height - 12.5;
-        console.log(
-            "width",width,
-            "height",height,
-            "widthForYFit",widthForYFit,
-            "heightForXFit",heightForXFit,
-            "widthLimit",widthLimit,
-            "heightLimit",heightLimit);
 
         if (widthForYFit > widthLimit) {
             // Constrained by width.

@@ -64,11 +64,15 @@ function initMainPage(dataArray) {
 
     charityBubbles = new CharityVis('vis-4', dataArray[5], dataArray[6], dataArray[7]);
 
-    let bubbleTextObserver = new IntersectionObserver(function(entries) {
-        countryBubbles_a.showLinked = entries[0].intersectionRatio >= 0.10;
-        countryBubbles_a.updateVis();
-    }, {threshold: [0.10]});
-    bubbleTextObserver.observe(document.getElementById("bubble-second-text"));
+    new MostVisibleTracker(
+        [
+            document.getElementById("bubble-first-text"),
+            document.getElementById("bubble-second-text")
+        ],
+        function(elementId) {
+            countryBubbles_a.showLinked = (elementId == "bubble-second-text");
+            countryBubbles_a.updateVis();
+        });
 
     new MostVisibleTracker(
         [
@@ -92,6 +96,21 @@ function initMainPage(dataArray) {
 
             awardSelection = selectorMap[elementId];
             awardsWon.wrangleData();
+        });
+
+    new LeftBarHider(
+        [
+            document.getElementById("module-1a"),
+            document.getElementById("module-2"),
+            document.getElementById("vis-3")
+        ],
+        function(opacity) {
+            if (opacity <= 0) {
+                document.getElementById("left-menu").style.display = "none";
+            } else {
+                document.getElementById("left-menu").style.display = "flex";
+                document.getElementById("left-menu").style.opacity = opacity;
+            }
         });
 
     libraryGraph = new BarGraph('vis-5', dataArray[9]);
@@ -148,6 +167,51 @@ class MostVisibleTracker {
     }
 }
 
+class LeftBarHider {
+    constructor(elements, callback) {
+        let tracker = this;
+
+        tracker.callback = callback;
+
+        tracker.elementAreas = new Map();
+        elements.forEach(function(element) { tracker.elementAreas.set(element.id, 0); });
+        tracker.mostVisibleElementId = elements[0].id;
+
+        tracker.observer = new IntersectionObserver(function(entries) {
+            tracker.visibilityChanged(entries);
+        }, { threshold: tracker.buildThresholdList() });
+        elements.forEach(function(element) { tracker.observer.observe(element); });
+    }
+
+    buildThresholdList() {
+        let thresholds = [];
+        let numSteps = 20;
+
+        for (let i = 1.0; i <= numSteps; i++) {
+          let ratio = i/numSteps;
+          thresholds.push(ratio);
+        }
+
+        thresholds.push(0);
+        return thresholds;
+      }
+
+    visibilityChanged(entries) {
+        let tracker = this;
+
+        entries.forEach(function(entry) {
+            let visibleArea = entry.intersectionRect.height * entry.intersectionRect.width;
+            let rootArea = entry.rootBounds.height * entry.rootBounds.width;
+            let elementArea = entry.boundingClientRect.height * entry.boundingClientRect.width;
+            tracker.elementAreas.set(entry.target.id, visibleArea / Math.min(rootArea, elementArea));
+        });
+
+        let maxVisibleRatio = d3.max(tracker.elementAreas.values());
+        let opacity = Math.min(1, Math.max(0, 3 - 4 * maxVisibleRatio));
+        tracker.callback(opacity);
+    }
+}
+
 let selectedCategory =  document.getElementById('vis-2-selector').value;
 
 function categoryChange() {
@@ -159,9 +223,7 @@ function categoryChange() {
 /* for fade-in on scroll animation */
 /* from https://codepen.io/bstonedev/pen/MWWZgKz */
 let elementsArray = document.querySelectorAll(".fader2, .fader3, .fader4, .fader6, .fader8");
-console.log(Array.isArray(elementsArray));
 
-console.log(elementsArray);
 window.addEventListener('scroll', fadeIn ); 
 function fadeIn() {
     for (var i = 0; i < elementsArray.length; i++) {

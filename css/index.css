@@ -126,10 +126,24 @@ body{
 
 .timeawardsmerge{
     background-color: #1D2436;
-    padding-top: 12%;
-    padding-bottom: 12%;
+    padding-top: 8%;
+    padding-bottom: 8%;
+    padding-left: 10%;
+    padding-right: 10%;
     color: #f6d17b;
     font-size: xx-large;
+}
+
+#awards_intro{
+    background-color: #2C3534;
+    padding-top: 9%;
+    padding-bottom: 9%;
+    color: #f6d17b;
+    font-family: Optima;
+    padding-left: 15%;
+    padding-right: 15%;
+    font-size: xx-large;
+    text-shadow: #1D2436;
 }
 
 #vis-1c-title{

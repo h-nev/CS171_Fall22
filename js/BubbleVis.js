@@ -198,7 +198,7 @@ class BubbleVis {
                 if (tooltipHTML.length > 0) {
                     vis.tooltip
                         .style("opacity", 1)
-                        .html('<div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">' + tooltipHTML + '</div>')
+                        .html('<div style="border: thin solid grey; border-radius: 25px; font-family: verdana; background: #E2D0BC; padding: 10px">' + tooltipHTML + '</div>')
                         .style("left", (event.pageX + 10) + "px")
                         .style("top", (event.pageY + 10) + "px");
                 }

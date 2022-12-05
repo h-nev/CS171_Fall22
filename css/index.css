@@ -87,10 +87,13 @@ body{
 
 #module-1{
     background-color: #263143;
+    color: #E2D0BC;
+    font-family: googleLago;
+;
 }
 
 #module-3{
-    padding-left: 1%;
+    padding-left: 3.5%;
     padding-right: 1%;
 
 }
@@ -121,6 +124,32 @@ body{
     font-size: xxx-large;
 }
 
+.timeawardsmerge{
+    background-color: #1D2436;
+    padding-top: 8%;
+    padding-bottom: 8%;
+    padding-left: 10%;
+    padding-right: 10%;
+    color: #f6d17b;
+    font-size: xx-large;
+}
+
+#awards_intro{
+    background-color: #2C3534;
+    padding-top: 6%;
+    padding-bottom: 2%;
+    color: #f6d17b;
+    font-family: Optima;
+    padding-left: 15%;
+    padding-right: 15%;
+    font-size: xx-large;
+    text-shadow: #1D2436;
+}
+
+#awards_intro img{
+    width: 100%;
+}
+
 #vis-1c-title{
     background-color: black;
     padding-top: 6%;
@@ -141,9 +170,11 @@ body{
     background-color: #1D2436;
 }
 
+
 .library {
     color: #E2D0BC
 }
+
 #vis-1f-title{
     padding-top: 3%;
     color: #B99599;
@@ -195,6 +226,9 @@ body{
     width:20rem;
     padding-bottom: 16pt;
 }
+.card-body {
+    background-color: #E2D0BC;
+}
 
 #vis-2{
     font-size: 15px;
@@ -214,26 +248,26 @@ body{
 .gutter{
     /* Allows us to make custom row-breaks so svgs are not directly touching */
     /*background-color: black;*/
-    padding-bottom: 4%;
+    padding-bottom: 4vh;
 
 }
 
 .gutter-light{
     background-color: #ffffff;
-    padding-bottom: 4%;
+    padding-bottom: 4vh;
 
 }
 
 .big-gutter{
     /* Allows us to make custom row-breaks that are larger than the small visual separation between visualizations */
     /*background-color: black; */
-    padding-bottom: 12%;
+    padding-bottom: 12vh;
 
 }
 
 .big-gutter-light{
     background-color: #ffffff;
-    padding-bottom: 12%;
+    padding-bottom: 12vh;
 
 }
 
@@ -245,7 +279,9 @@ body{
 
 #spotifystats{
     text-align: center;
-    padding: 4% 3%;
+    padding-left: 5%;
+    padding-top: 2%;
+    padding-bottom: 4%;
     background-color: #2b3339;
 }
 
@@ -262,7 +298,12 @@ body{
 
 #footer{
     /* Light grey with generous fluid space at the bottom of the page to cite / include our contacts */
-    background-color: #ffffff;
+    background-color: #E2D0BC;
+    font-family: Verdana;
+    text-align: left;
+    font-size: medium;
+    padding-left: 5%;
+
 
 }
 

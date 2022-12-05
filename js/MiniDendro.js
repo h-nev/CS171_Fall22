@@ -155,8 +155,6 @@ class MiniDendro{
                 }
             })
             .on('mouseover', (event, d) => {
-                console.log(event.pageX+10)
-                console.log(screen.width)
 
                 let locX = event.pageX + 10
                 // 400 is the largest box we use, and we want to make sure the info doesn't get cut off on the left
@@ -172,13 +170,13 @@ class MiniDendro{
                     .style("opacity", 0.9)
                     .style("left", locX + "px")
                     .style("top", event.pageY + "px")
-                    .style('font-size', '8px');
+                    .style('font-size', 'x-small');
 
                 if (d.height == 0){
                     vis.tooltip.html(`
-                    <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">
-                    <h4> ${d.parent.data.name}</h4>     
-                    <h4> ${d.data.name}</h4>         
+                    <div class = "ttip" style="border: thin solid grey; border-radius: 25px; background: #A4BFD2; padding: 10px">
+                    <p> ${d.parent.data.name}</p>     
+                    <p> ${d.data.name}</p>         
                     </div>`
                     );
 
@@ -199,9 +197,9 @@ class MiniDendro{
                     // people.slice(0, -2)
 
                     vis.tooltip.html(`
-                    <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px; width: 400px">
-                    <h3> ${d.data.name}</h3>    
-                    <h4> ${people}</h4>      
+                    <div class = "ttip" style="border: thin solid grey; font-size: small;  border-radius: 25px; background: #A4BFD2; padding: 10px; width: 400px">
+                    <p> ${d.data.name}</p>    
+                    <p> ${people}</p>      
                     </div>`
                     );
 
@@ -209,9 +207,9 @@ class MiniDendro{
                 else if (d.height == 2){
 
                     vis.tooltip.html(`
-                    <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px; width: 300px">
-                    <h3> ${d.data.name}, ${vis.timePeriod[0]}s</h3>    
-                    <h4> ${d.data.total} collaborators</h4>      
+                    <div class = "ttip" style="border: thin solid grey; border-radius: 25px; background: #A4BFD2; padding: 10px; width: 300px">
+                    <p> ${d.data.name}, ${vis.timePeriod[0]}s</p>    
+                    <p> ${d.data.total} collaborators</p>      
                     </div>`
                     );
 

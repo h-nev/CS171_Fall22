@@ -316,6 +316,7 @@ class CharityVis {
             .style("height", "0")
             .style("opacity", 0);
 
+
         // Donation flyout circles.
         vis.donationCircles = vis.svg.selectAll(".donation-circle")
             .data(vis.donationData)

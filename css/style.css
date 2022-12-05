@@ -6,10 +6,18 @@
     stroke: black;
 }
 .bubble-vis .artist-dolly {
-    fill: #A5B99F;
-}
-.bubble-vis .artist-elvis {
     fill: #BEA1A5;
+}
+
+.bubble-vis .artist-circle-tooltip:hover {
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+    stroke:#89414D;
+    stroke-width: 8px;
+    stroke-opacity: .5;
+}
+
+.bubble-vis .artist-elvis {
+    fill: #A5B99F;
 }
 .bubble-vis .artist-dolly-linked {
     stroke-width: 3px;
@@ -54,16 +62,12 @@
 }
 
 /*----------Video -------------------------*/
-.cover {
-    width: 90vw;
-    height: 110vh;
-    position:fixed;
-    /*display:inline-block;*/
-    fill: none;
+#cover {
+    padding-left: 15px;
+    overflow: clip;
 }
-
 .vidContain {
-    width: 90vw;
+    width: 100%;
     height: 100%;
     position:relative;
     /*display:inline-block;*/
@@ -77,8 +81,7 @@
     min-width: 120%;
     min-height: 100%;
     width: auto;
-    height: auto
-    z-index:-1;
+    height: auto;
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
     background-size: cover;
@@ -169,6 +172,7 @@
     border: 1px solid #404040;
     border-radius: 5px;
     padding: 5px;
+    font-size: large;
 }
 .charity-vis .donation-when {
     display: inline-block;
@@ -187,7 +191,7 @@
     margin-top: 10px;
 }
 .charity-vis .donation-colorbar {
-    width:5px;
+    width:15px;
     margin-right:5px;
 }
 .charity-vis .donation-flyout-line {
@@ -231,8 +235,12 @@
 .library-vis .bar {
     fill: #B99599;
     stroke: none;
+    transition: fill .4s ease;
 }
+.library-vis .bar:hover {
+    fill: #89414D;
 
+}
 .library-vis .x-axis-label {
     text-anchor: middle;
     alignment-baseline: hanging;
@@ -298,4 +306,9 @@
 #cardcontainer{
     padding-left: 4%;
 
+}
+
+.ttip {
+    font-size: medium;
+    font-family: Verdana;
 }

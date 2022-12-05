@@ -177,6 +177,7 @@
     border: 1px solid #404040;
     border-radius: 5px;
     padding: 5px;
+    font-size: large;
 }
 .charity-vis .donation-when {
     display: inline-block;
@@ -195,7 +196,7 @@
     margin-top: 10px;
 }
 .charity-vis .donation-colorbar {
-    width:5px;
+    width:15px;
     margin-right:5px;
 }
 .charity-vis .donation-flyout-line {

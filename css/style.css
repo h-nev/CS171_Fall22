@@ -239,6 +239,7 @@
 .library-vis .bar {
     fill: #B99599;
     stroke: none;
+    transition: fill .4s ease;
 }
 .library-vis .bar:hover {
     fill: #89414D;

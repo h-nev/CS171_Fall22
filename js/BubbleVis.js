@@ -113,11 +113,10 @@ class BubbleVis {
             (hierarchy);
 
         // One circle per artist.
-        vis.circles = vis.svg.selectAll("circle")
+        vis.artistCircles = vis.svg.selectAll(".artist-circle")
             .data(vis.pack.leaves())
-            .enter();
-        
-        vis.circles.append("circle")
+            .enter()
+            .append("circle")
             .classed("artist-circle", true)
             .classed("artist-dolly", d => (d.data.name == "Dolly Parton"))
             .classed("artist-elvis", d => (vis.showLinked && (d.data.name == "Elvis Presley")))
@@ -126,7 +125,10 @@ class BubbleVis {
             .attr("cy", d => d.y)
             .attr("r", d => d.r);
 
-        vis.circles.append("text")
+        vis.svg.selectAll(".artist-circle-text")
+            .data(vis.pack.leaves())
+            .enter()
+            .append("text")
             .attr("class", "artist-circle-text")
             .attr("x", d => d.x)
             .attr("y", d => d.y)
@@ -141,8 +143,13 @@ class BubbleVis {
             })
             .style("font-size", d => d.scale + "px");
 
-        vis.circles.append("circle")
-            .attr("class", "artist-circle-tooltip")
+        vis.artistCircleTooltips = vis.svg.selectAll(".artist-circle-tooltip")
+            .data(vis.pack.leaves())
+            .enter()
+            .append("circle")
+            .classed("artist-circle-tooltip", true)
+            .classed("artist-circle-tooltip-hover", d => (vis.showLinked &&
+                ((d.data.name == "Elvis Presley") || (vis.collabArtists.get(d.data.name) != undefined))))
             .attr("cx", d => d.x)
             .attr("cy", d => d.y)
             .attr("r", d => d.r)
@@ -216,10 +223,11 @@ class BubbleVis {
     updateVis() {
         let vis = this;
 
-        vis.svg.selectAll("circle")
-            .data(vis.pack.leaves())
-            .merge(vis.circles)
+        vis.artistCircles
             .classed("artist-elvis", d => (vis.showLinked && (d.data.name == "Elvis Presley")))
             .classed("artist-dolly-linked", d => (vis.showLinked && vis.collabArtists.has(d.data.name)));
-    }
+        vis.artistCircleTooltips
+            .classed("artist-circle-tooltip-hover", d=> (vis.showLinked &&
+                ((d.data.name == "Elvis Presley") || (vis.collabArtists.get(d.data.name) != undefined))));
+}
 }

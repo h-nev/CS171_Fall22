@@ -158,8 +158,8 @@ class MiniDendro{
 
                 let locX = event.pageX + 10
                 // 400 is the largest box we use, and we want to make sure the info doesn't get cut off on the left
-                if (screen.width - event.pageX - 10 < 300 && d.height == 0){
-                    locX = event.pageX - 200 - 10
+                if (screen.width - event.pageX - 10 < 150 && d.height == 0){
+                    locX = event.pageX - 150 - 10
                 }
                 else if (screen.width - event.pageX - 10 < 400 && d.height == 1){
                     locX = event.pageX - 400 - 10

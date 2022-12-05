@@ -244,7 +244,6 @@ class TimeSeries {
                     .style('fill', 'none')
                     .style('stroke',
                         function(d) {
-                        console.log(vis.artistScale([0]["artist"]))
                         return '#B3CDE0'
                             // vis.artistScale([0]["artist"])
                             ;

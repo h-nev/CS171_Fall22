@@ -193,7 +193,6 @@ class LeftBarHider {
         }
 
         thresholds.push(0);
-        console.log(thresholds);
         return thresholds;
       }
 
@@ -224,9 +223,7 @@ function categoryChange() {
 /* for fade-in on scroll animation */
 /* from https://codepen.io/bstonedev/pen/MWWZgKz */
 let elementsArray = document.querySelectorAll(".fader2, .fader3, .fader4, .fader6, .fader8");
-console.log(Array.isArray(elementsArray));
 
-console.log(elementsArray);
 window.addEventListener('scroll', fadeIn ); 
 function fadeIn() {
     for (var i = 0; i < elementsArray.length; i++) {

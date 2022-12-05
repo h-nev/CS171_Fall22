@@ -136,14 +136,18 @@ body{
 
 #awards_intro{
     background-color: #2C3534;
-    padding-top: 9%;
-    padding-bottom: 9%;
+    padding-top: 6%;
+    padding-bottom: 2%;
     color: #f6d17b;
     font-family: Optima;
     padding-left: 15%;
     padding-right: 15%;
     font-size: xx-large;
     text-shadow: #1D2436;
+}
+
+#awards_intro img{
+    width: 100%;
 }
 
 #vis-1c-title{

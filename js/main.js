@@ -94,6 +94,21 @@ function initMainPage(dataArray) {
             awardsWon.wrangleData();
         });
 
+    new LeftBarHider(
+        [
+            document.getElementById("module-1a"),
+            document.getElementById("module-2"),
+            document.getElementById("vis-3")
+        ],
+        function(opacity) {
+            if (opacity <= 0) {
+                document.getElementById("left-menu").style.display = "none";
+            } else {
+                document.getElementById("left-menu").style.display = "flex";
+                document.getElementById("left-menu").style.opacity = opacity;
+            }
+        });
+
     libraryGraph = new BarGraph('vis-5', dataArray[9]);
 }
 
@@ -145,6 +160,52 @@ class MostVisibleTracker {
             tracker.mostVisibleElementId = newMostVisibleElementId;
             tracker.callback(tracker.mostVisibleElementId);
         }
+    }
+}
+
+class LeftBarHider {
+    constructor(elements, callback) {
+        let tracker = this;
+
+        tracker.callback = callback;
+
+        tracker.elementAreas = new Map();
+        elements.forEach(function(element) { tracker.elementAreas.set(element.id, 0); });
+        tracker.mostVisibleElementId = elements[0].id;
+
+        tracker.observer = new IntersectionObserver(function(entries) {
+            tracker.visibilityChanged(entries);
+        }, { threshold: tracker.buildThresholdList() });
+        elements.forEach(function(element) { tracker.observer.observe(element); });
+    }
+
+    buildThresholdList() {
+        let thresholds = [];
+        let numSteps = 20;
+
+        for (let i = 1.0; i <= numSteps; i++) {
+          let ratio = i/numSteps;
+          thresholds.push(ratio);
+        }
+
+        thresholds.push(0);
+        console.log(thresholds);
+        return thresholds;
+      }
+
+    visibilityChanged(entries) {
+        let tracker = this;
+
+        entries.forEach(function(entry) {
+            let visibleArea = entry.intersectionRect.height * entry.intersectionRect.width;
+            let rootArea = entry.rootBounds.height * entry.rootBounds.width;
+            let elementArea = entry.boundingClientRect.height * entry.boundingClientRect.width;
+            tracker.elementAreas.set(entry.target.id, visibleArea / Math.min(rootArea, elementArea));
+        });
+
+        let maxVisibleRatio = d3.max(tracker.elementAreas.values());
+        let opacity = Math.min(1, Math.max(0, 3 - 4 * maxVisibleRatio));
+        tracker.callback(opacity);
     }
 }
 

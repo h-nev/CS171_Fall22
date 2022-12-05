@@ -263,8 +263,6 @@ class Awards{
                     locX = event.pageX - 320
                 }
 
-                console.log(d.ypos)
-
                 vis.tooltip
                     .style("opacity", 0.9)
                     .style("left", locX + 10 + "px")

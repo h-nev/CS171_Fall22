@@ -93,9 +93,7 @@ body{
 }
 
 #module-3{
-    padding-left: 3.5%;
-    padding-right: 1%;
-
+    padding-left: 3em;
 }
 
 #vis-3-title{
@@ -222,8 +220,11 @@ body{
     color: #f2e0a9;
 }
 
+.card {
+    max-width: 25rem;
+}
 .card-body img{
-    width:20rem;
+    width: 90%;
     padding-bottom: 16pt;
 }
 .card-body {

@@ -133,7 +133,7 @@ class Awards{
         let vis = this;
 
         // Expecting to outsource the legend, only need space for axes
-        vis.margin = {top: 10, bottom: 20, left: 35, right: 10, padding: 4, spacing: 27.5};
+        vis.margin = {top: 10, bottom: 25, left: 10, right: 25, padding: 4, spacing: 27.5};
 
         // Path scaling factor (scaling as a square so same for both)
         vis.scaling = 0.175;
@@ -252,22 +252,28 @@ class Awards{
             .attr('width', 25)
             .attr('opacity', 0)
             .on('mouseover', (event, d) => {
-
                 let locY = event.pageY
+                let locX = event.pageX
                 // Make sure the info doesn't get cut off on the bottom
                 if (d.ypos > 355){
-                    locY = event.pageY - 200
+                    locY = event.pageY - 220
                 }
+
+                if (d.xpos > 618){
+                    locX = event.pageX - 320
+                }
+
+                console.log(d.ypos)
 
                 vis.tooltip
                     .style("opacity", 0.9)
-                    .style("left", event.pageX + 10 + "px")
+                    .style("left", locX + 10 + "px")
                     .style("top", locY + "px")
                     .style('font-size', '8px');
 
                 if(d.title != 'General'){
                     vis.tooltip.html(`
-                        <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">
+                        <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px;  width: 300px">
                         <h4> ${d.award}</h4>     
                         <h4> ${d.year}</h4> 
                         <h4> ${d.category}</h4>  
@@ -279,7 +285,7 @@ class Awards{
                 }
                 else{
                     vis.tooltip.html(`
-                        <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px">
+                        <div style="border: thin solid grey; border-radius: 5px; background: grey; padding: 10px;  width: 300px">
                         <h4> ${d.award}</h4>     
                         <h4> ${d.year}</h4> 
                         <h4> ${d.category}</h4>  
@@ -288,8 +294,6 @@ class Awards{
                     );
 
                 }
-    
-
     
             })
             .on('mouseout', (event, d) => {

@@ -62,16 +62,12 @@
 }
 
 /*----------Video -------------------------*/
-.cover {
-    width: 90vw;
-    height: 110vh;
-    position:fixed;
-    /*display:inline-block;*/
-    fill: none;
+#cover {
+    padding-left: 15px;
+    overflow: clip;
 }
-
 .vidContain {
-    width: 90vw;
+    width: 100%;
     height: 100%;
     position:relative;
     /*display:inline-block;*/
@@ -85,8 +81,7 @@
     min-width: 120%;
     min-height: 100%;
     width: auto;
-    height: auto
-    z-index:-1;
+    height: auto;
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
     background-size: cover;

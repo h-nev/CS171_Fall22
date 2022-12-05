@@ -64,11 +64,15 @@ function initMainPage(dataArray) {
 
     charityBubbles = new CharityVis('vis-4', dataArray[5], dataArray[6], dataArray[7]);
 
-    let bubbleTextObserver = new IntersectionObserver(function(entries) {
-        countryBubbles_a.showLinked = entries[0].intersectionRatio >= 0.10;
-        countryBubbles_a.updateVis();
-    }, {threshold: [0.10]});
-    bubbleTextObserver.observe(document.getElementById("bubble-second-text"));
+    new MostVisibleTracker(
+        [
+            document.getElementById("bubble-first-text"),
+            document.getElementById("bubble-second-text")
+        ],
+        function(elementId) {
+            countryBubbles_a.showLinked = (elementId == "bubble-second-text");
+            countryBubbles_a.updateVis();
+        });
 
     new MostVisibleTracker(
         [

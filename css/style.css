@@ -6,10 +6,10 @@
     stroke: black;
 }
 .bubble-vis .artist-dolly {
-    fill: #A5B99F;
+    fill: #BEA1A5;
 }
 .bubble-vis .artist-elvis {
-    fill: #BEA1A5;
+    fill: #A5B99F;
 }
 .bubble-vis .artist-dolly-linked {
     stroke-width: 3px;

@@ -133,7 +133,7 @@ class Awards{
         let vis = this;
 
         // Expecting to outsource the legend, only need space for axes
-        vis.margin = {top: 10, bottom: 20, left: 20, right: 10, padding: 4, spacing: 27.5};
+        vis.margin = {top: 10, bottom: 20, left: 35, right: 10, padding: 4, spacing: 27.5};
 
         // Path scaling factor (scaling as a square so same for both)
         vis.scaling = 0.175;
